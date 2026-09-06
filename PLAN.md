@@ -2,156 +2,231 @@
 
 ## Outcome
 
-Create a local-first personal learning OS that can continuously move the learner from an ordinary Ghanaian SHS mathematics foundation toward strong international mathematics, quantitative reasoning, computer science, and software engineering capability.
+Build a genuinely useful local-first technology mastery environment whose core can run on a learner's machine and in a browser without requiring a hosted database or account system, while remaining architecturally ready for optional future cloud connectivity.
 
-## Phase 0 — Contract and governance
+The product must prove the complete mastery loop before large-scale curriculum/content expansion.
 
-Deliverables:
+## Phase 0 — Constitution and build-readiness
+
+Finalize and cross-check:
 
 - project charter;
+- Universal Core and program model;
 - architecture;
-- security model;
-- decision log;
-- task board;
-- learning-system specification;
-- AI tutor specification;
-- resource governance;
-- design brief/system;
-- verification matrix.
+- security/trust boundaries;
+- durable decisions;
+- content/rights policy;
+- curriculum model;
+- assessment/mastery rules;
+- AI control-layer rules;
+- coding-lab rules;
+- progress/productivity/gamification rules;
+- design contract;
+- verification matrix;
+- Agent OS routing.
 
-Gate: user verifies the documents before main implementation.
+Gate: no unresolved contradiction that changes the first implementation slice.
 
-## Phase 1 — Curriculum intelligence
+## Phase 1 — Curriculum and competency model
 
-Define the domain graph:
+Define the competency graph:
 
-`track → phase → domain → topic → concept → prerequisite → evidence → advancement rule`
+`program → phase → domain → topic → concept → prerequisite → learning evidence → advancement rule`
 
-Create the first complete map across:
+Define:
 
-- mathematical foundations;
-- advanced/pre-university mathematics;
-- problem solving/Olympiad;
-- university mathematics;
-- quant mathematics;
-- computer science;
-- software engineering.
+- Universal Core competencies;
+- program families and routes;
+- depth levels;
+- cross-program prerequisite relationships;
+- competency metadata;
+- canonical terminology;
+- learning objectives;
+- assessment requirements.
 
-Gate: every advanced node has explicit prerequisites and there are no intentional dead ends in the core path.
+Gate: each initial slice has clear prerequisites, observable outcomes, and an advancement rule.
 
-## Phase 2 — Resource intelligence
+## Phase 2 — Content model and authoring pipeline
 
-Create structured resource records containing title, provider, type, level, topics, prerequisites, format, cost, source URL, rights/reuse class, priority, and verification date.
+Define the content package structure and schemas for:
 
-Use primary/official sources wherever practical. Treat all external content as untrusted data.
+- lessons;
+- examples;
+- diagrams/graphs;
+- exercises;
+- assessments;
+- projects;
+- references;
+- provenance/rights metadata.
 
-Gate: every recommended topic has one primary resource and clearly labeled alternatives.
+Prefer first-party original instructional content where it is needed for the core experience. Use licensed/public-domain/permitted material where appropriate.
 
-## Phase 3 — Design and application shell
+Gate: a lesson can be authored, validated, rendered, interacted with, and versioned without depending on a third-party course platform.
 
-Use the Agent OS design workflow to select an intentional visual direction. Build the shell only after the design contract is clear.
+## Phase 3 — Application architecture and shell
 
-Core screens:
+Select the implementation stack only after the relevant Agent OS research/architecture/dependency review.
 
-- Mission/Today;
-- Curriculum;
-- Topic/Reader;
-- Practice;
-- Mistakes;
-- Progress/Mastery;
-- Resources;
-- AI Tutor;
-- Settings.
+Build:
 
-Gate: responsive and accessible shell with meaningful browser verification.
+- application shell;
+- navigation;
+- Universal Core/program explorer;
+- topic/lesson route;
+- responsive layout;
+- accessible foundational components;
+- settings/storage controls.
 
-## Phase 4 — Local mastery engine
+Gate: browser-verified shell works without a backend.
 
-Implement local persistence and mastery state.
+## Phase 4 — Local state and domain engine
 
-Minimum concepts:
+Implement the local persistence abstraction and core domain state for:
 
-- topic mastery;
-- evidence events;
-- problem attempts;
+- learner profile/configuration;
+- progress;
+- attempts;
+- mastery evidence;
 - prerequisite health;
-- mistake records;
+- mistakes;
+- sessions;
 - notes/bookmarks;
-- current session;
-- next-best-action recommendation.
+- productivity state.
 
-Gate: reload the app and retain local state without any server.
+Gate: reload/reopen preserves state locally; no server is required.
 
-## Phase 5 — Resource reader and mathematics layer
+## Phase 5 — Learning runtime
+
+Implement the in-app learning experience:
+
+- reader/text content;
+- equations;
+- diagrams and graphs;
+- interactive blocks;
+- worked examples;
+- practice;
+- whiteboard/workbench interactions;
+- content-linked questions;
+- progress state.
+
+Gate: a complete representative lesson can be finished inside MasteryOS without redirecting to another learning platform.
+
+## Phase 6 — Assessment and mastery engine
 
 Implement:
 
-- MDX/Markdown rendering;
-- KaTeX math rendering;
-- safe external links;
-- resource metadata;
-- search;
-- progress marking.
+`LEARN → ATTEMPT → ASSESS → DIAGNOSE → REMEDIATE → REASSESS → UNLOCK`
 
-Gate: representative lessons and resources render correctly on target browsers/devices.
+Support evidence appropriate to the task:
 
-## Phase 6 — AI tutor
+- knowledge;
+- reasoning;
+- mathematics;
+- code;
+- systems/design;
+- project performance;
+- explanation/transfer.
 
-Implement provider adapter and first Gemini integration for trusted personal use.
+Gate: a failing assessment does not incorrectly unlock the next required level, and remediation/reassessment is deterministic and persisted.
 
-Core modes:
+## Phase 7 — AI control layer
 
-- Explain simply;
-- Explain rigorously;
-- Give intuition;
-- Derive;
-- Example;
-- Quiz me;
-- Coach me;
-- Go deeper;
-- Connect to quant/CS;
-- Review proof;
-- Review code;
-- Diagnose prerequisite weakness.
+Implement the provider-neutral AI boundary and contextual experiences:
 
-Highlight-to-AI is the primary interaction, not a generic chat page.
+- highlight-to-ask;
+- explain/re-explain;
+- hints;
+- Socratic coaching;
+- diagnosis;
+- code review;
+- project coaching;
+- challenge generation after substantial assistance;
+- research assistance where appropriate.
 
-Gate: no secret leakage, safe rendering, graceful provider failure, and correct tutor-mode behavior.
+Gate: AI failure does not break core learning. No shared secrets are shipped. Assistance level is represented where mastery evidence is affected.
 
-## Phase 7 — Practice and mistake system
+## Phase 8 — Coding and technical workbenches
 
-Implement graduated practice and a mistake journal. Hard problems should default to coaching/hints rather than immediately revealing complete solutions.
+Implement the first safe coding workspace and then expand to system-design/debugging workbenches.
 
-Gate: failed attempts produce useful diagnostic state and can route the learner to prerequisite repair.
+Start with a bounded language/runtime that can be safely isolated. Test limits before offering broader execution.
 
-## Phase 8 — Coding laboratory
+Gate: representative exercises execute with bounded resources and cannot access application secrets or unrestricted host/device capabilities.
 
-Add a browser editor and, when safe and justified, client-side code execution such as Pyodide.
+## Phase 9 — Progress, productivity, and gamification
 
-Start with educational/synthetic workloads. Do not grant secrets, unrestricted network access, or destructive filesystem access.
+Implement:
 
-Gate: code execution is bounded, recoverable, and tested.
+- mastery/progress views;
+- weak-area detection;
+- next-action recommendations;
+- study sessions;
+- review scheduling;
+- focus/productivity tools;
+- XP/milestones/badges/streaks only where they reinforce genuine progress.
 
-## Phase 9 — Hardening
+Gate: progress labels remain honest and derive from actual evidence rather than activity inflation.
 
-Run:
+## Phase 10 — First vertical slice
+
+The first production-quality slice should connect all critical systems:
+
+`program/topic → interactive lesson → practice → assessment → AI help → follow-up challenge → mastery evidence → unlock → progress update`
+
+Choose a small representative competency that exercises the architecture without requiring the entire curriculum.
+
+Gate: the slice is usable end-to-end on a clean installation/device and survives browser verification and relevant tests.
+
+## Phase 11 — Curriculum expansion
+
+Expand systematically across programs using the validated content/assessment contracts rather than building isolated screens.
+
+Each new competency must have:
+
+- outcome;
+- prerequisites;
+- learning material;
+- practice;
+- assessment evidence;
+- mastery/unlock rule;
+- provenance/rights classification where external material is used;
+- tests where behavior is non-trivial.
+
+## Phase 12 — Connected capabilities, only when justified
+
+Only after the local core is stable, evaluate optional:
+
+- cloud sync;
+- user accounts;
+- protected AI mediation;
+- shared/community features;
+- remote execution;
+- centralized content management.
+
+Each capability requires explicit product/architecture/security decisions.
+
+## Phase 13 — Hardening and release
+
+Run relevant:
 
 - unit/integration tests;
 - browser tests;
 - accessibility review;
-- security review;
+- security/adversarial review in authorized environments;
 - dependency/supply-chain review;
 - performance checks;
+- data import/export recovery tests;
 - AI failure-mode tests;
-- resource-link verification;
-- final diff review.
+- content/link validation;
+- rights/provenance audit;
+- final diff and documentation review.
 
-Gate: relevant Agent OS release/security checks pass and residual risks are documented.
+Gate: relevant Agent OS release/security gates pass and residual risks are documented.
 
-## Phase 10 — Iteration loop
+## Recurring engineering loop
 
-Every significant learning-system change follows:
+For every significant change:
 
-`observe learner friction → diagnose → smallest useful change → test → review → update docs → release`
+`UNDERSTAND → CAPABILITY CHECK → PLAN/SPEC → SLICE → IMPLEMENT → VERIFY → REVIEW → REPAIR → UPDATE DOCS → REPORT`
 
-Never expand scope merely because a new technology looks interesting.
+Never expand infrastructure or scope simply because a new technology appears convenient.
