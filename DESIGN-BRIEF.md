@@ -2,81 +2,133 @@
 
 ## 1. Product
 
-- Product/service: Personal mastery learning operating system.
-- Primary outcome: Make the learner substantially stronger in mathematics, quantitative reasoning, computer science, and software engineering.
-- Primary user outcome: Always know what to learn, why it matters, how deeply to learn it, how to practice it, and what weakness to repair next.
-- Primary CTA: Continue today's mission / practice the next highest-value task.
+- Product: Local-first technology mastery environment.
+- Primary outcome: Help a learner build real capability across technology disciplines from foundations through advanced and frontier levels.
+- Primary interaction: Move from the next learning objective to understanding, practice, assessment, application, and evidence of mastery.
+- Primary CTA: Continue today's mission / next highest-value learning action.
+- Core promise: One coherent environment for learning, practicing, proving, building, and tracking technology mastery.
 
 ## 2. Audience and context
 
-- Primary audience: One learner using the system for intensive self-study.
-- Buyer/user distinction: Not applicable; owner is the user.
-- Industry/category: Education technology / personal learning tool.
-- Primary market/country: Ghana-origin learner with global academic/professional targets.
-- Primary devices: Desktop/laptop first for serious study; mobile must remain usable because learning may happen on smaller devices.
-- Trust expectations: Serious, intellectually honest, source-aware, non-gimmicky, transparent about AI uncertainty.
+- Initial user: One learner using the system for intensive self-directed study.
+- Long-term audience: Technology learners with different starting points and different program goals.
+- Category: Personal learning / education technology / technical training environment.
+- Delivery: Local application and browser-capable experience first; optional connected services later.
+- Devices: Desktop/laptop should support intensive work; mobile remains a supported reading and lightweight practice device.
+- Trust expectations: Rigorous, honest about uncertainty, source-aware, transparent about AI, respectful of learner privacy.
 
-## 3. Brand
+## 3. Product experience principles
 
-- Existing brand assets: None required at initialization.
-- Personality: Rigorous, focused, curious, demanding, calm, technical.
-- Desired emotional response: "This is my laboratory for getting extremely good at hard things."
-- Colors to keep/avoid: Avoid generic AI purple gradients and excessive neon. Choose a restrained academic/technical palette after reference analysis.
-- Fonts to keep/avoid: Prioritize highly legible UI and mathematics/code typography.
-- Competitor/category conventions: Learn from learning platforms and developer tools without copying their visual identity.
+- The learner should feel they are operating a **personal laboratory for becoming highly capable**, not browsing a course catalog.
+- The interface should make the next useful action obvious without hiding the larger curriculum.
+- The system should distinguish exposure, practice, assessment, mastery, weakness, and review.
+- Assessment should feel meaningful rather than punitive.
+- AI should appear contextually where useful without dominating the interface.
+- Dense technical information is acceptable when hierarchy and progressive disclosure keep it legible.
+- The product should work even when external resources or AI services are unavailable.
 
-## 4. Content
+## 4. Core surfaces
 
-- Above-the-fold message: The next best action toward mastery, not a marketing slogan.
-- Key sections: Today/Mission, curriculum graph, current topic, practice, mistakes, mastery, resources, AI tutor.
-- Critical content: Prerequisites, learning objectives, evidence of mastery, weak areas, recommended resources, next actions.
-- Long-form/dense content: Mathematics and technical explanations must remain readable with clear hierarchy, notation, examples, and expandable depth.
+- **Today / Mission** — what matters now and why.
+- **Universal Core** — shared foundations and progress.
+- **Programs / Routes** — specialization selection and route planning.
+- **Curriculum Graph** — prerequisites, dependencies, and transfer relationships.
+- **Lesson / Reader** — textbook-like interactive teaching environment.
+- **Practice / Assessment** — active performance and evidence collection.
+- **Workbench / Lab** — code, algorithms, systems, diagrams, and technical experiments.
+- **Projects** — applied work and evaluation.
+- **Mistakes / Review** — weaknesses, misconceptions, and repair loops.
+- **Progress / Mastery** — trustworthy evidence of capability.
+- **AI Context Panel** — contextual assistance rather than a separate destination only.
+- **Resources** — provenance-aware references, alternatives, and permitted embeds.
+- **Settings / Data** — local storage, export/import, accessibility, and integrations.
 
-## 5. Assets
+## 5. Brand personality
 
-- Owned photography: None required.
-- Illustrations: Prefer generated/owned diagrams for conceptual explanations.
-- Logos/marks: Project-owned only.
-- Product screenshots: None at initialization.
-- Video: External links/embeds may be used where rights and platform constraints allow.
-- External assets allowed: Only with provenance and appropriate reuse class.
-- Licensing constraints: Do not ship third-party copyrighted assets without verified rights.
+Rigorous, focused, curious, demanding, calm, technical, and optimistic about learning.
+
+Desired emotional response:
+
+> “This feels like my laboratory for getting extremely good at hard things.”
+
+Avoid generic AI/SaaS visual tropes, excessive neon, noisy gradients, and dashboard-card overload.
 
 ## 6. Visual direction
 
-- Design thesis: A serious personal mathematical/computational laboratory with the precision of an IDE and the guidance of a high-quality academic workspace.
-- Composition: Clear information hierarchy; dense where useful, never cluttered.
-- Density: Higher information density than a consumer learning app, balanced with strong whitespace and progressive disclosure.
-- Surface/material behavior: Mostly restrained surfaces; avoid dashboard-card soup.
-- Typography: Strong hierarchy, excellent code and mathematical readability.
-- Color strategy: Functional color roles, not decorative gradients.
-- Iconography: Consistent, restrained, semantic icons.
+Design thesis: combine the clarity of a strong academic text, the precision of an IDE, the spatial reasoning of a whiteboard, and the feedback quality of a serious training environment.
 
-## 7. Components
+Use:
 
-- Existing design system: None.
-- Required primitives: Navigation, tabs, command palette, progress indicators, graph nodes, reader, equation blocks, code blocks/editor, problem cards, hint/solution controls, AI popover, modal/drawer, data tables.
-- Reusable patterns: Learning node, resource card, mastery evidence, mistake record, tutor action menu, prerequisite warning.
-- Components to avoid: Generic KPI dashboard blocks that do not help learning; ornamental badges with no semantic value.
+- clear information hierarchy;
+- purposeful density;
+- strong reading width;
+- restrained surfaces;
+- semantic status indicators;
+- technically legible typography;
+- diagrams/graphs as learning tools, not decoration;
+- progressive disclosure for advanced material.
 
-## 8. Motion
+## 7. Interaction model
 
-- Purposeful motion: Use motion to explain transitions, state changes, graph relationships, or feedback.
-- Transition language: Fast, controlled, subtle.
-- Scroll/gesture behavior: Preserve reading stability; no distracting scroll hijacking.
-- Reduced-motion behavior: Provide reduced-motion-safe alternatives.
+Important interactions include:
+
+- graph exploration;
+- lesson progression;
+- inline questions;
+- equation interaction;
+- whiteboard/workbench actions;
+- code editing/execution;
+- assessment submission;
+- hint/AI assistance ladder;
+- mastery feedback;
+- mistake review;
+- project evaluation;
+- focus/productivity sessions.
+
+AI activation must support highlight-to-ask and context-aware actions on text, equations, diagrams, and code.
+
+## 8. Components
+
+Required primitives and patterns include:
+
+- application shell;
+- responsive navigation;
+- command palette;
+- curriculum/prerequisite node;
+- route/phase navigator;
+- lesson reader;
+- equation/derivation block;
+- diagram/graph block;
+- interactive table;
+- code editor;
+- whiteboard/workbench;
+- practice problem;
+- assessment interface;
+- hint ladder;
+- AI contextual popover/panel;
+- mastery/evidence display;
+- mistake record;
+- project workspace;
+- resource/provenance card;
+- local data controls.
+
+Avoid decorative KPI widgets and gamification elements that do not help the learner understand or act.
 
 ## 9. Accessibility and performance
 
-- Required WCAG target if applicable: Aim for WCAG 2.2 AA practices for the web UI.
-- Keyboard/focus requirements: All core learning and AI actions must be keyboard reachable on desktop.
-- Motion sensitivity requirements: Respect reduced-motion preferences.
-- Performance budget: Keep the initial app shell lightweight; load large visualizations/code runtimes on demand.
+Aim for WCAG 2.2 AA practices for the browser UI.
 
-## 10. Open decisions
+Core flows must support keyboard navigation on desktop, usable touch interaction on mobile, visible focus, adequate contrast, reduced motion, meaningful labels, and non-color-only status communication.
+
+Keep the initial application lightweight and lazy-load expensive runtimes, visualizations, and large content where practical.
+
+## 10. Open decisions before implementation
 
 - Final visual direction variant.
 - Final typography stack.
-- Whether Next.js adds enough value over a simpler Vite/React static app.
-- Initial code-execution runtime.
-- Exact AI interaction placement across reader/editor/problem views.
+- Exact frontend framework/build architecture.
+- Initial coding runtime/sandbox.
+- Exact AI interaction placement and provider implementation.
+- First vertical-slice competency.
+
+These decisions must be made through the relevant Agent OS design/research/architecture workflows, not by assumption.
