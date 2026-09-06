@@ -13,57 +13,58 @@
 - [x] Define coding/workbench security boundary.
 - [x] Align Agent OS relationship and relevant skill routing.
 - [x] Align design brief with the broad product model.
-- [x] Remove temporary/superseded review copies.
+- [x] Research comparable products and document design/learning patterns.
+- [x] Select Technical Learning Laboratory as the working visual direction.
 - [x] Add `docs/BUILD-READINESS.md` as the agent handoff gate.
 - [x] Add `docs/MASTER-BUILD-ORCHESTRATION.md` as the ordered execution contract.
 - [x] Add `docs/AGENT-HANDOFF.md` as the zero-context agent entrypoint.
+- [x] Add `docs/FRONTEND-SHELL-SPEC.md` as the implementation-ready frontend contract.
 - [x] Select the initial frontend/build direction: React + TypeScript + Vite.
 - [x] Select the first vertical-slice competency: TypeScript function decomposition.
-- [x] Run a repository terminology check for the major old product framing.
+- [x] Remove temporary/superseded review copies.
+- [x] Run repository terminology/build-readiness checks.
 
-## READY — first implementation slice
+## READY — next agent starts here
 
-The first slice is:
+### Gate 1 — Application shell / frontend / UI
+
+The next implementation agent must start here unless an actual repository inspection proves a blocking condition.
+
+Read `docs/FRONTEND-SHELL-SPEC.md` and the governing documents before editing code.
+
+Build:
+
+1. Repository/application scaffold.
+2. React + TypeScript + Vite application shell.
+3. Primary navigation and initial routes.
+4. Technical Learning Laboratory visual foundation.
+5. Today/Mission surface.
+6. Universal Core surface.
+7. Programs/route surface.
+8. Topic entry surface.
+9. Practice / Projects / Progress / Resources / Settings entry surfaces.
+10. Persistent but quiet contextual AI affordance.
+11. Responsive desktop/laptop and mobile layouts.
+12. Accessibility and interaction states.
+13. Automated tests and browser verification for the shell.
+
+Do not yet build the full mastery engine, backend, database, remote execution service, or full AI provider integration during this gate. Create clean boundaries so later phases can connect to the shell without rewriting it.
+
+### Gate 2 — Content schema + first authored lesson
+
+Only after Gate 1 passes, implement the content schema and the first real interactive lesson for the vertical slice.
+
+### Gate 3 onward
+
+Continue according to `docs/MASTER-BUILD-ORCHESTRATION.md` and this file's earliest incomplete implementation gate.
+
+## MasteryOS first vertical slice
 
 `Program/Topic → Interactive Lesson → Practice → Code Attempt → Assessment → AI Assistance → Follow-up Challenge → Mastery Evidence → Unlock → Local Progress`
 
 Competency: **Program decomposition with TypeScript functions**.
 
-Required slice artifacts:
-
-- [ ] one authored interactive lesson;
-- [ ] one visual/interactive explanation where useful;
-- [ ] guided and independent practice;
-- [ ] one coding task;
-- [ ] one deterministic assessment contract;
-- [ ] AI contextual assistance path;
-- [ ] assistance-level tracking;
-- [ ] follow-up independent challenge;
-- [ ] mastery/unlock rule;
-- [ ] local persistence;
-- [ ] browser verification and automated tests.
-
-## Implementation sequence
-
-1. Repository/application scaffold.
-2. Content schema and first lesson content.
-3. Learning reader/runtime.
-4. Local storage abstraction and learner state.
-5. Practice/assessment engine.
-6. Mastery/unlock logic.
-7. Progress view.
-8. Contextual AI adapter/UI.
-9. Follow-up challenge flow.
-10. Coding workspace.
-11. End-to-end verification.
-
-## Agent rule
-
-An implementation agent must begin at the earliest incomplete item in this file and follow `docs/MASTER-BUILD-ORCHESTRATION.md`. It must not ask the owner to invent the build order when the repository already specifies it.
-
-An agent may choose implementation details, but it must not silently change product scope, add mandatory infrastructure, or skip verification gates.
-
-## Guarded future capabilities
+## Future guarded capabilities
 
 - Hosted database — requires explicit architecture/security decision.
 - Authentication/accounts — requires explicit product/architecture decision.
@@ -76,7 +77,7 @@ An agent may choose implementation details, but it must not silently change prod
 
 ## Build completion rule
 
-Do not mark the application “built” merely because a page renders. The relevant vertical slice must work end-to-end, persist locally, pass its tests, survive browser verification, respect security/content rules, and match the governing documents.
+Do not mark the application “built” merely because a page renders. Each gate must satisfy its intended learner behavior, automated verification, browser verification where applicable, relevant security/content checks, and final diff review.
 
 ## Historical initialization
 
