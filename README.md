@@ -1,88 +1,100 @@
 # MasteryOS
 
-**A personal mastery operating system for Mathematics × Quantitative Finance × Computer Science × Software Engineering.**
+**A local-first technology mastery environment for learning, practicing, proving, and applying technology skills from foundations to advanced and frontier levels.**
 
-MasteryOS exists to turn a fragmented collection of courses, textbooks, videos, problem sets, documentation, and AI tools into one deliberate learning system.
+MasteryOS is designed to replace fragmented learning with one coherent environment. The learner should be able to study concepts, work through interactive material, solve problems, write and test code, receive AI guidance, take assessments, complete projects, track evidence of mastery, and know what to do next.
 
 ## Mission
 
-Start from a Ghanaian SHS-level foundation and progress toward internationally strong mathematics and computing ability without treating WASSCE, any single textbook, or any single course as the ceiling.
+Build genuine capability rather than maximize course completion.
 
-The system is built around:
+The canonical learning loop is:
 
-`Diagnose → Learn → Practice → Assess → Detect weakness → Repair prerequisites → Re-test → Advance`
+`ORIENT → LEARN → VISUALIZE → PRACTICE → ATTEMPT → ASSESS → DIAGNOSE → REMEDIATE → REASSESS → APPLY → REFLECT → UNLOCK`
+
+## Product model
+
+MasteryOS has two major curriculum layers:
+
+1. **Universal Core** — broadly transferable technology foundations.
+2. **Programs and Routes** — specialized paths such as software engineering, computer science, AI/ML, data, systems, cybersecurity, mathematics, quantitative finance, and other technology fields.
+
+Depth progresses as appropriate:
+
+`Foundation → Core → Advanced → Specialist → Frontier`
+
+See `PROGRAMS.md` and `docs/CURRICULUM-MASTER-SPEC.md`.
 
 ## What makes it different
 
-MasteryOS is not a course marketplace and not a link dump.
+MasteryOS is not primarily a course marketplace, resource dump, or generic AI chat application. It combines:
 
-It combines:
+- competency and prerequisite modeling;
+- native interactive learning experiences;
+- mathematics, diagrams, graphs, tables, and whiteboard/workbench experiences;
+- problem solving and deliberate practice;
+- assessments and evidence-based mastery gates;
+- project-based application;
+- in-app coding and systems laboratories where safe;
+- mistake diagnosis and remediation;
+- progress, productivity, and gamification;
+- an AI control layer available throughout the environment;
+- a local learner record that can work without a hosted database.
 
-- a prerequisite/knowledge graph;
-- curated external resources with provenance;
-- mastery evidence rather than completion checkboxes;
-- problem-solving practice;
-- a mistake journal;
-- AI tutoring and Socratic coaching;
-- mathematics rendering and visual learning;
-- programming/CS practice;
-- a long-term quant + CS/SWE progression.
+## In-app learning
 
-## Current scope
+The product should make learning happen inside MasteryOS whenever practical and rights allow. External sources can still be used as references, provenance, enrichment, or permitted embeds.
 
-V1 is personal-use, local-first, and does not require:
+MasteryOS must not scrape or republish copyrighted third-party material without rights. See `docs/EMBEDDED-LEARNING-SPEC.md` and `docs/RESOURCE-GOVERNANCE.md`.
 
-- a backend;
-- a hosted database;
-- authentication;
+## AI philosophy
+
+AI is a contextual assistant, tutor, examiner, reviewer, and coach—not an authority or replacement for learner effort.
+
+AI should support highlight-to-ask interactions, explanation, Socratic coaching, hints, diagnosis, code review, project coaching, assessment feedback, research assistance, and follow-up challenges after substantial help.
+
+See `docs/AI-CONTROL-LAYER-SPEC.md` and `docs/AI-TUTOR-SPEC.md`.
+
+## Local-first architecture
+
+The core application is designed to run as a self-contained application on a learner's machine and in a browser.
+
+V1 requires no:
+
+- hosted database;
+- mandatory account system;
+- authentication service;
 - payments;
-- multi-user accounts;
-- cloud synchronization.
+- cloud synchronization;
+- multi-user backend.
 
-Learner state is stored locally. AI uses a provider adapter with Gemini as the initial personal-use provider.
+Learner state is local. Future cloud/backend connectivity may be added as an optional layer through explicit architecture and security decisions rather than becoming a requirement of the core.
 
-## Core tracks
+See `ARCHITECTURE.md` and `SECURITY.md`.
 
-1. Mathematical foundations
-2. Advanced mathematics
-3. Mathematical problem solving
-4. University mathematics
-5. Quantitative finance
-6. Computer science
-7. Software engineering
+## Agent OS
 
-See `PROJECT.md` and `docs/LEARNING-ARCHITECTURE.md` for the curriculum model.
+MasteryOS follows the engineering governance of `abdulanasbuilds/Agent-OS`.
 
-## AI tutor philosophy
+Agent OS governs how work is understood, planned, implemented, tested, reviewed, secured, and released. MasteryOS documents govern the product's domain behavior. Relevant Agent OS capabilities must be selected automatically for each task.
 
-AI is a coach, not a replacement for thinking.
-
-For difficult problems, the default behavior is to guide the learner with questions and hints before exposing a complete solution. The tutor can also explain concepts simply, rigorously, visually, through derivations, with examples, or in relation to quant/CS.
-
-See `docs/AI-TUTOR-SPEC.md`.
-
-## External resources
-
-MasteryOS may link to excellent external sources such as MIT OpenCourseWare, Khan Academy, UKMT, AoPS, 3Blue1Brown, CS50, Project Euler, Jane Street education material, and other verified sources.
-
-External resources are not copied into this repository unless rights allow it. See `docs/RESOURCE-GOVERNANCE.md`.
-
-## Working on the project
-
-Before meaningful implementation:
-
-1. Read `AGENTS.md`.
-2. Read `PROJECT.md`, `ARCHITECTURE.md`, `SECURITY.md`, `DECISIONS.md`, `TASKS.md`, and `PLAN.md`.
-3. Read the relevant `docs/` specification.
-4. Apply the corresponding Agent OS skills.
-5. Make the smallest useful change.
-6. Run relevant tests and browser verification.
-7. Inspect the final diff.
-
-## Agent OS relationship
-
-MasteryOS follows the reusable governance defined by the `abdulanasbuilds/Agent-OS` repository. Agent OS supplies the project lifecycle, planning, research, design, engineering, security, testing, Git, and orchestration disciplines. MasteryOS adds project-specific learning and AI-tutor rules.
+Before meaningful implementation, read `AGENTS.md` and the governing project documents.
 
 ## Project status
 
-Documentation-first initialization. Main application implementation starts after the owner verifies the foundational documents.
+**Documentation and build-readiness phase.** The repository is being finalized as a self-contained implementation handoff before the main application code is introduced.
+
+The application is intentionally not claimed as built until the relevant specifications, boundaries, verification gates, and first implementation slice are coherent.
+
+## Governing documents
+
+- `AGENTS.md` — operating rules for agents.
+- `PROJECT.md` — product charter and scope.
+- `PROGRAMS.md` — universal core and program structure.
+- `ARCHITECTURE.md` — technical architecture.
+- `SECURITY.md` — security model.
+- `DECISIONS.md` — durable decisions.
+- `PLAN.md` — implementation sequence and gates.
+- `TASKS.md` — current work queue.
+- `DESIGN-BRIEF.md` / `DESIGN-SYSTEM.md` / `DESIGN-REFERENCES.md` / `DESIGN-VARIANTS.md` — design contract.
+- `docs/` — detailed curriculum, content, assessment, AI, coding, progress, and verification specifications.
