@@ -1,75 +1,78 @@
 # MasteryOS Tasks
 
-## Now — final build-readiness gate
+## Current state — documentation/build-readiness
 
-- [ ] Re-read all canonical root documents and relevant `docs/` specifications together as one contract.
-- [ ] Verify that no canonical document still defines MasteryOS as primarily quant/mathematics rather than broad technology mastery.
-- [ ] Verify Universal Core → Programs → Routes → Levels → Topics → Lessons → Practice → Assessment → Mastery/Unlock is consistent everywhere.
-- [ ] Verify the local-first contract: self-contained/local application + browser-capable core + optional future connectivity.
-- [ ] Verify learner state is local by default and no hosted database is required for the core.
-- [ ] Verify in-app learning is the primary intended classroom and external resources are governed by rights/provenance rules.
-- [ ] Verify AI is a system-wide contextual control layer rather than a standalone chat feature.
-- [ ] Verify AI assistance, follow-up challenge behavior, mastery evidence, and unlock rules agree across specs.
-- [ ] Verify coding/workbench execution boundaries and security restrictions agree across specs.
-- [ ] Verify design, accessibility, testing, security, and Agent OS routing requirements are actionable.
-- [ ] Run repository/document consistency checks before application code begins.
+- [x] Reconcile MasteryOS mission from narrow quant framing to broad technology mastery.
+- [x] Define Universal Core → Programs → Routes → Depth model.
+- [x] Define in-app learning as the primary classroom experience.
+- [x] Define assessment, mastery evidence, remediation, and unlock behavior.
+- [x] Define system-wide AI control layer and challenge-after-help behavior.
+- [x] Define local-first, browser-capable, future-connectable architecture.
+- [x] Define local learner-state boundary and future storage abstraction.
+- [x] Define content provenance/rights governance.
+- [x] Define coding/workbench security boundary.
+- [x] Align Agent OS relationship and relevant skill routing.
+- [x] Align design brief with the broad product model.
+- [x] Remove temporary/superseded review copies.
+- [x] Add `docs/BUILD-READINESS.md` as the agent handoff gate.
+- [x] Select the initial frontend/build direction: React + TypeScript + Vite.
+- [x] Select the first vertical-slice competency: TypeScript function decomposition.
+- [x] Run a repository terminology check for the major old product framing.
 
-## Next — implementation readiness outputs
+## READY — first implementation slice
 
-- [ ] Define the first representative competency for the vertical slice.
-- [ ] Define its lesson content, practice items, assessment, mastery rule, and follow-up challenge.
-- [ ] Define the minimum content schema instances needed by that slice.
-- [ ] Define the minimum local-state schema needed by that slice.
-- [ ] Select the implementation stack using current documentation/dependency review.
-- [ ] Define the first executable and browser-verification test plan.
+The first slice is:
 
-## Build sequence
+`Program/Topic → Interactive Lesson → Practice → Code Attempt → Assessment → AI Assistance → Follow-up Challenge → Mastery Evidence → Unlock → Local Progress`
 
-- [ ] Application shell and navigation.
-- [ ] Universal Core/program explorer.
-- [ ] Topic/lesson reader and interactive content runtime.
-- [ ] Local persistence abstraction.
-- [ ] Assessment/mastery engine.
-- [ ] Practice/problem engine.
-- [ ] Progress and mastery dashboard.
-- [ ] Contextual AI/highlight interaction.
-- [ ] Follow-up challenge workflow after substantial AI assistance.
-- [ ] Coding/workbench environment.
-- [ ] Productivity and gamification layer.
-- [ ] End-to-end vertical slice verification.
+Competency: **Program decomposition with TypeScript functions**.
+
+Required slice artifacts:
+
+- [ ] one authored interactive lesson;
+- [ ] one visual/interactive explanation where useful;
+- [ ] guided and independent practice;
+- [ ] one coding task;
+- [ ] one deterministic assessment contract;
+- [ ] AI contextual assistance path;
+- [ ] assistance-level tracking;
+- [ ] follow-up independent challenge;
+- [ ] mastery/unlock rule;
+- [ ] local persistence;
+- [ ] browser verification and automated tests.
+
+## Implementation sequence
+
+1. Repository/application scaffold.
+2. Content schema and first lesson content.
+3. Learning reader/runtime.
+4. Local storage abstraction and learner state.
+5. Practice/assessment engine.
+6. Mastery/unlock logic.
+7. Progress view.
+8. Contextual AI adapter/UI.
+9. Follow-up challenge flow.
+10. Coding workspace.
+11. End-to-end verification.
 
 ## Guarded future capabilities
 
-- [ ] Hosted database — only after explicit architecture/security decision.
-- [ ] Authentication/accounts — only after explicit product/architecture decision.
-- [ ] Cloud synchronization — only after explicit sync/data/privacy design.
-- [ ] Shared/community features — future connected layer.
-- [ ] Server-side AI credential mediation — future connected layer.
-- [ ] Remote code execution — only after isolated runtime design and security review.
-- [ ] Third-party copyrighted content mirroring — prohibited without rights.
-- [ ] Production financial trading execution — out of scope.
+- Hosted database — requires explicit architecture/security decision.
+- Authentication/accounts — requires explicit product/architecture decision.
+- Cloud synchronization — requires explicit sync/privacy design.
+- Shared/community features — future connected layer.
+- Server-side AI credential mediation — future connected layer.
+- Remote code execution — requires isolated runtime design and security review.
+- Unauthorized third-party content mirroring — prohibited.
+- Real-money financial execution — out of scope.
 
-## Definition of done for documentation phase
+## Build completion rule
 
-- [x] Agent OS relationship is documented.
-- [x] Broad MasteryOS mission is documented.
-- [x] Universal Core and program structure are documented.
-- [x] Local-first/future-connectable architecture is documented.
-- [x] Embedded learning/content rights model is documented.
-- [x] Assessment/mastery model is documented.
-- [x] AI control layer is documented.
-- [x] Coding/workbench model is documented.
-- [x] Progress/productivity/gamification model is documented.
-- [x] Design and verification documents exist.
-- [x] Canonical root documents are being reconciled to the final product vision.
+Do not mark the application “built” merely because a page renders. The relevant vertical slice must work end-to-end, persist locally, pass its tests, survive browser verification, respect security/content rules, and match the governing documents.
 
-## Completed historical initialization
+## Historical initialization
 
-- [x] MasteryOS repository created.
-- [x] Initial Agent OS governing documents reviewed.
-- [x] Initial project/architecture/security/decision/plan documents created.
-- [x] Initial curriculum, AI, resource, design, and verification specifications created.
-
-## Important rule
-
-Do not mark a task complete because a file exists. Mark it complete only when the artifact is coherent with the governing model and the relevant verification has been performed.
+- [x] Repository created and initial structure established.
+- [x] Agent OS governing documents reviewed.
+- [x] Documentation foundation created.
+- [x] Curriculum/content/assessment/AI/design/verification specifications created.
