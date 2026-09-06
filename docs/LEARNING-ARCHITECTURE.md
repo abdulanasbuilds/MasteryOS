@@ -2,305 +2,226 @@
 
 ## Purpose
 
-This document defines how MasteryOS represents learning. It is the core domain model for the curriculum, prerequisite graph, mastery engine, practice system, and recommendation engine.
+This document defines how MasteryOS represents learning across technology disciplines. It governs the curriculum graph, prerequisite relationships, learning sequence, practice, evidence, mastery, remediation, and next-action recommendations.
 
 ## 1. Learning hierarchy
 
-The primary hierarchy is:
+The canonical hierarchy is:
 
-`Track → Phase → Domain → Topic → Concept → Practice → Evidence → Mastery`
+`Program → Phase → Domain → Topic → Lesson → Concept → Example → Practice → Assessment → Project`
 
-A resource supports a concept; a problem generates evidence; evidence updates mastery; mastery and prerequisite health determine the next recommended action.
+Supporting relationships connect:
 
-## 2. Core tracks
+- prerequisites;
+- competencies;
+- evidence;
+- misconceptions;
+- resources;
+- mastery state;
+- cross-program transfer.
 
-### Track A — Mathematical foundations
+A resource supports learning. It is not itself proof of mastery.
 
-Goal: eliminate gaps from basic arithmetic through strong secondary algebra, functions, trigonometry, and geometry.
+## 2. Universal Core
 
-### Track B — Advanced/pre-university mathematics
+The Universal Core contains transferable capabilities that technology learners commonly need, with depth determined by the eventual route.
 
-Goal: reach the breadth and depth associated with strong international advanced-secondary pathways.
+Representative areas:
 
-Core areas:
+- learning/reasoning/problem decomposition;
+- mathematics and discrete reasoning;
+- computer and internet fundamentals;
+- programming and computational thinking;
+- data structures and algorithms;
+- command line, Git, debugging, and testing;
+- software/system fundamentals;
+- databases and data modeling;
+- networking and operating-system fundamentals;
+- security, privacy, reliability;
+- AI literacy and evaluation;
+- research and technical communication.
 
-- advanced algebra;
-- sequences and series;
-- combinatorics;
-- number theory;
-- complex numbers;
-- vectors and matrices;
-- calculus;
-- differential equations;
-- optimization.
+The Universal Core is a competency foundation, not an obligation to study every topic to maximum depth.
 
-### Track C — Mathematical problem solving
+## 3. Program model
 
-Goal: develop transfer, creativity, estimation, mental calculation, proof habits, and unfamiliar-problem solving.
+After the Universal Core, the learner can select specialized programs and routes.
 
-Areas:
+Representative programs include software engineering, computer science, AI/ML, data, systems, cybersecurity, networking, web/mobile engineering, mathematics, quantitative finance, developer tools, and research/advanced computing.
 
-- mental math;
-- estimation/Fermi problems;
-- probability puzzles;
-- inequalities;
-- geometry problems;
-- combinatorics;
-- number theory;
-- Olympiad-style problems;
-- proof problems;
-- mathematics + programming problems.
+Programs may share prerequisites and transfer evidence through the global competency graph.
 
-### Track D — University mathematics
+## 4. Depth model
 
-Goal: transition from procedural mathematics to rigorous mathematical thinking.
+`FOUNDATION → CORE → ADVANCED → SPECIALIST → FRONTIER`
 
-Areas:
+Depth is competency-specific. Frontier content is included only when its value, evidence, and maintenance burden justify it.
 
-- logic and sets;
-- proof;
-- discrete mathematics;
-- linear algebra;
-- real analysis;
-- probability;
-- statistics;
-- abstract algebra;
-- multivariable calculus;
-- differential equations;
-- numerical methods.
+## 5. Learner progression
 
-### Track E — Quantitative finance
+A typical competency follows:
 
-Goal: build mathematical/statistical/computational foundations relevant to quantitative research, trading, and quantitative development.
+`Orient → Explain → Visualize → Worked Example → Guided Practice → Independent Practice → Assessment → Application → Reflection → Gate`
 
-Areas:
+Failure does not create a dead end. It routes the learner to diagnosis and targeted remediation.
 
-- probability;
-- statistics;
-- linear algebra;
-- calculus;
-- optimization;
-- simulation;
-- statistical modelling;
-- time series;
-- market microstructure foundations;
-- quantitative research;
-- quantitative trading reasoning;
-- interview preparation.
+## 6. Concept/competency model
 
-### Track F — Computer science
-
-Goal: understand computation deeply enough to solve problems, reason about systems, and build performant software.
-
-Areas:
-
-- Python;
-- C;
-- C++;
-- algorithms;
-- data structures;
-- complexity;
-- memory;
-- operating systems;
-- databases;
-- networking;
-- distributed systems;
-- computational thinking.
-
-### Track G — Software engineering
-
-Goal: build reliable, maintainable, tested, secure software.
-
-Areas:
-
-- Git;
-- testing;
-- debugging;
-- codebase design;
-- API design;
-- architecture;
-- performance;
-- security;
-- observability;
-- system design;
-- AI-assisted engineering.
-
-## 3. Recommended phase progression
-
-### Phase 0 — Baseline diagnosis
-
-Determine actual strengths, gaps, misconceptions, and problem-solving ability. Do not infer mastery from prior school grades alone.
-
-### Phase 1 — Foundation repair
-
-Repair arithmetic, algebra, functions, trigonometry, geometry, and probability gaps.
-
-### Phase 2 — Advanced secondary mathematics
-
-Add advanced algebra, sequences, combinatorics, number theory, complex numbers, vectors, calculus, and differential equations.
-
-### Phase 3 — Problem-solving maturity
-
-Run systematic unfamiliar-problem practice alongside Phase 2 rather than waiting until all school mathematics is complete.
-
-### Phase 4 — University transition
-
-Introduce proof, abstraction, rigorous calculus, linear algebra, probability, statistics, and discrete mathematics.
-
-### Phase 5 — Quant/CS convergence
-
-Use shared mathematics to support statistics, machine learning, quantitative finance, algorithms, and computational work.
-
-### Phase 6 — Advanced specialization
-
-Branch according to demonstrated strength into quant research, quantitative development, advanced software engineering, ML, or deeper mathematics.
-
-## 4. Concept node model
-
-Every concept should have a stable identifier and metadata approximately equivalent to:
+Every meaningful competency should have:
 
 ```text
-id
-track
-phase
-domain
-title
+stable_id
+name
+programs/routes
+depth
 summary
 learning_objectives
 prerequisites
-recommended_resource
-alternative_resources
-estimated_effort
-difficulty
-mastery_dimensions
-common_mistakes
-related_concepts
-quant_connections
-cs_connections
-practice_set_ids
-status
-last_reviewed
+concepts/vocabulary
+examples
+interactive_blocks
+practice_ids
+assessment_ids
+project_ids
+mastery_criteria
+misconceptions
+transfer_links
+resource_references
+provenance/rights
+confidence/evidence
+version/review metadata
 ```
 
-## 5. Prerequisite graph rules
+## 7. Prerequisite graph rules
 
-- Prerequisites must represent genuine dependency, not merely thematic similarity.
-- Avoid unnecessary prerequisite chains that block useful learning.
-- Every advanced concept should expose its required prerequisites.
-- The graph can contain cross-track dependencies.
-- Cycles are prohibited unless a mutually reinforcing relationship is explicitly modeled outside the prerequisite relation.
-- A resource does not prove that its prerequisites are mastered.
+- A prerequisite represents a real dependency, not mere thematic similarity.
+- Avoid unnecessary chains that block reasonable alternative learning paths.
+- Advanced competencies expose their required prerequisites.
+- Cross-program dependencies are allowed.
+- Cycles are prohibited in the prerequisite relation unless represented as a separate mutual-reinforcement relationship.
+- A resource view, video completion, or AI explanation does not itself prove prerequisite mastery.
 
-## 6. Mastery dimensions
+## 8. Mastery dimensions
 
-Mastery should be multidimensional:
+Depending on domain, evidence may represent:
 
 - conceptual understanding;
-- computational fluency;
-- problem solving/transfer;
-- proof/reasoning where applicable;
-- application/modeling;
-- retention.
+- procedural/computational fluency;
+- problem solving and transfer;
+- proof/reasoning;
+- implementation ability;
+- systems/design judgment;
+- communication/explanation;
+- retention and spaced recall.
 
-A learner may be procedurally strong while conceptually weak. The system must be able to represent that.
+A learner can be strong in one dimension and weak in another.
 
-## 7. Evidence types
+## 9. Evidence model
 
-Possible evidence:
+Potential evidence types include:
 
-- guided exercise;
-- independent exercise;
+- guided practice;
+- independent practice;
 - unfamiliar problem;
 - timed challenge;
-- proof/derivation;
-- coding implementation;
+- derivation/proof;
+- coding task;
+- debugging task;
+- system-design task;
 - project;
-- oral/self-explanation;
+- self/expert explanation;
 - spaced re-test;
-- AI-assisted attempt with disclosed assistance level.
+- AI-assisted work with recorded assistance level.
 
-Assisted work should not be counted the same as independent work.
+Evidence weighting must be defined by the relevant assessment contract rather than globally assuming all attempts are equivalent.
 
-## 8. Mastery state
+## 10. Mastery states
 
-A concept can be:
+A concept may move through:
 
 `unknown → learning → practiced → provisionally-mastered → mastered → needs-review`
 
-Mastery is not permanent. Spaced review can move a concept to `needs-review` when retention evidence drops.
+Mastery is not permanent. Retention evidence and later transfer performance may trigger review.
 
-## 9. Assistance ladder
+## 11. Assistance ladder
 
-For problems, record assistance level:
+For difficult problems:
 
-0 — independent
+`0 independent → 1 clarification → 2 small hint → 3 directional hint → 4 decomposition/partial solution → 5 full solution`
 
-1 — clarification
+The exact labels can be rendered differently by the UI, but the underlying assistance level must remain representable.
 
-2 — small hint
+## 12. Mastery gate
 
-3 — directional hint
+A gate should require evidence appropriate to the competency. A generic percentage or lesson-completion rule is insufficient for high-value prerequisites.
 
-4 — partial solution
-
-5 — full solution
-
-This allows the system to distinguish genuine independence from successful AI-assisted completion.
-
-## 10. Advancement rule
-
-Advancement should require evidence appropriate to the concept. A simple learning status check is insufficient for high-value prerequisite nodes.
-
-Example rule:
+Example:
 
 ```text
 Advance only when:
-- conceptual check passes;
-- independent practice reaches threshold;
-- at least one unfamiliar problem is solved or adequately reasoned;
-- no unresolved critical prerequisite remains.
+- required concepts are understood;
+- independent evidence reaches the configured threshold;
+- transfer/unfamiliar evidence is adequate where relevant;
+- critical prerequisites are healthy;
+- any required reassessment is passed.
 ```
 
-Thresholds are configurable and should depend on concept difficulty.
+The assessment specification is authoritative for exact scoring and unlock behavior.
 
-## 11. Recommendation engine
+## 13. Recommendation engine
 
-The next-best-action engine should consider:
+The next-best-action engine may consider:
 
-- current goal;
-- graph prerequisites;
+- current program/route goal;
+- prerequisite health;
 - mastery deficits;
 - recent mistakes;
 - retention risk;
-- available time;
+- learner time/budget;
 - resource availability;
-- learner-selected track priority.
+- recent AI assistance;
+- project deadlines or milestones.
 
-It should prefer a small number of high-value actions rather than producing an overwhelming queue.
+It should present a small set of high-value next actions with explanations rather than an overwhelming task dump.
 
-## 12. Curriculum design rule
+## 14. Resource strategy
 
-One recommended primary route per concept. Alternatives are explicitly labeled by purpose, such as:
+Each competency should have one recommended primary learning route where possible, with alternatives labeled by purpose:
 
 - intuition-first;
-- rigorous;
+- rigorous/formal;
 - practice-heavy;
-- video-first;
-- coding-first.
+- implementation-first;
+- project-first;
+- visual;
+- reference.
 
-The learner should never need to choose among dozens of equivalent resources before starting.
+External resources remain supporting sources. Core teaching should be renderable inside MasteryOS when content rights and technical constraints permit.
 
-## 13. Source hierarchy
+## 15. Cross-route transfer
 
-For factual/technical learning content, prioritize:
+The system should make reusable competencies visible, for example:
 
-1. official university/course material and primary sources;
-2. reputable educational platforms and official documentation;
-3. high-quality secondary explanations;
-4. community material.
+- discrete mathematics → algorithms/security;
+- linear algebra → graphics/ML/scientific computing;
+- probability → ML/data/quant;
+- operating systems → systems/cloud/security;
+- networking → distributed systems/cloud;
+- compilers → programming languages/tooling;
+- testing → reliable software/AI systems;
+- optimization → ML/operations/quantitative computing.
 
-The system must show when a resource is a reference rather than an authoritative source.
+## 16. Curriculum integrity
 
-## 14. Success condition
+A topic enters the curriculum only when:
 
-The curriculum is successful when the learner can progress without guessing, knows why a prerequisite matters, can demonstrate independent competence, and can transfer concepts into quantitative and computational contexts.
+- its competency outcome is clear;
+- its graph position is defensible;
+- its scope is bounded;
+- teaching material can be authored or legally sourced;
+- assessment can distinguish exposure from performance;
+- ongoing maintenance is feasible.
+
+## 17. Versioning
+
+Major changes to competency relationships, unlock rules, or program structure must be recorded in durable project artifacts and appropriate changelog/decision entries.
