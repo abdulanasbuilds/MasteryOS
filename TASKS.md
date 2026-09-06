@@ -32,21 +32,27 @@ The next implementation agent must start here unless an actual repository inspec
 
 Read `docs/FRONTEND-SHELL-SPEC.md` and the governing documents before editing code.
 
-Build:
+Current progress:
 
-1. Repository/application scaffold.
-2. React + TypeScript + Vite application shell.
-3. Primary navigation and initial routes.
-4. Technical Learning Laboratory visual foundation.
-5. Today/Mission surface.
-6. Universal Core surface.
-7. Programs/route surface.
-8. Topic entry surface.
-9. Practice / Projects / Progress / Resources / Settings entry surfaces.
-10. Persistent but quiet contextual AI affordance.
-11. Responsive desktop/laptop and mobile layouts.
-12. Accessibility and interaction states.
-13. Automated tests and browser verification for the shell.
+- [x] Initial React + TypeScript + Vite scaffold created.
+- [x] Initial application entrypoint created.
+- [x] Initial responsive visual foundation created.
+- [x] Initial Mission, Learn, and Progress surfaces created.
+
+Remaining Gate 1 work:
+
+1. Complete the React + TypeScript + Vite application shell.
+2. Complete primary navigation and route/state structure.
+3. Complete the Technical Learning Laboratory visual foundation.
+4. Complete Today/Mission surface.
+5. Complete Universal Core surface.
+6. Complete Programs/route surface.
+7. Complete Topic entry surface.
+8. Complete Practice / Projects / Progress / Resources / Settings entry surfaces.
+9. Complete persistent but quiet contextual AI affordance.
+10. Complete responsive desktop/laptop and mobile layouts.
+11. Complete accessibility and interaction states.
+12. Add automated tests and browser verification for the shell.
 
 Do not yet build the full mastery engine, backend, database, remote execution service, or full AI provider integration during this gate. Create clean boundaries so later phases can connect to the shell without rewriting it.
 
