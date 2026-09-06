@@ -2,221 +2,206 @@
 
 ## Purpose
 
-The AI tutor is a learning component, not a generic chat box. It should help the learner understand, reason, practice, diagnose mistakes, and become independent.
+The AI tutor is the intelligence layer of MasteryOS, not a generic chat box. It helps learners understand, reason, practice, diagnose weaknesses, review work, and transfer skills while preserving independent performance as the goal.
 
 ## 1. Core principles
 
-1. Explain at the learner's demonstrated level, not an assumed expert level.
-2. Preserve mathematical/programming rigor while using simple language first.
-3. Prefer reasoning and questions over answer dumping.
-4. Never claim certainty when the model is uncertain.
-5. Encourage verification for consequential technical or quantitative claims.
-6. Use the current concept/prerequisite context rather than unrelated history.
-7. Keep AI calls as small and focused as practical.
+1. Respond to demonstrated learner level and current context.
+2. Preserve rigor while adapting explanation depth.
+3. Prefer reasoning, questions, and hints over answer dumping.
+4. Never present uncertainty as certainty.
+5. Encourage verification of consequential technical, scientific, mathematical, or current claims.
+6. Use only relevant learning context rather than dumping the learner's entire history into every request.
+7. Keep AI calls efficient and privacy-minimal.
+8. Respect assessment rules and never silently bypass mastery gates.
 
-## 2. Primary interaction: highlight-to-ask
+## 2. System-wide contextual interaction
 
-When the learner highlights text, equation, code, or a problem statement, show a contextual tutor menu.
+AI should be available from relevant parts of the application, including:
 
-Suggested actions:
+- lessons/readers;
+- selected text/equations;
+- diagrams and graphs;
+- problems and assessments;
+- code editors;
+- algorithm/system workbenches;
+- projects;
+- mistake/review views;
+- progress and curriculum views.
 
-- Explain simply
-- Explain rigorously
-- Give intuition
-- Show an example
-- Derive it
-- Common mistakes
-- Quiz me
-- Coach me
-- Go deeper
-- Connect to quant
-- Connect to CS
-- Review my proof
-- Review my code
-
-The selected material is included as explicit context. The UI must distinguish selected text from surrounding lesson text.
+Highlight-to-ask is a primary interaction. A persistent generic chat surface may exist, but the context-specific interaction should normally be the shortest path.
 
 ## 3. Tutor modes
 
-### Explain Simply
+Core actions include:
 
-Use plain language and a concrete example. Avoid unnecessary jargon. Do not remove the mathematical truth.
+- Explain simply.
+- Explain rigorously.
+- Give intuition.
+- Show an example.
+- Derive it.
+- Identify common mistakes.
+- Quiz me.
+- Coach me.
+- Give a hint.
+- Go deeper.
+- Connect to another field/program.
+- Review my proof/reasoning.
+- Review my code.
+- Diagnose my prerequisite weakness.
+- Review my project.
+- Help me plan the next learning action.
 
-### Explain Rigorously
+The mode vocabulary may grow by domain, but each mode must map to a clear pedagogical purpose.
 
-Use definitions, notation, assumptions, derivation, and formal reasoning appropriate to the learner's current level.
+## 4. Assistance ladder
 
-### Intuition
+For hard tasks, support should normally escalate as:
 
-Explain the mental model, geometry, or conceptual picture before formal notation.
+`independent → clarification → hint → stronger hint → decomposition/direction → partial solution → full solution`
 
-### Derive
+The UI should make the assistance level visible. A full solution should trigger a suitable independent re-solve or follow-up challenge when the learning contract requires it.
 
-Show where a formula or result comes from rather than only stating it.
+## 5. Challenge-after-help rule
 
-### Example
+When AI materially contributes to solving a problem or project, MasteryOS should be able to generate or select a related but distinct challenge that tests independent transfer.
 
-Provide one well-chosen worked example and explain the decision points.
+The follow-up challenge should:
 
-### Quiz Me
+- exercise the same competency;
+- vary surface details enough to prevent copy-through;
+- be appropriate to the learner's level;
+- produce assessable evidence;
+- be recorded separately from the assisted attempt.
 
-Generate a small assessment without immediately revealing answers.
+## 6. AI and assessment boundaries
 
-### Coach Me
+AI may explain, coach, diagnose, critique, or generate practice according to the task policy. It must not silently override:
 
-Use Socratic questioning and incremental hints. Do not reveal the complete solution unless the learner explicitly requests it or the pedagogical policy allows escalation after sufficient failed attempts.
+- assessment scoring rules;
+- mastery requirements;
+- route prerequisites;
+- security policies;
+- permissions;
+- content rights rules.
 
-### Go Deeper
+AI-generated grading should be clearly identified where used and should not be treated as infallible.
 
-Move one conceptual level upward, such as school algebra → abstract function view, or computational probability → random-variable formalism.
+## 7. Learner context packet
 
-### Connect to Quant
+Requests should include only necessary context:
 
-Explain whether and how the concept appears in probability, statistics, optimization, quantitative research, trading, or quantitative development.
-
-### Connect to CS
-
-Explain relevance to algorithms, data structures, systems, machine learning, programming, or software engineering.
-
-### Proof Review
-
-Check definitions, logical direction, missing assumptions, invalid implications, counterexamples, and notation. Distinguish an incomplete proof from a false claim.
-
-### Code Review
-
-Check correctness, complexity, clarity, edge cases, maintainability, security concerns, and language-specific issues.
-
-## 4. Learner context packet
-
-Each request should include only relevant context:
-
-- current track;
+- program/route;
 - phase/domain/topic/concept IDs;
-- lesson/problem/code selection;
-- relevant prerequisites;
-- mastery indicators;
-- known mistakes;
-- prior attempt;
+- selected text/equation/code/problem;
+- relevant prerequisite state;
+- current mastery indicators;
+- relevant mistakes;
+- current attempt;
 - assistance level;
 - requested tutor mode;
-- desired depth.
+- desired depth;
+- applicable assessment/project constraints.
 
-Do not send the entire curriculum or entire conversation when unnecessary.
+Do not automatically send the entire curriculum, all learner data, or unrelated conversation history.
 
-## 5. Response structure
+## 8. Response structure
 
-Where appropriate, answers should follow:
+For explanatory requests, a useful default is:
 
-1. Direct explanation.
-2. Why it works.
-3. Example.
-4. Common pitfall.
-5. One check-for-understanding question.
-6. Optional deeper connection.
+1. answer/explanation;
+2. why it works;
+3. example or demonstration;
+4. common pitfall;
+5. check-for-understanding question;
+6. optional deeper connection.
 
-The system should adapt this structure for very short questions or debugging requests.
+Adapt this for debugging, code review, project feedback, or short factual questions.
 
-## 6. Socratic escalation
+## 9. Domain adaptation
 
-For a hard problem:
+The same AI layer should support different programs without pretending every field uses identical pedagogy.
 
-`independent attempt → clarification → hint 1 → hint 2 → directional method → partial solution → full solution`
+Examples:
 
-Escalation should be explicit so the learner knows how much assistance was used.
+- mathematics: definitions, derivations, proofs, counterexamples, symbolic reasoning;
+- programming: debugging, tests, complexity, code review, implementation guidance;
+- systems: trade-offs, architecture, failure modes, observability;
+- AI/ML: mathematical intuition, implementation, experiments, evaluation;
+- cybersecurity: defensive reasoning and authorized lab work;
+- quantitative domains: educational modeling with clear assumptions and uncertainty.
 
-## 7. Anti-dependence rules
+## 10. Correctness and verification
 
-The tutor should:
-
-- ask what the learner has tried when appropriate;
-- make assumptions visible;
-- avoid solving every exercise automatically;
-- encourage independent re-solution after a full solution is shown;
-- mark AI-assisted completion distinctly;
-- suggest spaced re-testing of concepts learned through heavy assistance.
-
-## 8. Mathematical correctness
-
-For mathematics, the tutor should prefer:
+The tutor should make assumptions explicit and encourage verification where appropriate. For rigorous domains, prefer:
 
 - definitions before manipulation;
-- dimensional/units sanity checks where relevant;
-- alternate verification when practical;
-- counterexamples when a claim is false;
-- transparent intermediate steps;
-- explicit notation.
+- transparent intermediate reasoning;
+- sanity checks;
+- counterexamples for false claims;
+- cited/authoritative sources where current facts matter;
+- explicit uncertainty.
 
-The UI should make it easy to report an AI explanation as incorrect or confusing.
+Learners should be able to flag incorrect or confusing AI output.
 
-## 9. Quantitative finance guardrail
+## 11. Provider architecture
 
-Quant-related tutoring is educational. It must not be presented as guaranteed investment advice or as an autonomous trading system. The tutor should distinguish educational models from real-market assumptions and disclose uncertainty when discussing live/current facts.
+The application depends on an internal provider-neutral capability interface. Provider-specific SDKs belong behind that boundary.
 
-## 10. Provider architecture
+Initial providers are implementation choices, not product commitments. Provider selection must use current official documentation and the relevant Agent OS research/dependency-review workflow.
 
-The UI calls an internal `AIProvider` interface. Provider-specific implementations are isolated.
+Future support may include multiple hosted providers, local models, or a secure remote mediator.
 
-Initial provider: Gemini Developer API for trusted personal use.
+## 12. Credential handling
 
-Possible later providers: OpenRouter, Hugging Face inference, local browser-capable models, or a secure server-side mediator if the product becomes public/multi-user.
+For trusted personal use:
 
-## 11. Key handling
+- learner supplies their own provider credential at runtime;
+- never hard-code keys;
+- never commit keys;
+- never log keys;
+- never send keys as prompt content;
+- prefer session-only handling unless a deliberate local persistence decision exists.
 
-For personal prototype use:
+A public multi-user version must not ship a shared provider secret to clients.
 
-- user enters their own provider credential at runtime;
-- do not hard-code keys;
-- do not commit keys;
-- prefer session-only handling;
-- never print keys in logs/errors;
-- never send keys to analytics or AI prompts.
+## 13. Safe output handling
 
-Public multi-user deployment requires a new security architecture.
+Model output must be treated as untrusted data.
 
-## 12. Structured output
+Do not blindly render model-produced HTML or execute model-generated code with application privileges. Structured response formats should be preferred where practical, followed by strict schema validation and safe rendering.
 
-Where supported, prefer structured AI responses internally so the client can safely render:
-
-- answer sections;
-- hints;
-- next question;
-- confidence/uncertainty markers;
-- suggested resources;
-- detected prerequisite weaknesses;
-- code blocks;
-- mathematics blocks.
-
-Do not trust model-produced HTML blindly.
-
-## 13. Failure handling
+## 14. Failure handling
 
 Handle:
 
-- provider unavailable;
-- invalid key;
-- quota exceeded;
+- unavailable provider;
+- invalid credential;
+- quota exhaustion;
 - timeout;
 - malformed response;
-- model refusal/safety response;
-- unsupported model capability.
+- unsupported capability;
+- refusal/safety response;
+- network loss.
 
-The app should preserve the learner's current work and offer a non-AI path where possible.
+Preserve learner work and provide a non-AI path wherever possible.
 
-## 14. Evaluation
+## 15. Evaluation
 
-The tutor must be evaluated for:
+Evaluate the AI layer for:
 
-- factual correctness;
-- mathematical correctness;
+- factual/technical correctness;
+- pedagogical usefulness;
 - appropriate difficulty;
 - hint quality;
 - premature solution leakage;
-- prerequisite diagnosis quality;
+- prerequisite diagnosis;
+- challenge quality after assistance;
 - safe rendering;
+- privacy/data minimization;
 - provider failure behavior;
-- latency;
-- token/context efficiency.
+- latency and context efficiency.
 
-## 15. Success condition
+## 16. Success condition
 
-The AI tutor is successful when it makes difficult concepts easier to understand while the learner becomes progressively less dependent on it.
+The AI layer is successful when it increases the learner's understanding and performance while the learner becomes progressively more capable of working without it.
