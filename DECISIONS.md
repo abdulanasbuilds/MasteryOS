@@ -146,14 +146,14 @@ Alternatives rejected: Incremental infrastructure creep hidden inside feature wo
 Consequences: Future connected features must provide justification, data flow, threat model, and migration/recovery considerations.
 Reversal trigger: None.
 
-## D-017 — First vertical slice competency
+## D-017 — Technical Learning Laboratory design direction
 Date: 2026-09-06
 Status: accepted
-Decision: The first end-to-end implementation slice will teach and assess **program decomposition with TypeScript functions** as a representative Universal Core programming competency.
-Reason: It exercises interactive instructional content, practice, code editing, assessment, AI coaching, follow-up challenge generation, mastery evidence, local persistence, and progression without requiring the entire curriculum.
-Alternatives rejected: Building the full curriculum first; starting with a visual dashboard disconnected from a real learning loop.
-Consequences: The first slice must include one real lesson, practice, a coding task, an assessment, AI assistance, an independent follow-up challenge, mastery/unlock state, and persistent local progress.
-Reversal trigger: Implementation research shows that the chosen competency cannot exercise the required architecture without disproportionate complexity.
+Decision: MasteryOS uses a Technical Learning Laboratory as its primary visual and interaction direction, synthesizing evidence-based patterns from interactive learning, developer environments, concept maps, route visualization, and progress systems without cloning any product.
+Reason: Research found useful complementary patterns: Brilliant emphasizes visual active learning and adaptive guidance; Codecademy combines in-browser code, contextual AI, assessments, and projects; Exercism uses concept maps, practice, automated tests, and mentoring; Mimo emphasizes short interactive/mobile coding; DataCamp combines tracks, assessments, practice, projects, and progress; Khan Academy provides broad discoverability; roadmap.sh clarifies route selection; GitHub Codespaces demonstrates serious browser-based development environments.
+Alternatives rejected: Single-product visual clone; generic SaaS dashboard; purely academic reader; purely IDE-like interface; gamified app as the primary metaphor.
+Consequences: Frontend work must follow `DESIGN-BRIEF.md`, `DESIGN-SYSTEM.md`, `DESIGN-VARIANTS.md`, `DESIGN-REFERENCES.md`, and `docs/FRONTEND-SHELL-SPEC.md`.
+Reversal trigger: Usability evidence from implementation/testing demonstrates a substantially better direction.
 
 ## Decision template
 
