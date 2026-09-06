@@ -15,6 +15,8 @@
 - [x] Align design brief with the broad product model.
 - [x] Remove temporary/superseded review copies.
 - [x] Add `docs/BUILD-READINESS.md` as the agent handoff gate.
+- [x] Add `docs/MASTER-BUILD-ORCHESTRATION.md` as the ordered execution contract.
+- [x] Add `docs/AGENT-HANDOFF.md` as the zero-context agent entrypoint.
 - [x] Select the initial frontend/build direction: React + TypeScript + Vite.
 - [x] Select the first vertical-slice competency: TypeScript function decomposition.
 - [x] Run a repository terminology check for the major old product framing.
@@ -54,6 +56,12 @@ Required slice artifacts:
 9. Follow-up challenge flow.
 10. Coding workspace.
 11. End-to-end verification.
+
+## Agent rule
+
+An implementation agent must begin at the earliest incomplete item in this file and follow `docs/MASTER-BUILD-ORCHESTRATION.md`. It must not ask the owner to invent the build order when the repository already specifies it.
+
+An agent may choose implementation details, but it must not silently change product scope, add mandatory infrastructure, or skip verification gates.
 
 ## Guarded future capabilities
 
