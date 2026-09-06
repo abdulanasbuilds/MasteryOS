@@ -2,7 +2,7 @@
 
 All notable project-level changes are recorded here. Implementation changes should be added as the application evolves.
 
-## 2026-09-06 — Pre-build foundation reconciliation
+## 2026-09-06 — Pre-build foundation + executable scaffold
 
 ### Added
 
@@ -11,8 +11,13 @@ All notable project-level changes are recorded here. Implementation changes shou
 - Local-first/browser-capable/future-connectable architecture contract.
 - In-app learning and rights-aware content contract.
 - Assessment/mastery/AI/workbench specifications.
-- Build-readiness and agent handoff contract.
+- Build-readiness and zero-context agent handoff contracts.
+- Ordered master build orchestration.
 - First vertical-slice decision: TypeScript function decomposition.
+- React + TypeScript + Vite application scaffold.
+- Initial responsive application shell and Mission/Learn/Progress surfaces.
+- Typed curriculum, mastery, assessment, local-storage, and AI-provider boundaries.
+- First authored vertical-slice lesson and mastery-rule test.
 
 ### Changed
 
@@ -27,6 +32,6 @@ All notable project-level changes are recorded here. Implementation changes shou
 
 - Superseded temporary `PROJECT-UPDATED.md` and `TASKS-UPDATED.md` review copies.
 
-### Not yet implemented
+### Current implementation state
 
-The main application is still intentionally unbuilt at this point. This changelog records the specification/build-readiness work only; implementation claims require executable verification.
+The repository now contains an executable application foundation, but the complete MasteryOS product is not yet implemented. Gate 1 remains active; later mastery, assessment, AI integration, coding-runtime, and hardening gates require implementation and executable verification.
