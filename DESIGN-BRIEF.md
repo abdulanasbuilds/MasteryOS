@@ -122,13 +122,27 @@ Core flows must support keyboard navigation on desktop, usable touch interaction
 
 Keep the initial application lightweight and lazy-load expensive runtimes, visualizations, and large content where practical.
 
-## 10. Open decisions before implementation
+## 10. Locked implementation direction
 
-- Final visual direction variant.
-- Final typography stack.
-- Exact frontend framework/build architecture.
-- Initial coding runtime/sandbox.
-- Exact AI interaction placement and provider implementation.
-- First vertical-slice competency.
+- **Frontend/build:** React + TypeScript with Vite as the initial application build system.
+- **Delivery:** browser-local/static first, with a self-contained local runtime/package path preserved for future desktop distribution.
+- **Persistence:** internal storage interface with IndexedDB as the initial browser implementation.
+- **Math rendering:** KaTeX-compatible renderer.
+- **Editor:** a modular browser code editor; select the concrete package during the implementation spike based on bundle size, accessibility, extension support, and sandbox integration.
+- **AI:** provider-neutral adapter; first integration targets Google's Gemini API using the current supported JavaScript SDK, while keeping model selection configurable and current rather than hard-coded into the product contract.
+- **Code execution:** bounded isolated runtime; exact runtime is selected after a security/feasibility spike.
 
-These decisions must be made through the relevant Agent OS design/research/architecture workflows, not by assumption.
+These choices are sufficient to begin implementation without pretending that vendor-specific details are permanent.
+
+## 11. Design decisions requiring future review
+
+Only implementation details that materially affect architecture remain open:
+
+- exact editor package;
+- exact code-execution runtime;
+- exact AI model/version;
+- final typography choices;
+- final visual variant;
+- optional desktop packaging technology.
+
+Any change must be justified by evidence and recorded in the decision log when it changes architecture or product behavior.
