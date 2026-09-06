@@ -146,6 +146,15 @@ Alternatives rejected: Incremental infrastructure creep hidden inside feature wo
 Consequences: Future connected features must provide justification, data flow, threat model, and migration/recovery considerations.
 Reversal trigger: None.
 
+## D-017 — First vertical slice competency
+Date: 2026-09-06
+Status: accepted
+Decision: The first end-to-end implementation slice will teach and assess **program decomposition with TypeScript functions** as a representative Universal Core programming competency.
+Reason: It exercises interactive instructional content, practice, code editing, assessment, AI coaching, follow-up challenge generation, mastery evidence, local persistence, and progression without requiring the entire curriculum.
+Alternatives rejected: Building the full curriculum first; starting with a visual dashboard disconnected from a real learning loop.
+Consequences: The first slice must include one real lesson, practice, a coding task, an assessment, AI assistance, an independent follow-up challenge, mastery/unlock state, and persistent local progress.
+Reversal trigger: Implementation research shows that the chosen competency cannot exercise the required architecture without disproportionate complexity.
+
 ## Decision template
 
 ## D-XXX — Title
