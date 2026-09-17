@@ -155,6 +155,42 @@ Alternatives rejected: Single-product visual clone; generic SaaS dashboard; pure
 Consequences: Frontend work must follow `DESIGN-BRIEF.md`, `DESIGN-SYSTEM.md`, `DESIGN-VARIANTS.md`, `DESIGN-REFERENCES.md`, and `docs/FRONTEND-SHELL-SPEC.md`.
 Reversal trigger: Usability evidence from implementation/testing demonstrates a substantially better direction.
 
+## D-018 — Puter.js as preferred connected adapter
+Date: 2026-09-17
+Status: accepted
+Decision: Puter.js is the preferred first connected-service implementation for MasteryOS, behind provider/adaptor interfaces rather than embedded directly into domain logic.
+Reason: Current Puter.js documentation provides authentication, user-scoped cloud storage/KV/files, AI access, and a Peer API for WebRTC-based connectivity. Its user-pays model can reduce developer-side infrastructure and API-key handling for connected use. These benefits match MasteryOS's local-first and future-connected goals.
+Alternatives rejected: Making Supabase/Firebase or a single AI vendor the mandatory core; scattering vendor-specific calls throughout the application.
+Consequences: Add Puter adapters only at the relevant implementation gate. Re-check current official Puter documentation before provider-specific changes. Keep direct Gemini, other providers, and local AI as possible alternatives behind `AIProvider`.
+Reversal trigger: Provider reliability, security, pricing/usage, API stability, or architectural evidence shows that another adapter is materially better.
+
+## D-019 — Local-first plus optional Puter-connected modes
+Date: 2026-09-17
+Status: accepted
+Decision: MasteryOS supports local/offline use without a Puter account and optional connected use with a user's own Puter account. Local learner state remains authoritative for core behavior; connected state is an optional sync/backup layer.
+Reason: This supports downloaded/self-hosted use, browser use, privacy, low infrastructure cost, and cross-device access without making an account mandatory.
+Alternatives rejected: Account-first onboarding; cloud-only persistence; making Puter mandatory for basic learning.
+Consequences: The UI must clearly expose local versus connected operation, preserve local data when disconnected, and never ship a shared developer credential.
+Reversal trigger: Deliberate product change to a different identity/storage model.
+
+## D-020 — Peer-first collaboration without mandatory central learner database
+Date: 2026-09-17
+Status: accepted
+Decision: Future remote collaboration is an optional connected overlay. The preferred first implementation may use Puter Peer/WebRTC with temporary signaling and relay infrastructure while keeping participant-private learner records local.
+Reason: Current Puter Peer documentation provides a server-light peer model with built-in signaling/TURN and supports study-room-style data exchange without requiring a central learner database for ordinary sessions.
+Alternatives rejected: Making a centralized collaboration database the prerequisite for study rooms; building video-first collaboration before shared study primitives.
+Consequences: Implement collaboration progressively: room/presence/shared text and lesson position first; then whiteboard/pair programming; then optional voice/video/screen sharing. Shared-state conflict resolution and security require separate tests and review.
+Reversal trigger: Provider limitations, security evidence, scalability requirements, or a better peer/collaboration adapter.
+
+## D-021 — Resource intelligence instead of resource dumping
+Date: 2026-09-17
+Status: accepted
+Decision: MasteryOS stores structured metadata and provenance for external learning resources while providing an explicit recommended route, strong alternatives, and optional deep dives. Third-party copyrighted material is not mirrored without rights.
+Reason: A large list of links does not create a coherent learning path and creates rights/maintenance problems.
+Alternatives rejected: Bookmark-directory UX; scraping full third-party courses/books into the repository.
+Consequences: Resource metadata must include level, prerequisites, type, provenance, rights class, and verification status where known.
+Reversal trigger: A future licensed-content strategy with explicit rights and operational support.
+
 ## Decision template
 
 ## D-XXX — Title
