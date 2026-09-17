@@ -127,7 +127,24 @@ Before adding a dependency:
 - review permission/network behavior;
 - prefer simpler standard/browser APIs when sufficient.
 
-## 11. Release gate
+## 11. Connected services
+
+Use `docs/CONNECTED-VERIFICATION-SPEC.md` for detailed connected-feature verification.
+
+Every connected implementation must additionally verify:
+
+- local fallback still works;
+- user-initiated authentication behavior;
+- connected storage is schema-validated;
+- local state is not silently overwritten by stale remote state;
+- provider quota/error handling;
+- no credential leakage;
+- shared data boundaries are explicit;
+- collaboration messages are validated;
+- disconnect/reconnect behavior preserves local data;
+- connected provider assumptions are checked against current official documentation.
+
+## 12. Release gate
 
 A release candidate is not complete until:
 
@@ -136,6 +153,7 @@ A release candidate is not complete until:
 - curriculum/resource correctness has been sampled;
 - security checks pass;
 - accessibility review is complete for the changed surface;
+- connected-feature checks pass where connected functionality exists;
 - final diff has been inspected;
 - known limitations are recorded.
 
