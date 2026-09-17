@@ -19,7 +19,9 @@ The platform combines:
 - progress, productivity, and gamification systems;
 - a cross-cutting AI control layer;
 - programming and systems workbenches;
-- advanced and frontier subject matter.
+- advanced and frontier subject matter;
+- optional connected services through explicit adapters;
+- optional peer collaboration without making centralized learner storage mandatory.
 
 The target is competence, not course completion.
 
@@ -49,6 +51,8 @@ MasteryOS solves this by turning learning into a connected system with explicit 
 8. **Future-connectable.** Optional cloud/backend services may be added later through explicit adapters and architecture decisions without making them prerequisites for the core product.
 9. **Source provenance and rights.** External content is referenced, licensed, embedded where permitted, or transformed only within applicable rights; MasteryOS must not become a copyright mirror.
 10. **Advanced depth is intentional.** The curriculum should reach at least strong university level where relevant and continue into specialist and frontier material when evidence and maintainability justify it.
+11. **Connected services are opt-in.** Authentication, cloud sync, AI providers, and collaboration can add capabilities without redefining the core.
+12. **Local privacy is the default.** Participant-private learner state remains on the participant's device unless explicitly shared or synced.
 
 ## 5. Universal Core
 
@@ -152,9 +156,21 @@ Core interaction patterns include:
 
 The AI layer must fail gracefully. Core learning, assessment, and local progress functions must not depend on AI being available.
 
-## 11. Local-first and future connectivity
+## 11. Local-first, connected, and collaboration modes
 
 The core application is designed to be usable as a self-contained installation and as a browser application.
+
+### Local/offline mode
+
+The learner can use MasteryOS without a hosted database, account, network connection, or external service for the core learning experience.
+
+### Connected mode
+
+A user may optionally connect services such as Puter.js for identity, cloud sync/backup, AI, or collaboration. Connected services are adapters around the local core.
+
+### Collaboration mode
+
+Remote collaboration necessarily uses a network, but it does not require central storage of every learner's private record. Peer-oriented transport is preferred where practical.
 
 V1 does not require:
 
@@ -185,12 +201,12 @@ Until publication is deliberately approved, treat the repository as a future ope
 
 ## 13. Technical direction
 
-Initial direction is intentionally provider- and framework-neutral.
+Current implementation direction is React + TypeScript + Vite with browser-local persistence. Domain boundaries remain provider-neutral.
 
 Likely building blocks include:
 
 - TypeScript;
-- React or Next.js used in a genuinely local-first/static-capable way;
+- React + Vite;
 - a utility CSS system and accessible component primitives;
 - Markdown/MDX and structured data for curriculum/content;
 - KaTeX or equivalent mathematical rendering;
@@ -198,7 +214,9 @@ Likely building blocks include:
 - IndexedDB or equivalent durable local storage;
 - client-side search/indexing where useful;
 - isolated browser or local runtimes for programming exercises where safe;
-- an AI provider adapter with a first provider selected only after current documentation/dependency review.
+- a provider-neutral AI adapter;
+- Puter.js as the preferred first connected provider candidate;
+- a collaboration provider abstraction with Puter Peer as the preferred first transport candidate.
 
 No individual framework or provider is a permanent architectural commitment until implementation research and review support it.
 
@@ -215,13 +233,27 @@ Do not make these prerequisites for the core learning environment:
 - unrestricted code execution;
 - autonomous real-world actions;
 - scraped or unlicensed content mirrors;
-- production financial trading execution.
+- production financial execution.
 
 They may become optional future layers after explicit product, architecture, and security decisions.
 
 ## 15. Current state
 
-MasteryOS is in documentation-first initialization. The main application has intentionally not been started until the project contract, architecture, security boundaries, curriculum model, assessment model, AI behavior, content rules, design direction, and verification gates are coherent.
+The project contract and build-readiness documentation are established, and the repository now contains an executable React + TypeScript + Vite scaffold and first vertical slice.
+
+Implemented scaffold capabilities include:
+
+- Mission/Learn/Progress application shell;
+- one authored interactive-lesson data object;
+- basic mastery-domain types and tests;
+- local IndexedDB persistence;
+- provider-neutral AI interface/stub;
+- curriculum/content/assessment/AI/design/security documentation;
+- Puter integration contract;
+- collaboration contract;
+- agent handoff/master prompt.
+
+The complete learning product is **not** finished. Agents must inspect the actual repository and continue from the earliest incomplete gate in `TASKS.md`.
 
 ## 16. Definition of build-ready
 
@@ -238,6 +270,8 @@ MasteryOS is build-ready when:
 - testing and verification gates are explicit;
 - no unresolved documentation contradiction changes the first implementation slice.
 
+The repository is now **scaffold/build-ready**, not feature-complete.
+
 ## 17. Success criteria
 
 The system succeeds when a learner can use one environment to:
@@ -250,7 +284,9 @@ The system succeeds when a learner can use one environment to:
 - use AI without becoming dependent on it;
 - build increasingly difficult projects;
 - maintain durable evidence of progress;
-- move from foundational technology literacy into advanced specialization and eventually frontier work.
+- move from foundational technology literacy into advanced specialization and eventually frontier work;
+- optionally synchronize selected state across devices;
+- optionally study collaboratively without surrendering private local learner data.
 
 ## 18. Governing documents
 
@@ -261,12 +297,17 @@ The system succeeds when a learner can use one environment to:
 - `DECISIONS.md` — accepted architectural/product decisions.
 - `PLAN.md` — implementation sequence and gates.
 - `TASKS.md` — current work queue.
+- `docs/MASTER-AGENT-PROMPT.md` — start-anywhere implementation prompt.
+- `docs/PUTER-INTEGRATION-SPEC.md` — Puter adapter contract.
+- `docs/COLLABORATION-SPEC.md` — collaboration contract.
+- `docs/TOOLCHAIN-RESOURCE-REGISTRY.md` — dependency/provider/resource registry.
 - `DESIGN-BRIEF.md`, `DESIGN-SYSTEM.md`, `DESIGN-REFERENCES.md`, `DESIGN-VARIANTS.md` — design contracts.
 - `docs/CURRICULUM-MASTER-SPEC.md` — curriculum rules.
 - `docs/CONTENT-MODEL.md` — content data model.
 - `docs/EMBEDDED-LEARNING-SPEC.md` — in-app learning/content rights rules.
 - `docs/ASSESSMENT-MASTERY-SPEC.md` — assessments and mastery gates.
 - `docs/AI-CONTROL-LAYER-SPEC.md` — system-wide AI behavior.
+- `docs/AI-TUTOR-SPEC.md` — tutoring behavior.
 - `docs/CODING-LAB-SPEC.md` — programming/systems workbench rules.
 - `docs/PROGRESS-GAMIFICATION-SPEC.md` — progress and productivity behavior.
 - `docs/VERIFICATION-MATRIX.md` — verification requirements.
