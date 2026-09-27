@@ -8,7 +8,12 @@
       "url": "https://www.classcentral.com/subject/cs",
       "type": "discovery-index",
       "tier": 2,
-      "role": ["coverage-discovery", "alternatives", "resource-metadata", "gap-detection"],
+      "role": [
+        "coverage-discovery",
+        "alternatives",
+        "resource-metadata",
+        "gap-detection"
+      ],
       "notes": "Large dynamic catalog; use as a discovery and comparison layer, not as the MasteryOS curriculum authority.",
       "rightsClass": "reference-only"
     },
@@ -18,7 +23,12 @@
       "url": "https://github.com/ossu/computer-science",
       "type": "open-source-curriculum",
       "tier": 1,
-      "role": ["degree-spine", "prerequisite-calibration", "core-cs", "advanced-cs"],
+      "role": [
+        "degree-spine",
+        "prerequisite-calibration",
+        "core-cs",
+        "advanced-cs"
+      ],
       "license": "MIT",
       "rightsClass": "license-verified-project-structure"
     },
@@ -28,7 +38,11 @@
       "url": "https://github.com/ForrestKnight/open-source-cs",
       "type": "open-source-curriculum",
       "tier": 1,
-      "role": ["alternate-degree-map", "course-cross-check", "university-calibration"],
+      "role": [
+        "alternate-degree-map",
+        "course-cross-check",
+        "university-calibration"
+      ],
       "license": "MIT",
       "rightsClass": "license-verified-project-structure"
     },
@@ -39,9 +53,121 @@
       "repository": "https://github.com/scrimba/learn-html-and-css",
       "type": "interactive-course-and-starter-repository",
       "tier": 2,
-      "role": ["interactive-pedagogy", "micro-lessons", "browser-coding", "project-ladder"],
+      "role": [
+        "interactive-pedagogy",
+        "micro-lessons",
+        "browser-coding",
+        "project-ladder"
+      ],
       "notes": "Use interaction patterns and course structure as research. Do not reproduce protected lesson/video/course expression unless separate permission or license is verified.",
       "rightsClass": "course-content-reference-only"
+    },
+    {
+      "id": "mit-ocw",
+      "name": "MIT OpenCourseWare",
+      "url": "https://ocw.mit.edu/",
+      "type": "university-open-courseware",
+      "tier": 1,
+      "role": [
+        "calibration",
+        "native-content-reference",
+        "advanced-math",
+        "systems",
+        "theory"
+      ],
+      "rightsClass": "reference-only"
+    },
+    {
+      "id": "harvard-cs50",
+      "name": "Harvard CS50",
+      "url": "https://cs50.harvard.edu/x/",
+      "type": "university-course",
+      "tier": 1,
+      "role": [
+        "intro-cs",
+        "programming",
+        "problem-solving",
+        "sql",
+        "security"
+      ],
+      "rightsClass": "reference-only"
+    },
+    {
+      "id": "nand2tetris",
+      "name": "Nand2Tetris",
+      "url": "https://www.nand2tetris.org/",
+      "type": "systems-learning-program",
+      "tier": 1,
+      "role": [
+        "computer-architecture",
+        "systems",
+        "compilers"
+      ],
+      "rightsClass": "reference-only"
+    },
+    {
+      "id": "ostep",
+      "name": "Operating Systems: Three Easy Pieces",
+      "url": "https://pages.cs.wisc.edu/~remzi/OSTEP/",
+      "type": "open-textbook-reference",
+      "tier": 1,
+      "role": [
+        "operating-systems",
+        "systems"
+      ],
+      "rightsClass": "reference-only"
+    },
+    {
+      "id": "khan-academy-math",
+      "name": "Khan Academy Mathematics",
+      "url": "https://www.khanacademy.org/math",
+      "type": "interactive-learning-platform",
+      "tier": 2,
+      "role": [
+        "math-foundations",
+        "calculus",
+        "statistics",
+        "practice"
+      ],
+      "rightsClass": "reference-only"
+    },
+    {
+      "id": "3blue1brown",
+      "name": "3Blue1Brown",
+      "url": "https://www.3blue1brown.com/",
+      "type": "visual-mathematics-reference",
+      "tier": 2,
+      "role": [
+        "math-intuition",
+        "linear-algebra",
+        "calculus"
+      ],
+      "rightsClass": "reference-only"
+    },
+    {
+      "id": "project-euler",
+      "name": "Project Euler",
+      "url": "https://projecteuler.net/",
+      "type": "math-programming-problem-set",
+      "tier": 2,
+      "role": [
+        "math-problem-solving",
+        "programming",
+        "number-theory"
+      ],
+      "rightsClass": "reference-only"
+    },
+    {
+      "id": "ukmt",
+      "name": "UK Mathematics Trust",
+      "url": "https://ukmt.org.uk/",
+      "type": "mathematics-competition-reference",
+      "tier": 1,
+      "role": [
+        "olympiad-problem-solving",
+        "mathematical-reasoning"
+      ],
+      "rightsClass": "reference-only"
     }
   ],
   "coverageDomains": [
