@@ -205,3 +205,13 @@ Never ask the owner to choose an architecture that is already defined by the can
 ## Scope boundary
 
 MasteryOS is initially a personal, locally runnable application. Public multi-user SaaS, cloud sync, accounts, billing, social features, centralized personal-data storage, and public-course hosting are optional future layers, not hidden assumptions of the core product.
+
+---
+
+## Binding operational contract
+
+The repository-wide operational rules are consolidated in `docs/AGENT-CONTRACT.md`.
+
+Treat that contract as normative for every agent and every task. It defines authority order, restricted actions, local-first boundaries, mastery/assessment rules, AI boundaries, content-rights restrictions, provider-adapter rules, safe code-execution boundaries, the start-anywhere procedure, build-gate discipline, dependency rules, stop conditions, verification requirements, and truthful reporting.
+
+`docs/MASTER-AGENT-PROMPT.md` is the copy-paste universal prompt. `docs/AGENT-HANDOFF.md` explains repository entry. The contract is the canonical operational source; these other files must not contradict it.
