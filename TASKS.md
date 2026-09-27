@@ -27,6 +27,8 @@
 - [x] Add connected-feature verification gates.
 - [x] Add toolchain/provider/resource registry.
 - [x] Add start-anywhere master agent prompt.
+- [x] Research and synthesize Class Central, OSSU, ForrestKnight, and Scrimba source structures.
+- [x] Add source coverage crosswalk and expanded curriculum seed graph.
 - [x] Update project charter to reflect the actual executable scaffold state.
 - [x] Tighten agent instructions around provider adapters, local-first behavior, rights, collaboration, and handoff.
 
