@@ -1,0 +1,69 @@
+{
+  "schemaVersion": 1,
+  "lastVerified": "2026-09-27",
+  "sources": [
+    {
+      "id": "class-central-cs",
+      "name": "Class Central — Computer Science",
+      "url": "https://www.classcentral.com/subject/cs",
+      "type": "discovery-index",
+      "tier": 2,
+      "role": ["coverage-discovery", "alternatives", "resource-metadata", "gap-detection"],
+      "notes": "Large dynamic catalog; use as a discovery and comparison layer, not as the MasteryOS curriculum authority.",
+      "rightsClass": "reference-only"
+    },
+    {
+      "id": "ossu-computer-science",
+      "name": "Open Source Society University — Computer Science",
+      "url": "https://github.com/ossu/computer-science",
+      "type": "open-source-curriculum",
+      "tier": 1,
+      "role": ["degree-spine", "prerequisite-calibration", "core-cs", "advanced-cs"],
+      "license": "MIT",
+      "rightsClass": "license-verified-project-structure"
+    },
+    {
+      "id": "forrestknight-open-source-cs",
+      "name": "ForrestKnight — Open Source Computer Science Degree",
+      "url": "https://github.com/ForrestKnight/open-source-cs",
+      "type": "open-source-curriculum",
+      "tier": 1,
+      "role": ["alternate-degree-map", "course-cross-check", "university-calibration"],
+      "license": "MIT",
+      "rightsClass": "license-verified-project-structure"
+    },
+    {
+      "id": "scrimba-html-css",
+      "name": "Scrimba — Learn HTML & CSS",
+      "url": "https://scrimba.com/links/htmlandcss",
+      "repository": "https://github.com/scrimba/learn-html-and-css",
+      "type": "interactive-course-and-starter-repository",
+      "tier": 2,
+      "role": ["interactive-pedagogy", "micro-lessons", "browser-coding", "project-ladder"],
+      "notes": "Use interaction patterns and course structure as research. Do not reproduce protected lesson/video/course expression unless separate permission or license is verified.",
+      "rightsClass": "course-content-reference-only"
+    }
+  ],
+  "coverageDomains": [
+    "mathematics",
+    "computer-science",
+    "programming",
+    "software-engineering",
+    "systems",
+    "algorithms",
+    "security",
+    "databases",
+    "networking",
+    "web",
+    "AI/ML",
+    "quantitative-computing",
+    "projects",
+    "developer-tools",
+    "technical-ethics"
+  ],
+  "nativeLearningPolicy": {
+    "default": "native-original",
+    "fallback": "provider-approved-embed-or-reference",
+    "externalNavigation": "never-required-for-core-competency"
+  }
+}
