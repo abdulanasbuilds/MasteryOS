@@ -164,3 +164,17 @@ Do not claim a feature is complete without appropriate tests and verification.
 - `docs/CODING-LAB-SPEC.md` — programming/system workbench rules.
 - `docs/ASSESSMENT-MASTERY-SPEC.md` — mastery/evidence behavior.
 - `docs/VERIFICATION-MATRIX.md` — verification requirements.
+
+---
+
+## Agent governance
+
+MasteryOS is designed so another coding agent can take over without the original chat.
+
+- `docs/AGENT-CONTRACT.md` — binding operational contract and restrictions.
+- `docs/MASTER-AGENT-PROMPT.md` — universal copy-paste prompt for starting, continuing, repairing, or reviewing the project.
+- `docs/AGENT-HANDOFF.md` — repository entrypoint.
+- `CLAUDE.md` — Claude-oriented adapter.
+- `.github/copilot-instructions.md` — GitHub Copilot repository adapter.
+
+The agent must always inspect the actual repository, identify the earliest incomplete gate, preserve local-first architecture, verify its changes, and report evidence rather than intention.
