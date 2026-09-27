@@ -260,3 +260,17 @@ Do not confuse:
 - a working connected path with proof that offline mode still works.
 
 The repository is the source of truth. Inspect it before making claims.
+
+---
+
+## Binding agent contract
+
+Before implementation, also read `docs/AGENT-CONTRACT.md`.
+
+The repository now provides three levels of agent handoff:
+
+1. `docs/AGENT-CONTRACT.md` — binding operational rules.
+2. `docs/MASTER-AGENT-PROMPT.md` — copy-paste start-anywhere prompt.
+3. `CLAUDE.md` / `.github/copilot-instructions.md` — thin tool-specific adapters that point agents back to the same contract.
+
+The agent must still inspect the actual code and current gate state. Never assume a historical task list is correct without repository evidence.
