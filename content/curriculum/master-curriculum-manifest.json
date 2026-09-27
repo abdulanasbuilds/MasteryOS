@@ -1,0 +1,517 @@
+{
+  "schemaVersion": 1,
+  "curriculumId": "masteryos-expanded-source-synthesis",
+  "lastVerified": "2026-09-27",
+  "designRule": "Source-derived coverage is mapped into native MasteryOS competencies; external courses remain provenance/alternatives, not runtime dependencies.",
+  "programs": [
+    {
+      "id": "universal-core",
+      "title": "Universal Technology Core",
+      "phases": [
+        {
+          "id": "learning-foundations",
+          "title": "Learning, Reasoning & Technical Communication",
+          "topics": [
+            "problem-decomposition",
+            "learning-how-to-learn",
+            "technical-reading",
+            "source-evaluation",
+            "technical-writing",
+            "debugging-mindset"
+          ]
+        },
+        {
+          "id": "mathematical-foundation",
+          "title": "Mathematical & Quantitative Foundation",
+          "topics": [
+            "arithmetic-fluency",
+            "algebra-repair",
+            "equations-inequalities",
+            "functions-and-graphs",
+            "geometry-foundations",
+            "trigonometry-foundations",
+            "precalculus",
+            "counting-and-combinatorics-foundations",
+            "probability-foundations",
+            "mathematical-logic-foundations"
+          ]
+        },
+        {
+          "id": "computational-foundation",
+          "title": "Computational Thinking",
+          "topics": [
+            "what-is-computation",
+            "algorithms-as-processes",
+            "data-representation",
+            "abstraction",
+            "decomposition",
+            "complexity-intuition"
+          ]
+        },
+        {
+          "id": "developer-foundation",
+          "title": "Developer Foundations",
+          "topics": [
+            "terminal-basics",
+            "shell-and-command-line",
+            "git-fundamentals",
+            "github-workflow",
+            "debugging-fundamentals",
+            "testing-fundamentals",
+            "documentation-and-readmes",
+            "development-environments"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "web-engineering",
+      "title": "Web Engineering",
+      "phases": [
+        {
+          "id": "web-foundations",
+          "title": "HTML & CSS Foundations",
+          "prerequisites": [
+            "mathematical-foundation",
+            "learning-foundations"
+          ],
+          "topics": [
+            "semantic-html",
+            "document-structure",
+            "links-images-media",
+            "forms-and-inputs",
+            "accessibility-basics",
+            "css-selectors",
+            "cascade-and-inheritance",
+            "box-model",
+            "layout-flow",
+            "flexbox",
+            "css-grid",
+            "responsive-design",
+            "typography",
+            "ui-states",
+            "browser-devtools",
+            "static-site-deployment"
+          ],
+          "pedagogy": "micro-lesson -> immediate editable challenge -> local feedback -> variation -> mini-project"
+        },
+        {
+          "id": "web-platform",
+          "title": "Web Platform",
+          "topics": [
+            "browser-runtime",
+            "dom",
+            "events",
+            "http-basics",
+            "urls-and-routing",
+            "web-storage",
+            "security-model-basics",
+            "fetch-and-apis",
+            "accessibility-advanced"
+          ]
+        },
+        {
+          "id": "modern-frontend",
+          "title": "Modern Frontend Engineering",
+          "topics": [
+            "javascript-foundations",
+            "typescript-foundations",
+            "modules-and-tooling",
+            "async-javascript",
+            "state-management",
+            "component-architecture",
+            "forms-validation",
+            "testing-frontend",
+            "performance-frontend",
+            "frontend-security",
+            "build-and-deployment"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "computer-science",
+      "title": "Computer Science",
+      "phases": [
+        {
+          "id": "intro-cs",
+          "title": "Introductory CS",
+          "topics": [
+            "intro-to-cs",
+            "python-foundations",
+            "c-foundations",
+            "problem-solving-with-code"
+          ]
+        },
+        {
+          "id": "core-programming",
+          "title": "Core Programming",
+          "topics": [
+            "imperative-programming",
+            "functional-programming",
+            "object-oriented-programming",
+            "type-systems",
+            "static-vs-dynamic-typing",
+            "design-by-contract",
+            "unit-testing",
+            "program-design",
+            "software-specification",
+            "refactoring",
+            "programming-language-paradigms"
+          ]
+        },
+        {
+          "id": "core-math",
+          "title": "Mathematics for CS",
+          "topics": [
+            "calculus-differentiation",
+            "calculus-integration",
+            "infinite-series",
+            "discrete-mathematics",
+            "sets-and-functions",
+            "proof-by-induction",
+            "recurrences",
+            "graph-theory-foundations",
+            "discrete-probability",
+            "asymptotic-analysis"
+          ]
+        },
+        {
+          "id": "algorithms-and-data-structures",
+          "title": "Algorithms & Data Structures",
+          "topics": [
+            "arrays-lists-stacks-queues",
+            "hash-tables",
+            "trees-heaps-priority-queues",
+            "graphs",
+            "sorting",
+            "searching",
+            "divide-and-conquer",
+            "greedy-algorithms",
+            "dynamic-programming",
+            "shortest-paths",
+            "minimum-spanning-trees",
+            "randomized-algorithms",
+            "string-algorithms",
+            "network-flow",
+            "amortized-analysis",
+            "np-completeness"
+          ]
+        },
+        {
+          "id": "systems",
+          "title": "Computer Systems",
+          "topics": [
+            "boolean-algebra-and-logic-gates",
+            "digital-circuits",
+            "memory-and-state",
+            "assembly-and-machine-code",
+            "computer-organization",
+            "cpu-design",
+            "caches-and-memory-hierarchy",
+            "pipelining",
+            "virtual-memory",
+            "processes-and-threads",
+            "system-calls",
+            "filesystems",
+            "concurrency",
+            "operating-system-design"
+          ]
+        },
+        {
+          "id": "networking",
+          "title": "Computer Networking",
+          "topics": [
+            "network-models",
+            "ethernet-ip",
+            "tcp-udp",
+            "dns",
+            "http",
+            "routing",
+            "congestion-control",
+            "network-debugging",
+            "network-security",
+            "distributed-network-fundamentals"
+          ]
+        },
+        {
+          "id": "databases",
+          "title": "Databases & Data Systems",
+          "topics": [
+            "relational-model",
+            "sql-foundations",
+            "schema-design",
+            "normalization",
+            "transactions",
+            "indexes",
+            "query-plans",
+            "concurrency-control",
+            "recovery",
+            "semi-structured-data",
+            "data-modeling"
+          ]
+        },
+        {
+          "id": "theory",
+          "title": "Theory of Computation",
+          "topics": [
+            "formal-logic",
+            "regular-languages",
+            "finite-automata",
+            "context-free-languages",
+            "pushdown-automata",
+            "turing-machines",
+            "decidability",
+            "computability",
+            "complexity-classes"
+          ]
+        },
+        {
+          "id": "security",
+          "title": "Computer Security",
+          "topics": [
+            "security-principles",
+            "threat-modeling",
+            "secure-design",
+            "secure-coding",
+            "web-security",
+            "network-security",
+            "cryptographic-primitives",
+            "authentication-and-authorization",
+            "privacy",
+            "vulnerability-analysis"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "software-engineering",
+      "title": "Software Engineering",
+      "phases": [
+        {
+          "id": "engineering-practice",
+          "title": "Engineering Practice",
+          "topics": [
+            "requirements",
+            "design",
+            "code-review",
+            "testing-strategy",
+            "integration-testing",
+            "property-based-testing",
+            "observability",
+            "incident-thinking",
+            "technical-debt",
+            "release-engineering"
+          ]
+        },
+        {
+          "id": "architecture",
+          "title": "Architecture & Scale",
+          "topics": [
+            "modularity",
+            "interfaces-and-abstractions",
+            "api-design",
+            "service-boundaries",
+            "caching",
+            "queues",
+            "load-balancing",
+            "scalability",
+            "reliability",
+            "distributed-data",
+            "consistency-models",
+            "system-design"
+          ]
+        },
+        {
+          "id": "advanced-engineering",
+          "title": "Advanced Engineering",
+          "topics": [
+            "concurrency-patterns",
+            "parallel-programming",
+            "performance-engineering",
+            "profiling",
+            "memory-performance",
+            "compiler-aware-optimization",
+            "developer-tools",
+            "build-systems",
+            "ci-cd",
+            "supply-chain-security"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mathematics-computational-mathematics",
+      "title": "Mathematics & Computational Mathematics",
+      "phases": [
+        {
+          "id": "advanced-secondary",
+          "title": "Advanced Secondary Mathematics",
+          "topics": [
+            "advanced-algebra",
+            "advanced-functions",
+            "complex-numbers",
+            "sequences-and-series",
+            "vectors",
+            "matrices",
+            "advanced-trigonometry",
+            "combinatorics",
+            "elementary-number-theory",
+            "olympiad-problem-solving"
+          ]
+        },
+        {
+          "id": "university-core",
+          "title": "University Core Mathematics",
+          "topics": [
+            "calculus-i",
+            "calculus-ii",
+            "multivariable-calculus",
+            "linear-algebra",
+            "probability",
+            "statistics",
+            "discrete-mathematics",
+            "ordinary-differential-equations",
+            "numerical-methods",
+            "optimization"
+          ]
+        },
+        {
+          "id": "mathematical-maturity",
+          "title": "Mathematical Maturity",
+          "topics": [
+            "proof-writing",
+            "real-analysis",
+            "abstract-algebra",
+            "complex-analysis",
+            "measure-and-probability-foundations",
+            "advanced-combinatorics",
+            "graph-theory",
+            "number-theory",
+            "functional-thinking"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "quantitative-computational-finance",
+      "title": "Quantitative & Computational Finance",
+      "phases": [
+        {
+          "id": "quant-math-foundations",
+          "title": "Quant Mathematical Foundations",
+          "prerequisites": [
+            "mathematics-computational-mathematics.university-core",
+            "computer-science.algorithms-and-data-structures"
+          ],
+          "topics": [
+            "conditional-probability-for-quant",
+            "random-variables",
+            "expectation-and-variance",
+            "covariance-and-correlation",
+            "distributions",
+            "law-of-large-numbers",
+            "central-limit-theorem",
+            "linear-algebra-for-statistics",
+            "multivariable-calculus-for-optimization",
+            "numerical-computation"
+          ]
+        },
+        {
+          "id": "quant-research",
+          "title": "Quantitative Research",
+          "topics": [
+            "statistical-inference",
+            "regression",
+            "maximum-likelihood",
+            "bayesian-thinking",
+            "time-series",
+            "signal-research",
+            "backtesting-methodology",
+            "experimental-design",
+            "multiple-testing",
+            "model-validation",
+            "market-microstructure",
+            "simulation",
+            "research-engineering"
+          ]
+        },
+        {
+          "id": "quant-development",
+          "title": "Quantitative Development",
+          "topics": [
+            "python-for-research",
+            "numpy-and-vectorization",
+            "pandas-data-workflows",
+            "c-plus-plus-foundations",
+            "performance-coding",
+            "concurrency-for-quant",
+            "low-latency-concepts",
+            "data-pipelines",
+            "research-infrastructure"
+          ]
+        },
+        {
+          "id": "quant-problem-solving",
+          "title": "Quant Interview & Problem Solving",
+          "topics": [
+            "mental-math",
+            "probability-puzzles",
+            "expected-value-puzzles",
+            "estimation",
+            "game-theory-intuition",
+            "decision-under-uncertainty",
+            "coding-interview-foundations",
+            "market-making-simulations"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ai-machine-learning",
+      "title": "AI & Machine Learning",
+      "phases": [
+        {
+          "id": "ml-foundations",
+          "title": "Machine Learning Foundations",
+          "topics": [
+            "supervised-learning",
+            "unsupervised-learning",
+            "feature-engineering",
+            "model-evaluation",
+            "cross-validation",
+            "regularization",
+            "optimization-for-ml"
+          ]
+        },
+        {
+          "id": "deep-learning",
+          "title": "Deep Learning",
+          "topics": [
+            "neural-networks",
+            "backpropagation",
+            "convolutional-networks",
+            "sequence-models",
+            "attention",
+            "transformers",
+            "representation-learning"
+          ]
+        },
+        {
+          "id": "modern-ai-systems",
+          "title": "Modern AI Systems",
+          "topics": [
+            "llm-fundamentals",
+            "retrieval-augmented-generation",
+            "tool-use-and-agents",
+            "evaluation-and-observability",
+            "inference-efficiency",
+            "model-serving",
+            "ai-safety-and-reliability",
+            "mlops"
+          ]
+        }
+      ]
+    }
+  ]
+}
