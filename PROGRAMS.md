@@ -74,6 +74,42 @@ Depth levels:
 
 Frontier material is especially valuable when trustworthy educational resources are scarce. Such material must be labeled clearly and supported by strong references.
 
+## Alternative routes
+
+Alternatives can exist, but they should not create uncontrolled course-choice paralysis. The system should show:
+
+- Recommended route
+- Strong alternative
+- Optional deep-dive route
+
+The recommended route remains explicit.
+
+## Source-informed route expansion
+
+The expanded curriculum seed in `content/curriculum/master-curriculum-manifest.json` synthesizes the supplied Class Central, OSSU, ForrestKnight, and Scrimba references.
+
+The synthesis adds explicit domains for:
+
+- advanced mathematical foundations;
+- mathematical maturity and proof;
+- HTML/CSS and web foundations;
+- core and advanced computer science;
+- Unix/Linux and developer tooling;
+- algorithms and data structures;
+- systems, networking, databases, theory, and security;
+- software engineering and architecture;
+- AI/ML;
+- quantitative/computational finance;
+- quantitative research/development/interview preparation.
+
+HTML/CSS is available through the Web Engineering route but is not a mandatory prerequisite for pure Computer Science or Quantitative/Computational Finance routes.
+
+Source-derived material must become native MasteryOS learning experiences rather than external course clones. See:
+
+- `docs/SOURCE-SYNTHESIS-MASTER-SPEC.md`
+- `docs/SOURCE-COVERAGE-CROSSWALK.md`
+- `content/references/source-catalog.json`
+
 ## Advancement rule
 
 Learners do not unlock later material solely by reading earlier material.
@@ -90,13 +126,3 @@ A mastery gate may require:
 - cumulative assessment
 
 The required evidence depends on the topic type.
-
-## Alternative routes
-
-Alternatives can exist, but they should not create uncontrolled course-choice paralysis. The system should show:
-
-- Recommended route
-- Strong alternative
-- Optional deep-dive route
-
-The recommended route remains explicit.
