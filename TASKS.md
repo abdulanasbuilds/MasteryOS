@@ -166,3 +166,15 @@ Whenever implementation changes a durable product behavior, update the relevant 
 ## Next-action rule
 
 Agents entering the repository at any time must start at the earliest incomplete approved gate after inspecting actual code, tests, Git state and current documentation. Do not skip ahead to visually attractive features merely because they are more interesting.
+
+## Governance hardening — complete
+
+- [x] Add `docs/AGENT-CONTRACT.md` as the binding operational contract for every agent.
+- [x] Replace the master handoff prompt with a concise start-anywhere prompt.
+- [x] Add `CLAUDE.md` repository adapter.
+- [x] Add `.github/copilot-instructions.md` repository adapter.
+- [x] Align agent handoff/readme/task documentation with the single contract.
+- [x] Explicitly document restricted actions, stop conditions, dependency rules, verification, and truthful reporting.
+- [x] Preserve the existing Gate 1 start point; governance hardening does not count product gates as complete.
+
+**Important:** these items mean agent governance is implemented, not that the application itself is complete. Continue from the earliest incomplete product gate below.
