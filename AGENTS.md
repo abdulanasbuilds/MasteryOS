@@ -134,7 +134,7 @@ Do not invoke a capability merely because it exists.
 
 ## Current repository state
 
-The repository is no longer documentation-only. A React + TypeScript + Vite application scaffold and first vertical slice exist. Current application code includes the Mission/Learn/Progress shell, one authored TypeScript lesson, basic mastery-domain types/tests, a local IndexedDB store, and an unconfigured AI provider boundary.
+The repository is no longer documentation-only. A React + TypeScript + Vite application scaffold and first vertical slice exist. Gate 1 (application shell) is implemented and verified: a dependency-free hash-routed shell with Today, Universal Core, Programs, Program, Topic, Practice, Projects, Progress, Resources and Settings surfaces, a contextual AI panel that works when AI is unavailable, one authored TypeScript lesson, basic mastery-domain types/tests, a local IndexedDB store, and an unconfigured AI provider boundary. Gate 2 (content/curriculum schema) is next. See `docs/verification/GATE-1-SHELL.md`.
 
 Do not describe the project as fully built. Start from the earliest incomplete gate in `TASKS.md` and verify the actual repository before deciding what is next.
 

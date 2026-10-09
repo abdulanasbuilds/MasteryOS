@@ -40,33 +40,42 @@ The next implementation agent must start here unless an actual repository inspec
 
 Read `docs/FRONTEND-SHELL-SPEC.md`, `AGENTS.md`, and the governing documents before editing code.
 
-Current progress:
+Status: **implemented and verified against `docs/FRONTEND-SHELL-SPEC.md` acceptance criteria (2026-10-08).** Evidence: `docs/verification/GATE-1-SHELL.md`.
 
 - [x] Initial React + TypeScript + Vite scaffold created.
-- [x] Initial application entrypoint created.
-- [x] Initial responsive visual foundation created.
-- [x] Initial Mission, Learn, and Progress surfaces created.
+- [x] Fix pre-existing typecheck/build failure (`UnconfiguredAIProvider` method signatures).
+- [x] Complete the React + TypeScript + Vite application shell (`src/app/App.tsx`).
+- [x] Primary navigation and route/state structure — dependency-free hash router (`src/app/router.ts`) for all ten specified routes plus not-found.
+- [x] Technical Learning Laboratory visual foundation — semantic tokens in `src/styles.css`.
+- [x] Today/Mission surface (current route, next action, mastery state, weak areas, recent evidence — honest empty states).
+- [x] Universal Core surface (phases, topics, “feeds” relationships derived from manifest prerequisites).
+- [x] Programs and Program/route surfaces (from `content/curriculum/master-curriculum-manifest.json`).
+- [x] Topic entry surface (Read / Visualise / Practice / Assess modes, mastery, prerequisites, contextual AI).
+- [x] Practice / Projects / Progress / Resources / Settings entry surfaces.
+- [x] Persistent but quiet contextual AI affordance (dockable side panel / mobile bottom sheet; works when AI unavailable).
+- [x] Responsive desktop/laptop and mobile layouts (menu disclosure, bottom-sheet AI).
+- [x] Accessibility and interaction states (landmarks, skip link, focus management, keyboard tabs, Escape handling, text+symbol status).
+- [x] Automated tests (42 Vitest tests) and browser verification (81 Playwright checks, desktop + mobile).
+- [x] Removed the old “Mark practice attempted” control, which granted a 25% mastery score for a click (violated mastery-over-completion).
 
-Remaining Gate 1 work:
+Open Gate 1 follow-ups (non-blocking, recorded so they are not lost):
 
-1. Complete the React + TypeScript + Vite application shell.
-2. Complete primary navigation and route/state structure.
-3. Complete the Technical Learning Laboratory visual foundation.
-4. Complete Today/Mission surface.
-5. Complete Universal Core surface.
-6. Complete Programs/route surface.
-7. Complete Topic entry surface.
-8. Complete Practice / Projects / Progress / Resources / Settings entry surfaces.
-9. Complete persistent but quiet contextual AI affordance.
-10. Complete responsive desktop/laptop and mobile layouts.
-11. Complete accessibility and interaction states.
-12. Add automated tests and browser verification for the shell.
+- [ ] Command palette (listed as a suggested component; not an acceptance criterion).
+- [ ] Automated accessibility audit (e.g. axe) and manual screen-reader pass — not yet run.
+- [ ] Owner visual review of the Technical Learning Laboratory direction.
 
 Do not yet build the full mastery engine, backend, database, remote execution service, or full connected provider integration merely as a shortcut. Preserve clean adapter boundaries so later gates can connect without rewriting the core.
 
-### Gate 2 — Content schema + first authored lesson
+### Gate 2 — Content schema + first authored lesson  ← NEXT
 
 Only after Gate 1 passes, implement the content schema and the first real interactive lesson for the vertical slice.
+
+Known inputs discovered during Gate 1 (must be resolved here, not guessed in UI code):
+
+- The authored lesson's topic id `program-decomposition-typescript-functions` does **not** appear in `content/curriculum/master-curriculum-manifest.json`. Gate 2 must place it in the curriculum graph (Program → Phase → Domain → Topic) so the app can render one real path from Program to Lesson.
+- Manifest phase prerequisites use two forms: bare `phase-id` and program-qualified `program-id.phase-id`. The shell accepts both (`findPhase` in `src/content/curriculum.ts`); the schema should normalise to one.
+- Manifest topics are ids only; the shell derives titles from ids. The schema should add authored titles, depth, and topic-level prerequisites.
+- The manifest has no Domain level yet; breadcrumbs currently show Program → Phase → Topic.
 
 ### Gate 3 — Learning experience
 
