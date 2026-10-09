@@ -125,7 +125,7 @@ Implemented scaffold pieces include:
 - connected-feature verification contract;
 - start-anywhere agent prompt and tightened agent instructions.
 
-The complete learning environment is **not finished**. Agents must start at the earliest incomplete gate in `TASKS.md` rather than assuming later features exist.
+Gate 1 (application shell) and Gate 2 (curriculum schema v2 and validation) are implemented with verification records. The complete learning environment is **not finished**; Gate 3 — the interactive learning experience — is next. Agents must verify the actual repository and start at the earliest incomplete gate in `TASKS.md` rather than assuming later features exist.
 
 ## Build discipline
 
