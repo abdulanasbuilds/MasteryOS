@@ -37,6 +37,14 @@ All notable project-level changes are recorded here. Implementation changes shou
 - The Universal Core "Feeds" label counts topic-level dependencies. Topic pages list "Leads to" reverse edges.
 - Guard tests: every core phase feeds a program, and every program links to the core. Tests: 90 in total.
 
+
+### Final curriculum graph snapshot after D-024
+
+- 306 registered topics across 7 program nodes (including the Universal Core).
+- 32 phases and 90 domains; every registered topic is placed at least once.
+- 62 topic-level prerequisite edges and 13 phase-level prerequisite edges.
+- Structural review found no dangling topic or phase prerequisites and no unplaced topics. These checks are not a substitute for owner review of the curriculum mapping, which remains open in `TASKS.md` before Gate 6 defines unlock behavior.
+
 ## 2026-10-08 — Gate 1 application shell
 
 ### Added
@@ -89,4 +97,4 @@ All notable project-level changes are recorded here. Implementation changes shou
 
 ### Current implementation state
 
-The repository now contains an executable application foundation, but the complete MasteryOS product is not yet implemented. Gate 1 remains active; later mastery, assessment, AI integration, coding-runtime, and hardening gates require implementation and executable verification.
+The repository now contains the application shell (Gate 1) and the v2 curriculum graph/validator (Gate 2), each with a verification record. The complete MasteryOS product is not yet implemented. **Gate 3 — interactive learning experience — is next.** Practice/assessment, mastery/unlocking, the AI control layer, coding runtime, workbenches, progress, and connected capabilities remain future gates.
