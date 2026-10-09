@@ -132,6 +132,167 @@
       "title": "Documentation & READMEs"
     },
     {
+      "id": "values-and-types",
+      "title": "Values & types",
+      "summary": "Numbers, text, booleans and absence; what a type tells you about a value."
+    },
+    {
+      "id": "variables-and-state",
+      "title": "Variables & state",
+      "summary": "Naming values, reassignment, and how program state changes over time.",
+      "prerequisites": [
+        "values-and-types"
+      ]
+    },
+    {
+      "id": "control-flow",
+      "title": "Control flow",
+      "summary": "Conditionals and loops: choosing and repeating steps.",
+      "prerequisites": [
+        "variables-and-state"
+      ]
+    },
+    {
+      "id": "functions-and-scope",
+      "title": "Functions & scope",
+      "summary": "Parameters, return values, and where a name is visible.",
+      "prerequisites": [
+        "control-flow"
+      ]
+    },
+    {
+      "id": "reading-and-tracing-code",
+      "title": "Reading & tracing code",
+      "summary": "Predicting what code does by stepping through it by hand.",
+      "prerequisites": [
+        "control-flow"
+      ]
+    },
+    {
+      "id": "collections-and-iteration",
+      "title": "Collections & iteration",
+      "summary": "Lists and maps, and processing every element of a collection.",
+      "prerequisites": [
+        "control-flow"
+      ]
+    },
+    {
+      "id": "structured-data",
+      "title": "Structured data",
+      "summary": "Records, objects and nested data such as JSON.",
+      "prerequisites": [
+        "collections-and-iteration"
+      ]
+    },
+    {
+      "id": "fundamental-data-structures",
+      "title": "Fundamental data structures",
+      "summary": "Arrays, stacks, queues and hash maps as tools, and when each fits.",
+      "prerequisites": [
+        "collections-and-iteration"
+      ]
+    },
+    {
+      "id": "recursion-basics",
+      "title": "Recursion basics",
+      "summary": "Solving a problem in terms of a smaller instance of itself.",
+      "prerequisites": [
+        "functions-and-scope"
+      ]
+    },
+    {
+      "id": "searching-and-sorting-basics",
+      "title": "Searching & sorting basics",
+      "summary": "Linear and binary search and simple sorts, compared by cost.",
+      "prerequisites": [
+        "fundamental-data-structures",
+        "complexity-intuition"
+      ]
+    },
+    {
+      "id": "how-computers-work",
+      "title": "How computers work",
+      "summary": "CPU, memory and storage, and how a program runs on hardware.",
+      "prerequisites": [
+        "data-representation"
+      ]
+    },
+    {
+      "id": "operating-system-basics",
+      "title": "Operating system basics",
+      "summary": "Processes, files and permissions from a user and developer view.",
+      "prerequisites": [
+        "how-computers-work"
+      ]
+    },
+    {
+      "id": "how-the-internet-works",
+      "title": "How the internet works",
+      "summary": "Addresses, packets, DNS and clients/servers at literacy depth."
+    },
+    {
+      "id": "how-the-web-works",
+      "title": "How the web works",
+      "summary": "Browsers, URLs and HTTP requests and responses, without HTML/CSS authoring.",
+      "prerequisites": [
+        "how-the-internet-works"
+      ]
+    },
+    {
+      "id": "data-literacy",
+      "title": "Data literacy",
+      "summary": "Reading tables, units, distributions and misleading summaries of data."
+    },
+    {
+      "id": "database-fundamentals",
+      "title": "Database fundamentals",
+      "summary": "Why databases exist: tables, keys, simple queries and data modeling basics.",
+      "prerequisites": [
+        "structured-data"
+      ]
+    },
+    {
+      "id": "security-fundamentals",
+      "title": "Security fundamentals",
+      "summary": "Threats, least privilege, authentication basics and safe handling of secrets."
+    },
+    {
+      "id": "privacy-fundamentals",
+      "title": "Privacy fundamentals",
+      "summary": "Personal data, consent, minimization and why local-first matters."
+    },
+    {
+      "id": "reliability-fundamentals",
+      "title": "Reliability fundamentals",
+      "summary": "Failure, backups, error handling and designing for recovery."
+    },
+    {
+      "id": "responsible-engineering",
+      "title": "Responsible engineering",
+      "summary": "Accessibility, harm, licensing and honesty about what software does."
+    },
+    {
+      "id": "ai-literacy",
+      "title": "AI literacy",
+      "summary": "What current AI models are, how they produce output, and how they fail."
+    },
+    {
+      "id": "ai-assisted-work",
+      "title": "AI-assisted work",
+      "summary": "Prompting, verifying and evaluating AI output inside real tasks.",
+      "prerequisites": [
+        "ai-literacy"
+      ]
+    },
+    {
+      "id": "responsible-ai-use",
+      "title": "Responsible AI use",
+      "summary": "Attribution, privacy, bias, and keeping human judgment over AI output.",
+      "prerequisites": [
+        "ai-literacy"
+      ]
+    },
+    {
       "id": "semantic-html",
       "title": "Semantic HTML"
     },
@@ -656,7 +817,8 @@
       "title": "Program decomposition with TypeScript functions",
       "depth": "foundation",
       "prerequisites": [
-        "decomposition"
+        "decomposition",
+        "functions-and-scope"
       ],
       "summary": "Turn a larger programming problem into small, testable functions with clear responsibilities."
     },
@@ -1243,6 +1405,42 @@
           ]
         },
         {
+          "id": "programming-foundation",
+          "title": "Programming & Algorithms Foundation",
+          "depth": "foundation",
+          "prerequisites": [],
+          "domains": [
+            {
+              "id": "program-building-blocks",
+              "title": "Program Building Blocks",
+              "topics": [
+                "values-and-types",
+                "variables-and-state",
+                "control-flow",
+                "functions-and-scope",
+                "reading-and-tracing-code"
+              ]
+            },
+            {
+              "id": "working-with-data",
+              "title": "Working with Data",
+              "topics": [
+                "collections-and-iteration",
+                "structured-data"
+              ]
+            },
+            {
+              "id": "algorithmic-foundations",
+              "title": "Algorithmic Foundations",
+              "topics": [
+                "fundamental-data-structures",
+                "recursion-basics",
+                "searching-and-sorting-basics"
+              ]
+            }
+          ]
+        },
+        {
           "id": "developer-foundation",
           "title": "Developer Foundations",
           "depth": "foundation",
@@ -1272,6 +1470,71 @@
                 "debugging-fundamentals",
                 "testing-fundamentals",
                 "documentation-and-readmes"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "systems-foundation",
+          "title": "Computer, Internet & Data Foundation",
+          "depth": "foundation",
+          "prerequisites": [],
+          "domains": [
+            {
+              "id": "computers-and-operating-systems",
+              "title": "Computers & Operating Systems",
+              "topics": [
+                "how-computers-work",
+                "operating-system-basics"
+              ]
+            },
+            {
+              "id": "internet-and-web",
+              "title": "Internet & Web",
+              "topics": [
+                "how-the-internet-works",
+                "how-the-web-works"
+              ]
+            },
+            {
+              "id": "data-and-databases",
+              "title": "Data & Databases",
+              "topics": [
+                "data-literacy",
+                "database-fundamentals"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "responsible-engineering-foundation",
+          "title": "Security, Reliability & Responsible AI",
+          "depth": "foundation",
+          "prerequisites": [],
+          "domains": [
+            {
+              "id": "security-and-privacy",
+              "title": "Security & Privacy",
+              "topics": [
+                "security-fundamentals",
+                "privacy-fundamentals"
+              ]
+            },
+            {
+              "id": "reliable-and-responsible-engineering",
+              "title": "Reliable & Responsible Engineering",
+              "topics": [
+                "reliability-fundamentals",
+                "responsible-engineering"
+              ]
+            },
+            {
+              "id": "ai-literacy-and-use",
+              "title": "AI Literacy & Use",
+              "topics": [
+                "ai-literacy",
+                "ai-assisted-work",
+                "responsible-ai-use"
               ]
             }
           ]
@@ -1751,7 +2014,10 @@
           "id": "engineering-practice",
           "title": "Engineering Practice",
           "depth": "core",
-          "prerequisites": [],
+          "prerequisites": [
+            "universal-core.programming-foundation",
+            "universal-core.developer-foundation"
+          ],
           "domains": [
             {
               "id": "design-and-decomposition",

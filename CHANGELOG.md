@@ -23,6 +23,13 @@ All notable project-level changes are recorded here. Implementation changes shou
 
 - Runtime title derivation from ids and support for bare phase-prerequisite references.
 
+### Fixed (same day) — Universal Core conformance (D-023)
+
+- The Universal Core now covers every family `PROGRAMS.md` requires. Three foundation phases were added (Programming & Algorithms; Computer, Internet & Data; Security, Reliability & Responsible AI), with 23 new topics, giving 7 phases and 53 topics in the core.
+- The authored lesson topic requires `functions-and-scope`. Software Engineering → Engineering Practice requires the core programming and developer-tooling phases.
+- A conformance test guards the PROGRAMS.md families, keeps HTML/CSS out of the core, and enforces foundation depth. Tests: 78 in total.
+- UI copy: "specialized" spelling.
+
 ## 2026-10-08 — Gate 1 application shell
 
 ### Added

@@ -139,7 +139,8 @@ describe('application shell', () => {
     expect(container.querySelector('.eyebrow')?.textContent).toBe('Software Engineering · Foundation')
     expect(byText('h2', 'Key concepts')).toBeTruthy()
     const prereqs = container.querySelector('[aria-label="Topic prerequisites"]')
-    expect(prereqs?.textContent).toBe('Decomposition')
+    expect(Array.from(prereqs!.querySelectorAll('li')).map((li) => li.textContent)).toEqual(['Decomposition', 'Functions & scope'])
+    expect(byText('.right-rail p', 'Phase requires').nextElementSibling?.textContent).toContain('Programming & Algorithms Foundation')
   })
 
   it('does not grant mastery or evidence from opening or reading a lesson', async () => {

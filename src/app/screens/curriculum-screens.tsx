@@ -100,7 +100,7 @@ export function CoreScreen({ learner }: { learner: LearnerLoad }) {
       <PageHeader
         eyebrow="Shared foundations"
         title={universalCore.title}
-        lead="Transferable foundations that feed the specialised programs. Status reflects recorded evidence only; native lessons are authored progressively."
+        lead="Transferable foundations that feed the specialized programs. Status reflects recorded evidence only; native lessons are authored progressively."
       />
       {firstTopic && (
         <p className="callout">
@@ -135,7 +135,7 @@ export function ProgramsScreen({ learner }: { learner: LearnerLoad }) {
       <PageHeader
         eyebrow="Programs & routes"
         title="Programs"
-        lead="Specialised routes built on the Universal Core. One recommended route is active; you do not need to choose among all of them to begin."
+        lead="Specialized routes built on the Universal Core. One recommended route is active; you do not need to choose among all of them to begin."
       />
       <ul className="program-grid" aria-label="Programs">
         {specialisedPrograms.map((program) => {

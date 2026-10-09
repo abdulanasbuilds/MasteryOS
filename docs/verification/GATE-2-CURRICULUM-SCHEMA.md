@@ -79,6 +79,18 @@ The following passed on both viewports:
 
 Screenshots were reviewed manually for layout, wrapping and overlap on the desktop program page and the full mobile topic page. No defects were found.
 
+## Addendum — Universal Core conformance (D-023), same day
+
+| Check | Result |
+|---|---|
+| Typecheck / build | Pass. JS 301.8 kB (91.1 kB gzip) |
+| `npm test` | 78/78 passed. 15 new: 12 PROGRAMS.md family checks, no HTML/CSS in core, foundation depth, lesson programming prerequisite |
+| Validator on extended manifest | 0 errors (306 topics; Universal Core 7 phases / 53 topics) |
+| Gate 2 browser script (updated) | 34/34. Adds: lesson prerequisites `Decomposition`, `Functions & scope`; "Phase requires" lists Programming & Algorithms Foundation; core shows 7 phases and 19 domains; no overflow on the core page |
+| Gate 1 regression | 82/82 |
+
+Two existing assertions were updated because the lesson deliberately gained the `functions-and-scope` prerequisite. The full-page desktop screenshot of `#/core` was reviewed manually, and no layout defects were found. The page correctly reports that Computational Thinking and the two new systems and responsibility phases feed no program yet (see TASKS follow-ups).
+
 ## Re-running
 
 ```bash

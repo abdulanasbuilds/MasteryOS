@@ -74,7 +74,7 @@ The four schema issues found during Gate 1 are resolved:
 
 - [x] The lesson topic `program-decomposition-typescript-functions` is placed at Software Engineering → Engineering Practice → Design & Decomposition, with depth `foundation` and a prerequisite on `decomposition`.
 - [x] Phase prerequisites are normalized to `<program-id>.<phase-id>`; the validator rejects the bare form.
-- [x] A topic registry provides authored titles for all 283 topics, plus optional summary, depth override and topic-level prerequisites.
+- [x] A topic registry provides authored titles for all topics (283 at D-022; 306 after D-023), plus optional summary, depth override and topic-level prerequisites.
 - [x] A Domain level exists (81 domains); breadcrumbs show Programs → Program → Phase → Domain → Topic.
 
 Required concepts (orchestration Gate 2):
@@ -91,9 +91,10 @@ Required concepts (orchestration Gate 2):
 
 Open Gate 2 follow-ups (non-blocking, recorded so they are not lost):
 
-- [ ] **Canonical conflict, needs an owner decision.** `PROGRAMS.md` says the Universal Core covers programming fundamentals, data structures and algorithms fundamentals, networking/web, databases, security and AI literacy. The manifest's Universal Core has only learning, math, computational thinking and developer tooling. As a result, the first lesson (TypeScript code) has no programming-language prerequisite reachable inside the Universal Core. Either extend the core or accept the gap explicitly.
-- [ ] Software Engineering phases declare no phase prerequisites at all; decide whether Engineering Practice should require Universal Core phases, as Web Engineering does.
-- [ ] Owner review of the D-022 domain groupings and phase depths, which were authored from topic semantics and not checked against source syllabi.
+- [x] **Universal Core vs. `PROGRAMS.md` conflict: resolved by D-023.** The core now has 7 foundation phases and 53 topics covering every PROGRAMS.md family. The TypeScript lesson requires the core topic `functions-and-scope`. A conformance test guards this.
+- [ ] Link program topics to the new core nodes where the dependency is real (e.g. `hash-tables` → `fundamental-data-structures`, `sql-foundations` → `database-fundamentals`, `http-basics` → `how-the-web-works`, `security-principles` → `security-fundamentals`). Decide phase prerequisites for CS, AI/ML, Math and Quant. Computational Thinking, Computer/Internet/Data and Security/Reliability/AI currently feed no program.
+- [x] Software Engineering → Engineering Practice requires `universal-core.programming-foundation` and `universal-core.developer-foundation` (D-023). The later SE phases still declare no prerequisites on Engineering Practice.
+- [ ] Owner review of the D-022/D-023 domain groupings, phase depths and new core topic scopes, which were authored from topic semantics and not checked against source syllabi.
 - [ ] Topic-level prerequisites exist only for the authored lesson topic; map more as lessons are authored. Prerequisites must be real dependencies (LEARNING-ARCHITECTURE §7).
 - [ ] Remaining competency fields from LEARNING-ARCHITECTURE §6 (misconceptions, mastery criteria, transfer links, confidence/evidence) are not yet in the schema; add each one when a gate consumes it.
 - [ ] Lesson content is still TypeScript data (`src/content/first-lesson.ts`), not `content/lessons/`; move it when a second lesson exists.

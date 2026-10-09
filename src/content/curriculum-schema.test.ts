@@ -53,12 +53,50 @@ describe('curriculum schema v2 — the committed content', () => {
     expect(placement?.phase.id).toBe('engineering-practice')
     expect(placement?.domain.id).toBe('design-and-decomposition')
     expect(placement?.depth).toBe('foundation')
-    expect(topicPrerequisites(firstLesson.topicId).map((t) => t.id)).toEqual(['decomposition'])
+    expect(topicPrerequisites(firstLesson.topicId).map((t) => t.id)).toEqual(['decomposition', 'functions-and-scope'])
   })
 
   it('shares one topic node across programs instead of duplicating it', () => {
     const programsWithDiscreteMath = findTopicLocations('discrete-mathematics').map((l) => l.program.id)
     expect(programsWithDiscreteMath).toEqual(['computer-science', 'mathematics-computational-mathematics'])
+  })
+})
+
+describe('Universal Core conforms to PROGRAMS.md (D-023)', () => {
+  const core = programs.find((p) => p.id === 'universal-core')!
+  const coreTopics = new Set(core.phases.flatMap(phaseTopicIds))
+
+  // Each capability family PROGRAMS.md requires, and the core topics that cover it.
+  const families: Record<string, string[]> = {
+    'learning and problem-solving fundamentals': ['problem-decomposition', 'learning-how-to-learn'],
+    'mathematical and logical reasoning': ['algebra-repair', 'mathematical-logic-foundations'],
+    'computer literacy and digital systems': ['how-computers-work', 'data-representation'],
+    'programming fundamentals': ['values-and-types', 'control-flow', 'functions-and-scope'],
+    'data structures and algorithms fundamentals': ['fundamental-data-structures', 'searching-and-sorting-basics'],
+    'software development fundamentals': ['reading-and-tracing-code', 'testing-fundamentals'],
+    'Git and collaborative development fundamentals': ['git-fundamentals', 'github-workflow'],
+    'command line, networking, internet, and web fundamentals': ['shell-and-command-line', 'how-the-internet-works', 'how-the-web-works'],
+    'databases and data fundamentals': ['database-fundamentals', 'data-literacy'],
+    'testing, debugging, security, and reliability fundamentals': ['debugging-fundamentals', 'security-fundamentals', 'reliability-fundamentals'],
+    'technical communication, documentation, and developer tooling': ['technical-writing', 'documentation-and-readmes', 'development-environments'],
+    'AI literacy and responsible AI use': ['ai-literacy', 'responsible-ai-use'],
+  }
+
+  it.each(Object.entries(families))('covers "%s"', (_family, topicIds) => {
+    for (const id of topicIds) expect(coreTopics.has(id), id).toBe(true)
+  })
+
+  it('keeps HTML/CSS out of the Universal Core (PROGRAMS.md)', () => {
+    for (const id of ['semantic-html', 'css-selectors', 'box-model']) expect(coreTopics.has(id), id).toBe(false)
+  })
+
+  it('keeps every Universal Core phase at foundation depth', () => {
+    expect(core.phases.every((p) => p.depth === 'foundation')).toBe(true)
+  })
+
+  it('gives the TypeScript lesson a programming prerequisite inside the core', () => {
+    const prereqs = topicPrerequisites(firstLesson.topicId).map((t) => t.id)
+    expect(prereqs.some((id) => coreTopics.has(id) && id === 'functions-and-scope')).toBe(true)
   })
 })
 
