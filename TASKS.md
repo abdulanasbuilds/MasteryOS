@@ -55,7 +55,7 @@ Status: **implemented and verified against `docs/FRONTEND-SHELL-SPEC.md` accepta
 - [x] Persistent but quiet contextual AI affordance (dockable side panel / mobile bottom sheet; works when AI unavailable).
 - [x] Responsive desktop/laptop and mobile layouts (menu disclosure, bottom-sheet AI).
 - [x] Accessibility and interaction states (landmarks, skip link, focus management, keyboard tabs, Escape handling, text+symbol status).
-- [x] Automated tests (42 Vitest tests) and browser verification (81 Playwright checks, desktop + mobile).
+- [x] Automated tests (42 Vitest tests) and browser verification (82 Playwright checks, desktop + mobile).
 - [x] Removed the old “Mark practice attempted” control, which granted a 25% mastery score for a click (violated mastery-over-completion).
 
 Open Gate 1 follow-ups (non-blocking, recorded so they are not lost):
