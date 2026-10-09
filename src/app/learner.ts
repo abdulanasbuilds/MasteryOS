@@ -51,7 +51,7 @@ export const MASTERY_LABELS: Record<MasteryState | 'not-started', string> = {
   'not-started': 'Not started',
   unknown: 'Unknown',
   learning: 'Learning',
-  practiced: 'Practised',
+  practiced: 'Practiced',
   'provisionally-mastered': 'Provisionally mastered',
   mastered: 'Mastered',
   'needs-review': 'Needs review',

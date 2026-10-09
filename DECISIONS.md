@@ -191,6 +191,56 @@ Alternatives rejected: Bookmark-directory UX; scraping full third-party courses/
 Consequences: Resource metadata must include level, prerequisites, type, provenance, rights class, and verification status where known.
 Reversal trigger: A future licensed-content strategy with explicit rights and operational support.
 
+## D-022 — Curriculum schema v2: domains, topic registry, qualified prerequisites
+Date: 2026-10-09
+Status: accepted (domain groupings and phase depths are an initial authored mapping, open to owner revision)
+Decision: `content/curriculum/master-curriculum-manifest.json` moves to `schemaVersion: 2`:
+- a top-level `topics` registry gives every topic an authored title and optional `summary`, `depth` and topic-level `prerequisites`; programs place topics by id, so a shared competency (e.g. `discrete-mathematics`, `network-security`) is one node, not a duplicate;
+- every phase gains a required `depth` and a required `domains` list (81 domains across 26 phases); topics are placed in domains, giving the full `Program → Phase → Domain → Topic` path;
+- phase prerequisites are always program-qualified (`<program-id>.<phase-id>`); the bare form is rejected;
+- list order (phases → domains → topics) is the program's recommended route;
+- the authored lesson topic `program-decomposition-typescript-functions` is placed in Software Engineering → Engineering Practice → Design & Decomposition, with depth `foundation` (overriding the phase's `core`) and a topic prerequisite on Universal Core `decomposition`.
+The graph, authored lessons, assessment definitions and projects are checked by a dependency-free validator (`src/content/validate-curriculum.ts`) that the test suite runs.
+Reason: v1 could not render a real Program-to-Lesson path. The authored lesson's topic was missing from the graph, topics had no titles or depth, there was no Domain level, and prerequisites used two reference forms.
+Alternatives rejected: attaching the lesson to an existing topic (`decomposition` is language-agnostic Universal Core; `program-design` is CS core-depth). Adding a schema library such as zod (no proven need; the validator is about 250 lines and fully tested). Deriving titles from ids at runtime (that produced "Dom" and "Intro to cs"). Single-domain-per-phase placeholders (that would satisfy the shape while hiding the missing structure).
+Consequences: every new topic needs a registry entry and exactly one domain placement per phase; adding content cannot bypass validation. Phase order in SE and other programs is now also domain order, so a few topics moved within their phase (no topic moved between phases). v1 consumers must migrate.
+Reversal trigger: owner revision of domain groupings or depths; a need for multiple alternative routes per program (would add an explicit `routes` structure); content volume that justifies a schema library or MDX pipeline.
+
+## D-023 — Universal Core conforms to PROGRAMS.md
+Date: 2026-10-09
+Status: accepted
+Decision: The Universal Core in the curriculum manifest is extended from 4 phases and 30 topics to 7 phases and 53 topics, so that it covers every capability family listed in `PROGRAMS.md` (and consistently in `docs/CURRICULUM-MASTER-SPEC.md`, `docs/LEARNING-ARCHITECTURE.md` and `PROJECT.md`). New foundation-depth phases:
+- `programming-foundation`: Programming & Algorithms Foundation (program building blocks, working with data, algorithmic foundations);
+- `systems-foundation`: Computer, Internet & Data Foundation;
+- `responsible-engineering-foundation`: Security, Reliability & Responsible AI.
+The 23 new topics are distinct foundation-level nodes, each with a one-line scope summary and real topic prerequisites where one exists. Recommended route order: learning → mathematics → computational thinking → programming → developer tooling → systems/data → security/reliability/AI. HTML/CSS stays out of the core. The authored lesson topic now also requires `functions-and-scope`. Software Engineering → Engineering Practice now requires `universal-core.programming-foundation` and `universal-core.developer-foundation`.
+Reason: The authority order ranks `PROGRAMS.md` and the curriculum specs above manifest data. The four canonical documents agree, and the manifest omitted programming, DSA, computer/OS/internet/web, databases, security/privacy/reliability and AI literacy. As a result the first lesson (TypeScript code) had no programming prerequisite reachable anywhere. This was a data defect against an already-made decision, not a new product decision.
+Alternatives rejected:
+- Placing existing program topics (e.g. `hash-tables`, `sql-foundations`, `security-principles`) directly into the core. Topic nodes are shared, so mastery evidence at foundation depth would mark a core-depth program competency as mastered.
+- Narrowing `PROGRAMS.md` to match the manifest. That inverts the authority order.
+- Making the core deeper or longer. PROJECT.md requires the core to stay competency-based, not "an unnecessarily long checklist", so each missing family gets 2–5 topics.
+Consequences: A conformance test (`curriculum-schema.test.ts`) maps each PROGRAMS.md family to core topics and fails if one is removed. It also fails if HTML/CSS enters the core, or if any core phase is not at foundation depth. Program topics that build on the new core nodes (for example `hash-tables` → `fundamental-data-structures`) are not yet linked by topic prerequisites, and only Software Engineering declares phase prerequisites on the new phases.
+Reversal trigger: A deliberate change to the Universal Core definition in PROGRAMS.md, or learner evidence that a family belongs in programs rather than the core.
+
+## D-024 — Program prerequisites link to the Universal Core
+Date: 2026-10-09
+Status: accepted (edge set is an initial authored mapping, open to owner revision)
+Decision: Program topics and phases now declare prerequisites on the Universal Core foundations added in D-023.
+- 44 topic-level edges, for example `hash-tables` → `fundamental-data-structures`, `sql-foundations` → `database-fundamentals`, `http-basics` → `how-the-web-works`, `security-principles` → `security-fundamentals`, `llm-fundamentals` → `ai-literacy`, `asymptotic-analysis` → `complexity-intuition`.
+- 7 phase-level edges, used only where the dependent phase needs the whole core phase: CS Core Programming and CS Algorithms & Data Structures, Web Modern Frontend, AI/ML ML Foundations, and Quant Development each require Programming & Algorithms Foundation; AI/ML Modern AI Systems requires Security, Reliability & Responsible AI; Mathematics Advanced Secondary requires the core Mathematical & Quantitative Foundation.
+- Every edge and its reason is listed in `docs/CURRICULUM-CORE-LINKS.md`.
+- The validator gains one rule: a prerequisite may not be deeper than the topic that requires it.
+- "Feeds" on the Universal Core page now counts topic-level as well as phase-level dependencies. Topic pages show reverse edges ("Leads to").
+Reason: After D-023, three core phases fed no program and no program topic depended on the new core nodes. A foundation that nothing requires cannot gate anything at Gate 6.
+Alternatives rejected:
+- Phase-level edges everywhere. For example, CS Databases requiring the whole Computer, Internet & Data phase would block databases on OS basics; LEARNING-ARCHITECTURE §7 says to avoid unnecessary chains.
+- Linking every program topic. Most program topics depend on other program topics; only entry points into a program need a core edge.
+Consequences:
+- Guard tests: every core phase feeds at least one program; every specialized program links to the core; representative edges exist; core topics never depend on program topics; no prerequisite is deeper than its dependent.
+- The Mathematics program had no core link at all before this change. The guard test caught it, and the phase edge above fixes it.
+- Intra-program sequencing (e.g. SE Architecture → Engineering Practice, ML Foundations → university mathematics) is still undeclared.
+Reversal trigger: Owner review of individual edges; Gate 6 unlock behavior showing an edge blocks learners without a real dependency.
+
 ## Decision template
 
 ## D-XXX — Title

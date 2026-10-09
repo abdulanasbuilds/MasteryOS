@@ -1,3 +1,4 @@
+import type { Depth } from '../domain/content'
 import type { ReactNode } from 'react'
 import type { MasteryState } from '../domain/mastery'
 import { MASTERY_LABELS } from './learner'
@@ -89,4 +90,16 @@ export function Section({ title, label, children }: { title: string; label?: str
       {children}
     </section>
   )
+}
+
+const DEPTH_LABELS: Record<Depth, string> = {
+  foundation: 'Foundation',
+  core: 'Core',
+  advanced: 'Advanced',
+  specialist: 'Specialist',
+  frontier: 'Frontier',
+}
+
+export function depthLabel(depth: Depth): string {
+  return DEPTH_LABELS[depth]
 }

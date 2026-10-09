@@ -120,6 +120,39 @@ describe('application shell', () => {
     expect(crumbs.at(-1)).toBe('Problem decomposition')
   })
 
+  it('renders one real curriculum path from Program to Lesson (Gate 2 acceptance)', async () => {
+    await render()
+    await navigate('#/programs/software-engineering')
+    expect(heading()).toBe('Software Engineering')
+    const phase = container.querySelector<HTMLElement>('#phase-engineering-practice')!.closest('section')!
+    expect(phase.textContent).toContain('Phase 1 · Core')
+    const domain = container.querySelector<HTMLElement>('#domain-engineering-practice-design-and-decomposition')!
+    expect(domain.textContent).toBe('Design & Decomposition')
+    const lessonLink = Array.from(domain.closest('section')!.querySelectorAll<HTMLAnchorElement>('a')).find(
+      (link) => link.getAttribute('href') === `#/topic/${firstLesson.topicId}`,
+    )!
+    expect(lessonLink.textContent).toBe(firstLesson.title)
+
+    await navigate(`#/topic/${firstLesson.topicId}`)
+    const crumbs = Array.from(container.querySelectorAll('nav[aria-label="Breadcrumb"] li')).map((li) => li.textContent)
+    expect(crumbs).toEqual(['Programs', 'Software Engineering', 'Engineering Practice', 'Design & Decomposition', firstLesson.title])
+    expect(container.querySelector('.eyebrow')?.textContent).toBe('Software Engineering · Foundation')
+    expect(byText('h2', 'Key concepts')).toBeTruthy()
+    const prereqs = container.querySelector('[aria-label="Topic prerequisites"]')
+    expect(Array.from(prereqs!.querySelectorAll('li')).map((li) => li.textContent)).toEqual(['Decomposition', 'Functions & scope'])
+    expect(byText('.right-rail p', 'Phase requires').nextElementSibling?.textContent).toContain('Programming & Algorithms Foundation')
+  })
+
+  it('shows which programs a core phase feeds and which topics a core topic leads to', async () => {
+    await render()
+    await navigate('#/core')
+    const systems = container.querySelector<HTMLElement>('#phase-systems-foundation')!.closest('section')!
+    expect(systems.querySelector('.feeds')?.textContent).toContain('Computer Science')
+    await navigate('#/topic/how-the-web-works')
+    const leadsTo = Array.from(container.querySelectorAll('[aria-label="Topics that build on this"] li')).map((li) => li.textContent)
+    expect(leadsTo).toEqual(expect.arrayContaining(['HTTP', 'HTTP basics', 'Browser runtime', 'URLs & routing']))
+  })
+
   it('does not grant mastery or evidence from opening or reading a lesson', async () => {
     await render()
     await navigate(`#/topic/${firstLesson.topicId}`)
@@ -138,7 +171,7 @@ describe('application shell', () => {
       readTab.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowRight', bubbles: true }))
     })
     const selected = container.querySelector('[role="tab"][aria-selected="true"]')
-    expect(selected?.textContent).toBe('Visualise')
+    expect(selected?.textContent).toBe('Visualize')
     expect(document.activeElement).toBe(selected)
     expect(container.querySelector('[role="tabpanel"]')?.getAttribute('aria-labelledby')).toBe('tab-visualize')
     await act(async () => {

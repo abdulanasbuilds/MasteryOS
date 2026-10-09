@@ -1,4 +1,4 @@
-import { getProgram, programs, topicCount, topicTitle } from '../../content/curriculum'
+import { getProgram, programTopicIds, programs, topicCount, topicTitle } from '../../content/curriculum'
 import { firstLesson } from '../../content/first-lesson'
 import type { MasteryState } from '../../domain/mastery'
 import { AskAIButton } from '../ai'
@@ -176,8 +176,7 @@ export function ProgressScreen({ learner }: { learner: LearnerLoad }) {
             </thead>
             <tbody>
               {programs.map((program) => {
-                const mastered = program.phases
-                  .flatMap((phase) => phase.topics)
+                const mastered = programTopicIds(program)
                   .filter((topicId) => stateOf(progressFor(learner, topicId)) === 'mastered').length
                 return (
                   <tr key={program.id}>

@@ -4,13 +4,26 @@ export const firstLesson: Lesson = {
   id: 'ts-functions-decomposition-001',
   programId: 'software-engineering',
   topicId: 'program-decomposition-typescript-functions',
-  title: 'Program Decomposition with TypeScript Functions',
+  title: 'Program decomposition with TypeScript functions',
   summary: 'Turn a larger programming problem into small, testable functions with clear responsibilities.',
   depth: 'foundation',
+  version: 1,
+  status: 'draft',
+  lastVerified: '2026-10-09',
+  estimatedMinutes: 25,
+  provenance: {
+    rightsClass: 'native-original',
+    author: 'MasteryOS',
+  },
   objectives: [
     'Identify distinct responsibilities inside a programming problem.',
     'Design functions around inputs, outputs, and one clear responsibility.',
     'Explain why decomposition improves testing and maintenance.',
+  ],
+  concepts: [
+    { id: 'single-responsibility', name: 'One clear responsibility per function' },
+    { id: 'function-contract', name: 'Inputs, outputs and the function boundary' },
+    { id: 'testability', name: 'Decomposition enables independent testing' },
   ],
   sections: [
     {

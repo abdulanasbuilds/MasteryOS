@@ -3,7 +3,10 @@ import {
   findTopicLocations,
   getLessonForTopic,
   getProgram,
+  phaseTopicIds,
+  programTopicIds,
   programsFedByCorePhase,
+  recommendedRoute,
   specialisedPrograms,
   topicCount,
   topicExists,
@@ -15,7 +18,7 @@ import {
 import { firstLesson } from '../../content/first-lesson'
 import { progressFor, stateOf, type LearnerLoad } from '../learner'
 import { href } from '../router'
-import { ContextBreadcrumbs, EmptyState, MasteryBadge, PageHeader } from '../ui'
+import { ContextBreadcrumbs, depthLabel, EmptyState, MasteryBadge, PageHeader } from '../ui'
 import { NotFoundScreen } from './system-screens'
 import { TopicScreen } from './topic-screen'
 
@@ -62,9 +65,22 @@ function TopicList({ topics, learner }: { topics: string[]; learner: LearnerLoad
   )
 }
 
+/** A phase's domains, each with its ordered topic list. */
+function DomainList({ phase, learner }: { phase: CurriculumPhase; learner: LearnerLoad }) {
+  return (
+    <div className="domain-list">
+      {phase.domains.map((domain) => (
+        <section key={domain.id} className="domain" aria-labelledby={`domain-${phase.id}-${domain.id}`}>
+          <h3 id={`domain-${phase.id}-${domain.id}`}>{domain.title}</h3>
+          <TopicList topics={domain.topics} learner={learner} />
+        </section>
+      ))}
+    </div>
+  )
+}
+
 function masteredCount(program: CurriculumProgram, learner: LearnerLoad): number {
-  return program.phases
-    .flatMap((phase) => phase.topics)
+  return programTopicIds(program)
     .filter((topicId) => stateOf(progressFor(learner, topicId)) === 'mastered').length
 }
 
@@ -77,14 +93,14 @@ export function CoreScreen({ learner }: { learner: LearnerLoad }) {
     )
   }
   const firstPhase = universalCore.phases[0]
-  const firstTopic = firstPhase?.topics[0]
+  const firstTopic = firstPhase ? phaseTopicIds(firstPhase)[0] : undefined
 
   return (
     <>
       <PageHeader
         eyebrow="Shared foundations"
         title={universalCore.title}
-        lead="Transferable foundations that feed the specialised programs. Status reflects recorded evidence only; native lessons are authored progressively."
+        lead="Transferable foundations that feed the specialized programs. Status reflects recorded evidence only; native lessons are authored progressively."
       />
       {firstTopic && (
         <p className="callout">
@@ -103,7 +119,7 @@ export function CoreScreen({ learner }: { learner: LearnerLoad }) {
                 <span className="label">Feeds</span>{' '}
                 {fed.length > 0 ? fed.map((program) => program.title).join(', ') : 'No program declares this phase as a prerequisite yet.'}
               </p>
-              <TopicList topics={phase.topics} learner={learner} />
+              <DomainList phase={phase} learner={learner} />
             </section>
           )
         })}
@@ -119,7 +135,7 @@ export function ProgramsScreen({ learner }: { learner: LearnerLoad }) {
       <PageHeader
         eyebrow="Programs & routes"
         title="Programs"
-        lead="Specialised routes built on the Universal Core. One recommended route is active; you do not need to choose among all of them to begin."
+        lead="Specialized routes built on the Universal Core. One recommended route is active; you do not need to choose among all of them to begin."
       />
       <ul className="program-grid" aria-label="Programs">
         {specialisedPrograms.map((program) => {
@@ -144,8 +160,8 @@ export function ProgramsScreen({ learner }: { learner: LearnerLoad }) {
         })}
       </ul>
       <p className="muted small">
-        Depth levels (Foundation → Core → Advanced → Specialist → Frontier) are defined per competency in the
-        curriculum specification; per-topic depth metadata arrives with the content schema (Gate 2).
+        Depth runs Foundation → Core → Advanced → Specialist → Frontier. Each phase declares a depth; individual topics
+        may override it.
       </p>
     </>
   )
@@ -170,9 +186,11 @@ export function ProgramScreen({ programId, learner }: { programId: string; learn
           <a href={href({ name: 'topic', topicId: firstLesson.topicId })}>{firstLesson.title}</a>
         </p>
       )}
-      {program.phases.map((phase, index) => (
+      {recommendedRoute(program).map((phase, index) => (
         <section key={phase.id} className="phase phase-wide" aria-labelledby={`phase-${phase.id}`}>
-          <span className="label">Phase {index + 1}</span>
+          <span className="label">
+            Phase {index + 1} · {depthLabel(phase.depth)}
+          </span>
           <h2 id={`phase-${phase.id}`}>{phase.title}</h2>
           <PhasePrerequisites phase={phase} />
           {phase.pedagogy && (
@@ -180,7 +198,7 @@ export function ProgramScreen({ programId, learner }: { programId: string; learn
               <span className="label">Pedagogy</span> {phase.pedagogy}
             </p>
           )}
-          <TopicList topics={phase.topics} learner={learner} />
+          <DomainList phase={phase} learner={learner} />
         </section>
       ))}
       <p className="muted small">

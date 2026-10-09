@@ -66,18 +66,42 @@ Open Gate 1 follow-ups (non-blocking, recorded so they are not lost):
 
 Do not yet build the full mastery engine, backend, database, remote execution service, or full connected provider integration merely as a shortcut. Preserve clean adapter boundaries so later gates can connect without rewriting the core.
 
-### Gate 2 — Content schema + first authored lesson  ← NEXT
+### Gate 2 — Content schema + first authored lesson
 
-Only after Gate 1 passes, implement the content schema and the first real interactive lesson for the vertical slice.
+Status: **acceptance criterion met and verified (2026-10-09).** The criterion, from `docs/MASTER-BUILD-ORCHESTRATION.md`, is: "the application can render one real curriculum path from Program to Lesson". Evidence: `docs/verification/GATE-2-CURRICULUM-SCHEMA.md`. Decision: D-022.
 
-Known inputs discovered during Gate 1 (must be resolved here, not guessed in UI code):
+The four schema issues found during Gate 1 are resolved:
 
-- The authored lesson's topic id `program-decomposition-typescript-functions` does **not** appear in `content/curriculum/master-curriculum-manifest.json`. Gate 2 must place it in the curriculum graph (Program → Phase → Domain → Topic) so the app can render one real path from Program to Lesson.
-- Manifest phase prerequisites use two forms: bare `phase-id` and program-qualified `program-id.phase-id`. The shell accepts both (`findPhase` in `src/content/curriculum.ts`); the schema should normalise to one.
-- Manifest topics are ids only; the shell derives titles from ids. The schema should add authored titles, depth, and topic-level prerequisites.
-- The manifest has no Domain level yet; breadcrumbs currently show Program → Phase → Topic.
+- [x] The lesson topic `program-decomposition-typescript-functions` is placed at Software Engineering → Engineering Practice → Design & Decomposition, with depth `foundation` and a prerequisite on `decomposition`.
+- [x] Phase prerequisites are normalized to `<program-id>.<phase-id>`; the validator rejects the bare form.
+- [x] A topic registry provides authored titles for all topics (283 at D-022; 306 after D-023), plus optional summary, depth override and topic-level prerequisites.
+- [x] A Domain level exists (81 domains); breadcrumbs show Programs → Program → Phase → Domain → Topic.
 
-### Gate 3 — Learning experience
+Required concepts (orchestration Gate 2):
+
+- [x] Program, Phase, Domain, Topic: manifest v2 with types in `src/domain/curriculum.ts`.
+- [x] Level/depth: required phase `depth`, optional topic override; placement depth is resolved per placement.
+- [x] Lesson, Concept, Practice: the `Lesson` type in `src/domain/content.ts` adds concepts, version, status, `lastVerified` and `estimatedMinutes`.
+- [x] Assessment: a definition contract exists, and lesson references must resolve (`src/content/assessments.ts`). Items, scoring and diagnosis remain Gate 5.
+- [x] Prerequisite edges: phase and topic graphs, both acyclic, validated.
+- [x] Content provenance: hostable rights classes only (`native-original`, `licensed` with a license, `provider-embedded`).
+- [~] Route: only the recommended route is modeled, as list order (`recommendedRoute`). Strong-alternative and deep-dive routes (PROGRAMS.md) are not authored, and authoring them is a curriculum decision.
+- [~] Project: the contract and validation exist; no project is authored.
+- [x] Validator `src/content/validate-curriculum.ts` runs in the test suite, so invalid content fails CI-equivalent `npm test`.
+
+Open Gate 2 follow-ups (non-blocking, recorded so they are not lost):
+
+- [x] **Universal Core vs. `PROGRAMS.md` conflict: resolved by D-023.** The core now has 7 foundation phases and 53 topics covering every PROGRAMS.md family. The TypeScript lesson requires the core topic `functions-and-scope`. A conformance test guards this.
+- [x] Program topics and phases link to the Universal Core (D-024): 44 topic edges and 7 phase edges, with reasons in `docs/CURRICULUM-CORE-LINKS.md`. Every core phase now feeds at least one program, and guard tests enforce it.
+- [ ] Intra-program sequencing is undeclared. Examples: SE Architecture → Engineering Practice; ML Foundations → Mathematics University Core; CS Systems/Networking/Databases → CS Intro. Add these when Gate 6 unlock rules are designed, so the edges match how unlocking actually works.
+- [ ] Decide how Computer Science Intro (Python/C foundations) relates to the core Programming Foundation: keep it as "second-language" practice (current edges) or merge the two.
+- [x] Software Engineering → Engineering Practice requires `universal-core.programming-foundation` and `universal-core.developer-foundation` (D-023). The later SE phases still declare no prerequisites on Engineering Practice.
+- [ ] Owner review of the D-022/D-023/D-024 domain groupings, phase depths, new core topic scopes and core-link edges, which were authored from topic semantics and not checked against source syllabi.
+- [ ] Topic-level prerequisites exist only for the authored lesson topic; map more as lessons are authored. Prerequisites must be real dependencies (LEARNING-ARCHITECTURE §7).
+- [ ] Remaining competency fields from LEARNING-ARCHITECTURE §6 (misconceptions, mastery criteria, transfer links, confidence/evidence) are not yet in the schema; add each one when a gate consumes it.
+- [ ] Lesson content is still TypeScript data (`src/content/first-lesson.ts`), not `content/lessons/`; move it when a second lesson exists.
+
+### Gate 3 — Learning experience  ← NEXT
 
 Build one high-quality interactive lesson experience with the complete lesson loop and contextual AI activation points.
 

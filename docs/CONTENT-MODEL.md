@@ -89,3 +89,10 @@ Content may reference licensed, provider-approved, or original resources accordi
 ## Content correctness
 
 For technical content that changes over time, record version/date context. For mathematical content, preserve definitions and notation carefully. For advanced or frontier content, record confidence and evidence strength.
+
+## Implementation notes (Gate 2, D-022)
+
+- Curriculum graph: `content/curriculum/master-curriculum-manifest.json`, `schemaVersion: 2`. Types are in `src/domain/curriculum.ts`; the read model is `src/content/curriculum.ts`.
+- Validation: `src/content/validate-curriculum.ts` covers the manifest, lessons, assessment definitions and projects. `src/content/curriculum-schema.test.ts` asserts the committed content has zero errors and that each rule rejects bad input.
+- Lesson metadata implemented: stable id, title, summary, depth, version, status, last-verified date, estimated minutes, provenance (rights class, author, optional `informedBy` source ids, license), objectives, concepts, sections, practice, assessment link. Topic-level prerequisites live on the topic, not the lesson.
+- Not yet implemented: interactive block types beyond text/example/code/question, misconceptions, mastery criteria, transfer links, confidence/evidence. Add each one when a gate consumes it.

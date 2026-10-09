@@ -1,14 +1,23 @@
 import { useRef, useState, type KeyboardEvent } from 'react'
-import { findPhase, getLessonForTopic, getProgram, topicTitle, type TopicLocation } from '../../content/curriculum'
+import {
+  findPhase,
+  getLessonForTopic,
+  getProgram,
+  getTopic,
+  topicDependents,
+  topicPrerequisites,
+  topicTitle,
+  type TopicPlacement,
+} from '../../content/curriculum'
 import type { Lesson } from '../../domain/content'
 import { AskAIButton } from '../ai'
 import { progressFor, stateOf, type LearnerLoad } from '../learner'
 import { href } from '../router'
-import { ContextBreadcrumbs, EmptyState, MasteryBadge, PageHeader, ReservedSurface, type Crumb } from '../ui'
+import { ContextBreadcrumbs, depthLabel, EmptyState, MasteryBadge, PageHeader, ReservedSurface, type Crumb } from '../ui'
 
 const MODES = [
   { id: 'read', label: 'Read' },
-  { id: 'visualize', label: 'Visualise' },
+  { id: 'visualize', label: 'Visualize' },
   { id: 'practice', label: 'Practice' },
   { id: 'assess', label: 'Assess' },
 ] as const
@@ -65,6 +74,18 @@ function LessonReader({ lesson }: { lesson: Lesson }) {
           ))}
         </ul>
       </section>
+      <section className="content-block" aria-labelledby="concepts">
+        <h2 id="concepts">Key concepts</h2>
+        <ul>
+          {lesson.concepts.map((concept) => (
+            <li key={concept.id}>{concept.name}</li>
+          ))}
+        </ul>
+        <p className="muted small">
+          Version {lesson.version} · {lesson.status} · {lesson.estimatedMinutes} min · original MasteryOS content
+          {lesson.provenance.rightsClass !== 'native-original' && ` (${lesson.provenance.rightsClass})`}
+        </p>
+      </section>
       {lesson.sections.map((section) => (
         <section className="content-block" key={section.id} aria-labelledby={`sec-${section.id}`}>
           <div className="block-head">
@@ -118,19 +139,25 @@ export function TopicScreen({
 }: {
   topicId: string
   learner: LearnerLoad
-  locations: TopicLocation[]
+  locations: TopicPlacement[]
 }) {
   const [mode, setMode] = useState<Mode>('read')
   const lesson = getLessonForTopic(topicId)
   const progress = progressFor(learner, topicId)
   const title = topicTitle(topicId)
 
-  const primary = locations[0]
+  // A topic with an authored lesson is shown in the lesson's program; otherwise its first placement.
+  const primary = (lesson && locations.find((location) => location.program.id === lesson.programId)) ?? locations[0]
+  const others = locations.filter((location) => location !== primary)
   const lessonProgram = lesson ? getProgram(lesson.programId) : undefined
+  const topic = getTopic(topicId)
+  const topicPrereqs = topicPrerequisites(topicId)
+  const dependents = topicDependents(topicId)
   const crumbs: Crumb[] = [{ label: 'Programs', route: { name: 'programs' } }]
   if (primary) {
     crumbs.push({ label: primary.program.title, route: { name: 'program', programId: primary.program.id } })
     crumbs.push({ label: primary.phase.title })
+    crumbs.push({ label: primary.domain.title })
   } else if (lessonProgram) {
     crumbs.push({ label: lessonProgram.title, route: { name: 'program', programId: lessonProgram.id } })
   }
@@ -141,9 +168,9 @@ export function TopicScreen({
       <article className="lesson">
         <ContextBreadcrumbs crumbs={crumbs} />
         <PageHeader
-          eyebrow={lesson ? `${lessonProgram?.title ?? lesson.programId} · ${lesson.depth}` : 'Topic'}
+          eyebrow={primary ? `${primary.program.title} · ${depthLabel(lesson?.depth ?? primary.depth)}` : 'Topic'}
           title={title}
-          lead={lesson?.summary}
+          lead={lesson?.summary ?? topic?.summary}
         />
         <ModeTabs mode={mode} onChange={setMode} />
         <div role="tabpanel" id={`panel-${mode}`} aria-labelledby={`tab-${mode}`} className="mode-panel">
@@ -153,12 +180,12 @@ export function TopicScreen({
             ) : (
               <EmptyState title="No lesson authored yet">
                 This topic is part of the curriculum, but its native MasteryOS lesson has not been written. Authored
-                content arrives through the content schema (Gate 2) and learning runtime (Gate 3).
+                lessons are added one competency at a time; the interactive runtime arrives with Gate 3.
               </EmptyState>
             ))}
           {mode === 'visualize' && (
             <ReservedSurface title="Visual / workbench mode" gate="Gate 3 & 9">
-              Diagrams, interactive visualisations and technical workbenches attach here when they add learning value
+              Diagrams, interactive visualizations and technical workbenches attach here when they add learning value
               text cannot.
             </ReservedSurface>
           )}
@@ -191,6 +218,19 @@ export function TopicScreen({
         </div>
         <div className="panel">
           <span className="label">Prerequisites</span>
+          {topicPrereqs.length > 0 && (
+            <>
+              <p className="small">Topics this builds on:</p>
+              <ul className="plain-list" aria-label="Topic prerequisites">
+                {topicPrereqs.map((prerequisite) => (
+                  <li key={prerequisite.id}>
+                    <a href={href({ name: 'topic', topicId: prerequisite.id })}>{prerequisite.title}</a>
+                  </li>
+                ))}
+              </ul>
+            </>
+          )}
+          {primary && primary.phase.prerequisites.length > 0 && <p className="small">Phase requires:</p>}
           {primary && primary.phase.prerequisites.length > 0 ? (
             <ul className="plain-list">
               {primary.phase.prerequisites.map((id) => {
@@ -209,16 +249,24 @@ export function TopicScreen({
               })}
             </ul>
           ) : (
-            <p className="small">
-              {primary
-                ? 'No prerequisites declared for this phase.'
-                : 'Not yet mapped into the curriculum manifest; topic-level prerequisites arrive with Gate 2.'}
-            </p>
+            topicPrereqs.length === 0 && <p className="small">No prerequisites declared.</p>
           )}
-          {locations.length > 1 && (
+          {dependents.length > 0 && (
+            <>
+              <p className="small">Leads to:</p>
+              <ul className="plain-list" aria-label="Topics that build on this">
+                {dependents.map((dependent) => (
+                  <li key={dependent.id}>
+                    <a href={href({ name: 'topic', topicId: dependent.id })}>{dependent.title}</a>
+                  </li>
+                ))}
+              </ul>
+            </>
+          )}
+          {others.length > 0 && (
             <p className="muted small">
               Also appears in:{' '}
-              {locations.slice(1).map((location, index) => (
+              {others.map((location, index) => (
                 <span key={`${location.program.id}-${location.phase.id}`}>
                   {index > 0 && ', '}
                   <a href={href({ name: 'program', programId: location.program.id })}>{location.program.title}</a>
