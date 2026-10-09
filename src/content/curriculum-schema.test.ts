@@ -6,6 +6,8 @@ import { assessments } from './assessments'
 import {
   curriculumIssues,
   curriculumMeta,
+  getTopic,
+  programsFedByCorePhase,
   findTopicLocations,
   lessons,
   phaseTopicIds,
@@ -100,6 +102,45 @@ describe('Universal Core conforms to PROGRAMS.md (D-023)', () => {
   })
 })
 
+describe('Universal Core is linked into the programs (D-024)', () => {
+  const core = programs.find((p) => p.id === 'universal-core')!
+  const coreTopics = new Set(core.phases.flatMap(phaseTopicIds))
+
+  it.each(core.phases.map((p) => [p.id]))('core phase %s feeds at least one program', (phaseId) => {
+    expect(programsFedByCorePhase(phaseId).length).toBeGreaterThan(0)
+  })
+
+  it('links every specialized program to the core at topic or phase level', () => {
+    for (const program of programs.filter((p) => p.id !== 'universal-core')) {
+      const topicLevel = program.phases
+        .flatMap(phaseTopicIds)
+        .some((id) => (getTopic(id)?.prerequisites ?? []).some((pre) => coreTopics.has(pre)))
+      const phaseLevel = program.phases.some((p) => p.prerequisites.some((ref) => ref.startsWith('universal-core.')))
+      expect(topicLevel || phaseLevel, program.id).toBe(true)
+    }
+  })
+
+  it('links representative program topics to their core foundation', () => {
+    const edges: Array<[string, string]> = [
+      ['hash-tables', 'fundamental-data-structures'],
+      ['sql-foundations', 'database-fundamentals'],
+      ['http-basics', 'how-the-web-works'],
+      ['security-principles', 'security-fundamentals'],
+      ['llm-fundamentals', 'ai-literacy'],
+      ['processes-and-threads', 'operating-system-basics'],
+    ]
+    for (const [dependent, prerequisite] of edges) {
+      expect(getTopic(dependent)?.prerequisites, dependent).toContain(prerequisite)
+    }
+  })
+
+  it('never makes a core topic depend on a program topic', () => {
+    for (const id of coreTopics) {
+      for (const pre of getTopic(id)?.prerequisites ?? []) expect(coreTopics.has(pre), `${id} → ${pre}`).toBe(true)
+    }
+  })
+})
+
 describe('curriculum validator rejects invalid graphs', () => {
   const expectError = (errors: string[], fragment: string) =>
     expect(errors.some((e) => e.includes(fragment)), `${fragment}\n${errors.join('\n')}`).toBe(true)
@@ -175,6 +216,12 @@ describe('curriculum validator rejects invalid graphs', () => {
     const errors = validate(m)
     expectError(errors, 'is placed twice in universal-core.learning-foundations')
     expectError(errors, 'duplicate domain id')
+  })
+
+  it('rejects a prerequisite deeper than the topic that requires it', () => {
+    const m = clone()
+    topic(m, 'control-flow').prerequisites = ['variables-and-state', 'hash-tables']
+    expectError(validate(m), '"hash-tables" (core) is deeper than "control-flow" (foundation)')
   })
 
   it('rejects a phase with no domains', () => {

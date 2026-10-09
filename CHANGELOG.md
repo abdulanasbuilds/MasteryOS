@@ -30,6 +30,13 @@ All notable project-level changes are recorded here. Implementation changes shou
 - A conformance test guards the PROGRAMS.md families, keeps HTML/CSS out of the core, and enforces foundation depth. Tests: 78 in total.
 - UI copy: "specialized" spelling.
 
+### Added (same day) — Universal Core links into programs (D-024)
+
+- 44 topic-level and 7 phase-level prerequisite edges from program content to the Universal Core. Each one is listed with its reason in `docs/CURRICULUM-CORE-LINKS.md`.
+- Validator rule: no prerequisite may be deeper than the topic that requires it.
+- The Universal Core "Feeds" label counts topic-level dependencies. Topic pages list "Leads to" reverse edges.
+- Guard tests: every core phase feeds a program, and every program links to the core. Tests: 90 in total.
+
 ## 2026-10-08 — Gate 1 application shell
 
 ### Added

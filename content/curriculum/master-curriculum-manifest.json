@@ -6,7 +6,7 @@
   "conventions": {
     "ids": "kebab-case; topic ids are globally unique; phase ids are unique within a program; domain ids are unique within a phase",
     "phasePrerequisites": "always program-qualified: <program-id>.<phase-id>",
-    "topicPrerequisites": "topic ids from the topics registry; must form an acyclic graph",
+    "topicPrerequisites": "topic ids from the topics registry; must form an acyclic graph; a prerequisite may not be deeper than the topic that requires it (shallowest placements compared)",
     "depth": "foundation | core | advanced | specialist | frontier; a topic placement uses topic.depth when set, otherwise its phase depth",
     "order": "programs, phases, domains and topics are listed in recommended route order"
   },
@@ -358,7 +358,10 @@
     },
     {
       "id": "browser-runtime",
-      "title": "Browser runtime"
+      "title": "Browser runtime",
+      "prerequisites": [
+        "how-the-web-works"
+      ]
     },
     {
       "id": "dom",
@@ -374,11 +377,17 @@
     },
     {
       "id": "http-basics",
-      "title": "HTTP basics"
+      "title": "HTTP basics",
+      "prerequisites": [
+        "how-the-web-works"
+      ]
     },
     {
       "id": "urls-and-routing",
-      "title": "URLs & routing"
+      "title": "URLs & routing",
+      "prerequisites": [
+        "how-the-web-works"
+      ]
     },
     {
       "id": "fetch-and-apis",
@@ -390,11 +399,17 @@
     },
     {
       "id": "security-model-basics",
-      "title": "Security model basics"
+      "title": "Security model basics",
+      "prerequisites": [
+        "security-fundamentals"
+      ]
     },
     {
       "id": "javascript-foundations",
-      "title": "JavaScript foundations"
+      "title": "JavaScript foundations",
+      "prerequisites": [
+        "functions-and-scope"
+      ]
     },
     {
       "id": "typescript-foundations",
@@ -442,27 +457,46 @@
     },
     {
       "id": "problem-solving-with-code",
-      "title": "Problem solving with code"
+      "title": "Problem solving with code",
+      "prerequisites": [
+        "functions-and-scope"
+      ]
     },
     {
       "id": "python-foundations",
-      "title": "Python foundations"
+      "title": "Python foundations",
+      "prerequisites": [
+        "control-flow"
+      ]
     },
     {
       "id": "c-foundations",
-      "title": "C foundations"
+      "title": "C foundations",
+      "prerequisites": [
+        "control-flow",
+        "how-computers-work"
+      ]
     },
     {
       "id": "imperative-programming",
-      "title": "Imperative programming"
+      "title": "Imperative programming",
+      "prerequisites": [
+        "variables-and-state"
+      ]
     },
     {
       "id": "functional-programming",
-      "title": "Functional programming"
+      "title": "Functional programming",
+      "prerequisites": [
+        "functions-and-scope"
+      ]
     },
     {
       "id": "object-oriented-programming",
-      "title": "Object-oriented programming"
+      "title": "Object-oriented programming",
+      "prerequisites": [
+        "structured-data"
+      ]
     },
     {
       "id": "programming-language-paradigms",
@@ -534,15 +568,24 @@
     },
     {
       "id": "asymptotic-analysis",
-      "title": "Asymptotic analysis"
+      "title": "Asymptotic analysis",
+      "prerequisites": [
+        "complexity-intuition"
+      ]
     },
     {
       "id": "arrays-lists-stacks-queues",
-      "title": "Arrays, lists, stacks & queues"
+      "title": "Arrays, lists, stacks & queues",
+      "prerequisites": [
+        "fundamental-data-structures"
+      ]
     },
     {
       "id": "hash-tables",
-      "title": "Hash tables"
+      "title": "Hash tables",
+      "prerequisites": [
+        "fundamental-data-structures"
+      ]
     },
     {
       "id": "trees-heaps-priority-queues",
@@ -554,15 +597,24 @@
     },
     {
       "id": "sorting",
-      "title": "Sorting"
+      "title": "Sorting",
+      "prerequisites": [
+        "searching-and-sorting-basics"
+      ]
     },
     {
       "id": "searching",
-      "title": "Searching"
+      "title": "Searching",
+      "prerequisites": [
+        "searching-and-sorting-basics"
+      ]
     },
     {
       "id": "divide-and-conquer",
-      "title": "Divide & conquer"
+      "title": "Divide & conquer",
+      "prerequisites": [
+        "recursion-basics"
+      ]
     },
     {
       "id": "greedy-algorithms",
@@ -570,7 +622,10 @@
     },
     {
       "id": "dynamic-programming",
-      "title": "Dynamic programming"
+      "title": "Dynamic programming",
+      "prerequisites": [
+        "recursion-basics"
+      ]
     },
     {
       "id": "string-algorithms",
@@ -626,7 +681,10 @@
     },
     {
       "id": "computer-organization",
-      "title": "Computer organization"
+      "title": "Computer organization",
+      "prerequisites": [
+        "how-computers-work"
+      ]
     },
     {
       "id": "caches-and-memory-hierarchy",
@@ -638,15 +696,24 @@
     },
     {
       "id": "processes-and-threads",
-      "title": "Processes & threads"
+      "title": "Processes & threads",
+      "prerequisites": [
+        "operating-system-basics"
+      ]
     },
     {
       "id": "system-calls",
-      "title": "System calls"
+      "title": "System calls",
+      "prerequisites": [
+        "operating-system-basics"
+      ]
     },
     {
       "id": "filesystems",
-      "title": "Filesystems"
+      "title": "Filesystems",
+      "prerequisites": [
+        "operating-system-basics"
+      ]
     },
     {
       "id": "concurrency",
@@ -658,7 +725,10 @@
     },
     {
       "id": "network-models",
-      "title": "Network models"
+      "title": "Network models",
+      "prerequisites": [
+        "how-the-internet-works"
+      ]
     },
     {
       "id": "ethernet-ip",
@@ -678,11 +748,17 @@
     },
     {
       "id": "dns",
-      "title": "DNS"
+      "title": "DNS",
+      "prerequisites": [
+        "how-the-internet-works"
+      ]
     },
     {
       "id": "http",
-      "title": "HTTP"
+      "title": "HTTP",
+      "prerequisites": [
+        "how-the-web-works"
+      ]
     },
     {
       "id": "network-debugging",
@@ -698,11 +774,17 @@
     },
     {
       "id": "relational-model",
-      "title": "Relational model"
+      "title": "Relational model",
+      "prerequisites": [
+        "database-fundamentals"
+      ]
     },
     {
       "id": "sql-foundations",
-      "title": "SQL foundations"
+      "title": "SQL foundations",
+      "prerequisites": [
+        "database-fundamentals"
+      ]
     },
     {
       "id": "schema-design",
@@ -714,7 +796,10 @@
     },
     {
       "id": "data-modeling",
-      "title": "Data modeling"
+      "title": "Data modeling",
+      "prerequisites": [
+        "database-fundamentals"
+      ]
     },
     {
       "id": "transactions",
@@ -778,7 +863,10 @@
     },
     {
       "id": "security-principles",
-      "title": "Security principles"
+      "title": "Security principles",
+      "prerequisites": [
+        "security-fundamentals"
+      ]
     },
     {
       "id": "threat-modeling",
@@ -790,11 +878,17 @@
     },
     {
       "id": "privacy",
-      "title": "Privacy"
+      "title": "Privacy",
+      "prerequisites": [
+        "privacy-fundamentals"
+      ]
     },
     {
       "id": "secure-coding",
-      "title": "Secure coding"
+      "title": "Secure coding",
+      "prerequisites": [
+        "security-fundamentals"
+      ]
     },
     {
       "id": "web-security",
@@ -810,7 +904,10 @@
     },
     {
       "id": "authentication-and-authorization",
-      "title": "Authentication & authorization"
+      "title": "Authentication & authorization",
+      "prerequisites": [
+        "security-fundamentals"
+      ]
     },
     {
       "id": "program-decomposition-typescript-functions",
@@ -852,7 +949,10 @@
     },
     {
       "id": "incident-thinking",
-      "title": "Incident thinking"
+      "title": "Incident thinking",
+      "prerequisites": [
+        "reliability-fundamentals"
+      ]
     },
     {
       "id": "technical-debt",
@@ -896,7 +996,10 @@
     },
     {
       "id": "reliability",
-      "title": "Reliability"
+      "title": "Reliability",
+      "prerequisites": [
+        "reliability-fundamentals"
+      ]
     },
     {
       "id": "distributed-data",
@@ -948,7 +1051,10 @@
     },
     {
       "id": "supply-chain-security",
-      "title": "Supply-chain security"
+      "title": "Supply-chain security",
+      "prerequisites": [
+        "security-fundamentals"
+      ]
     },
     {
       "id": "advanced-algebra",
@@ -1156,7 +1262,10 @@
     },
     {
       "id": "python-for-research",
-      "title": "Python for research"
+      "title": "Python for research",
+      "prerequisites": [
+        "collections-and-iteration"
+      ]
     },
     {
       "id": "numpy-and-vectorization",
@@ -1164,7 +1273,10 @@
     },
     {
       "id": "pandas-data-workflows",
-      "title": "pandas data workflows"
+      "title": "pandas data workflows",
+      "prerequisites": [
+        "data-literacy"
+      ]
     },
     {
       "id": "data-pipelines",
@@ -1176,7 +1288,10 @@
     },
     {
       "id": "c-plus-plus-foundations",
-      "title": "C++ foundations"
+      "title": "C++ foundations",
+      "prerequisites": [
+        "functions-and-scope"
+      ]
     },
     {
       "id": "performance-coding",
@@ -1220,7 +1335,11 @@
     },
     {
       "id": "coding-interview-foundations",
-      "title": "Coding interview foundations"
+      "title": "Coding interview foundations",
+      "prerequisites": [
+        "fundamental-data-structures",
+        "searching-and-sorting-basics"
+      ]
     },
     {
       "id": "supervised-learning",
@@ -1232,7 +1351,10 @@
     },
     {
       "id": "feature-engineering",
-      "title": "Feature engineering"
+      "title": "Feature engineering",
+      "prerequisites": [
+        "data-literacy"
+      ]
     },
     {
       "id": "model-evaluation",
@@ -1280,7 +1402,10 @@
     },
     {
       "id": "llm-fundamentals",
-      "title": "LLM fundamentals"
+      "title": "LLM fundamentals",
+      "prerequisites": [
+        "ai-literacy"
+      ]
     },
     {
       "id": "retrieval-augmented-generation",
@@ -1308,7 +1433,10 @@
     },
     {
       "id": "ai-safety-and-reliability",
-      "title": "AI safety & reliability"
+      "title": "AI safety & reliability",
+      "prerequisites": [
+        "responsible-ai-use"
+      ]
     }
   ],
   "programs": [
@@ -1630,7 +1758,9 @@
           "id": "modern-frontend",
           "title": "Modern Frontend Engineering",
           "depth": "core",
-          "prerequisites": [],
+          "prerequisites": [
+            "universal-core.programming-foundation"
+          ],
           "domains": [
             {
               "id": "language-and-tooling",
@@ -1697,7 +1827,9 @@
           "id": "core-programming",
           "title": "Core Programming",
           "depth": "core",
-          "prerequisites": [],
+          "prerequisites": [
+            "universal-core.programming-foundation"
+          ],
           "domains": [
             {
               "id": "paradigms",
@@ -1770,7 +1902,9 @@
           "id": "algorithms-and-data-structures",
           "title": "Algorithms & Data Structures",
           "depth": "core",
-          "prerequisites": [],
+          "prerequisites": [
+            "universal-core.programming-foundation"
+          ],
           "domains": [
             {
               "id": "data-structures",
@@ -2128,7 +2262,9 @@
           "id": "advanced-secondary",
           "title": "Advanced Secondary Mathematics",
           "depth": "foundation",
-          "prerequisites": [],
+          "prerequisites": [
+            "universal-core.mathematical-foundation"
+          ],
           "domains": [
             {
               "id": "algebra-and-functions",
@@ -2319,7 +2455,9 @@
           "id": "quant-development",
           "title": "Quantitative Development",
           "depth": "advanced",
-          "prerequisites": [],
+          "prerequisites": [
+            "universal-core.programming-foundation"
+          ],
           "domains": [
             {
               "id": "research-computing",
@@ -2388,7 +2526,9 @@
           "id": "ml-foundations",
           "title": "Machine Learning Foundations",
           "depth": "core",
-          "prerequisites": [],
+          "prerequisites": [
+            "universal-core.programming-foundation"
+          ],
           "domains": [
             {
               "id": "learning-paradigms",
@@ -2442,7 +2582,9 @@
           "id": "modern-ai-systems",
           "title": "Modern AI Systems",
           "depth": "advanced",
-          "prerequisites": [],
+          "prerequisites": [
+            "universal-core.responsible-engineering-foundation"
+          ],
           "domains": [
             {
               "id": "llm-applications",

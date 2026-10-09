@@ -91,6 +91,18 @@ Screenshots were reviewed manually for layout, wrapping and overlap on the deskt
 
 Two existing assertions were updated because the lesson deliberately gained the `functions-and-scope` prerequisite. The full-page desktop screenshot of `#/core` was reviewed manually, and no layout defects were found. The page correctly reports that Computational Thinking and the two new systems and responsibility phases feed no program yet (see TASKS follow-ups).
 
+## Addendum — Universal Core links into programs (D-024), same day
+
+| Check | Result |
+|---|---|
+| Typecheck / build / `npm audit` | Pass / pass / 0 vulnerabilities |
+| `npm test` | 90/90 passed. 12 new: 7 "core phase feeds a program" checks, every program links to the core, representative edges, no core → program edges, the depth-direction validator rule, and the UI's Feeds/Leads-to rendering |
+| Validator | 0 errors with 44 topic edges and 7 phase edges, including the new depth-direction rule |
+| Gate 2 browser script (updated) | 42/42. Adds: all 7 core phases show a fed program; `How the web works` lists its dependents; following "HTTP basics" shows the core prerequisite back-link; no overflow |
+| Gate 1 regression | 82/82 |
+
+The guard test "every specialized program links to the core" initially failed for Mathematics, which had no core link of any kind. This was a real gap, fixed with the Advanced Secondary → core Mathematical Foundation phase edge. The test was not weakened. The desktop screenshot of `#/topic/functions-and-scope` (prerequisites plus six "Leads to" links) was reviewed manually, and no layout defects were found.
+
 ## Re-running
 
 ```bash

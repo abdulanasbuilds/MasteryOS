@@ -92,9 +92,11 @@ Required concepts (orchestration Gate 2):
 Open Gate 2 follow-ups (non-blocking, recorded so they are not lost):
 
 - [x] **Universal Core vs. `PROGRAMS.md` conflict: resolved by D-023.** The core now has 7 foundation phases and 53 topics covering every PROGRAMS.md family. The TypeScript lesson requires the core topic `functions-and-scope`. A conformance test guards this.
-- [ ] Link program topics to the new core nodes where the dependency is real (e.g. `hash-tables` → `fundamental-data-structures`, `sql-foundations` → `database-fundamentals`, `http-basics` → `how-the-web-works`, `security-principles` → `security-fundamentals`). Decide phase prerequisites for CS, AI/ML, Math and Quant. Computational Thinking, Computer/Internet/Data and Security/Reliability/AI currently feed no program.
+- [x] Program topics and phases link to the Universal Core (D-024): 44 topic edges and 7 phase edges, with reasons in `docs/CURRICULUM-CORE-LINKS.md`. Every core phase now feeds at least one program, and guard tests enforce it.
+- [ ] Intra-program sequencing is undeclared. Examples: SE Architecture → Engineering Practice; ML Foundations → Mathematics University Core; CS Systems/Networking/Databases → CS Intro. Add these when Gate 6 unlock rules are designed, so the edges match how unlocking actually works.
+- [ ] Decide how Computer Science Intro (Python/C foundations) relates to the core Programming Foundation: keep it as "second-language" practice (current edges) or merge the two.
 - [x] Software Engineering → Engineering Practice requires `universal-core.programming-foundation` and `universal-core.developer-foundation` (D-023). The later SE phases still declare no prerequisites on Engineering Practice.
-- [ ] Owner review of the D-022/D-023 domain groupings, phase depths and new core topic scopes, which were authored from topic semantics and not checked against source syllabi.
+- [ ] Owner review of the D-022/D-023/D-024 domain groupings, phase depths, new core topic scopes and core-link edges, which were authored from topic semantics and not checked against source syllabi.
 - [ ] Topic-level prerequisites exist only for the authored lesson topic; map more as lessons are authored. Prerequisites must be real dependencies (LEARNING-ARCHITECTURE §7).
 - [ ] Remaining competency fields from LEARNING-ARCHITECTURE §6 (misconceptions, mastery criteria, transfer links, confidence/evidence) are not yet in the schema; add each one when a gate consumes it.
 - [ ] Lesson content is still TypeScript data (`src/content/first-lesson.ts`), not `content/lessons/`; move it when a second lesson exists.

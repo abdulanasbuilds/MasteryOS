@@ -91,7 +91,7 @@ Implemented scaffold pieces include:
 - toolchain/resource registry;
 - universal start-anywhere agent prompt.
 
-The complete product is **not implemented**. Continue from the earliest incomplete gate — currently **Gate 3 (learning experience)**. Read the open Gate 2 follow-ups in `TASKS.md` first. The Universal Core vs. `PROGRAMS.md` conflict is resolved (D-023); linking program topics to the new core nodes is still open.
+The complete product is **not implemented**. Continue from the earliest incomplete gate — currently **Gate 3 (learning experience)**. Read the open Gate 2 follow-ups in `TASKS.md` first. The Universal Core vs. `PROGRAMS.md` conflict is resolved (D-023), and programs link to the core (D-024, `docs/CURRICULUM-CORE-LINKS.md`). Intra-program sequencing is still open.
 
 ## First vertical slice
 

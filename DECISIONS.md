@@ -222,6 +222,25 @@ Alternatives rejected:
 Consequences: A conformance test (`curriculum-schema.test.ts`) maps each PROGRAMS.md family to core topics and fails if one is removed. It also fails if HTML/CSS enters the core, or if any core phase is not at foundation depth. Program topics that build on the new core nodes (for example `hash-tables` → `fundamental-data-structures`) are not yet linked by topic prerequisites, and only Software Engineering declares phase prerequisites on the new phases.
 Reversal trigger: A deliberate change to the Universal Core definition in PROGRAMS.md, or learner evidence that a family belongs in programs rather than the core.
 
+## D-024 — Program prerequisites link to the Universal Core
+Date: 2026-10-09
+Status: accepted (edge set is an initial authored mapping, open to owner revision)
+Decision: Program topics and phases now declare prerequisites on the Universal Core foundations added in D-023.
+- 44 topic-level edges, for example `hash-tables` → `fundamental-data-structures`, `sql-foundations` → `database-fundamentals`, `http-basics` → `how-the-web-works`, `security-principles` → `security-fundamentals`, `llm-fundamentals` → `ai-literacy`, `asymptotic-analysis` → `complexity-intuition`.
+- 7 phase-level edges, used only where the dependent phase needs the whole core phase: CS Core Programming and CS Algorithms & Data Structures, Web Modern Frontend, AI/ML ML Foundations, and Quant Development each require Programming & Algorithms Foundation; AI/ML Modern AI Systems requires Security, Reliability & Responsible AI; Mathematics Advanced Secondary requires the core Mathematical & Quantitative Foundation.
+- Every edge and its reason is listed in `docs/CURRICULUM-CORE-LINKS.md`.
+- The validator gains one rule: a prerequisite may not be deeper than the topic that requires it.
+- "Feeds" on the Universal Core page now counts topic-level as well as phase-level dependencies. Topic pages show reverse edges ("Leads to").
+Reason: After D-023, three core phases fed no program and no program topic depended on the new core nodes. A foundation that nothing requires cannot gate anything at Gate 6.
+Alternatives rejected:
+- Phase-level edges everywhere. For example, CS Databases requiring the whole Computer, Internet & Data phase would block databases on OS basics; LEARNING-ARCHITECTURE §7 says to avoid unnecessary chains.
+- Linking every program topic. Most program topics depend on other program topics; only entry points into a program need a core edge.
+Consequences:
+- Guard tests: every core phase feeds at least one program; every specialized program links to the core; representative edges exist; core topics never depend on program topics; no prerequisite is deeper than its dependent.
+- The Mathematics program had no core link at all before this change. The guard test caught it, and the phase edge above fixes it.
+- Intra-program sequencing (e.g. SE Architecture → Engineering Practice, ML Foundations → university mathematics) is still undeclared.
+Reversal trigger: Owner review of individual edges; Gate 6 unlock behavior showing an edge blocks learners without a real dependency.
+
 ## Decision template
 
 ## D-XXX — Title

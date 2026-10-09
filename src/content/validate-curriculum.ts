@@ -81,6 +81,7 @@ export function validateCurriculum(
   // ---- topic registry ----------------------------------------------------
   const topicIds = new Set<string>()
   const topicPrereqs = new Map<string, string[]>()
+  const topicDepthOverride = new Map<string, unknown>()
   if (!Array.isArray(raw.topics)) {
     err('topics', 'expected an array')
   } else {
@@ -93,6 +94,8 @@ export function validateCurriculum(
       if (!isString(topic.title)) err(`${path}.title`, `topic "${topic.id}" needs a title`)
       if (topic.depth !== undefined && !DEPTHS.includes(topic.depth as never)) {
         err(`${path}.depth`, `invalid depth ${JSON.stringify(topic.depth)}`)
+      } else if (topic.depth !== undefined) {
+        topicDepthOverride.set(topic.id, topic.depth)
       }
       if (topic.prerequisites !== undefined) {
         if (!isStringArray(topic.prerequisites)) err(`${path}.prerequisites`, 'expected an array of topic ids')
@@ -113,6 +116,7 @@ export function validateCurriculum(
   const phaseRefs = new Set<string>()
   const phasePrereqs = new Map<string, string[]>()
   const placed = new Map<string, Array<{ programId: string }>>()
+  const placementDepths = new Map<string, number[]>()
   const programIds = new Set<string>()
 
   if (!Array.isArray(raw.programs) || raw.programs.length === 0) {
@@ -161,6 +165,8 @@ export function validateCurriculum(
             if (phaseTopics.has(topicId)) err(`${dPath}.topics`, `"${topicId}" is placed twice in ${ref}`)
             phaseTopics.add(topicId)
             placed.set(topicId, [...(placed.get(topicId) ?? []), { programId }])
+            const topicDepth = topicDepthOverride.get(topicId) ?? phase.depth
+            placementDepths.set(topicId, [...(placementDepths.get(topicId) ?? []), DEPTHS.indexOf(topicDepth as never)])
           }
         })
       })
@@ -183,6 +189,21 @@ export function validateCurriculum(
 
   for (const topicId of topicIds) {
     if (!placed.has(topicId)) err(`topics.${topicId}`, 'registered but not placed in any domain')
+  }
+
+  // An edge must not point "uphill": a topic's shallowest placement may not be
+  // shallower than its prerequisite's shallowest placement.
+  for (const [topicId, prerequisites] of topicPrereqs) {
+    const own = Math.min(...(placementDepths.get(topicId) ?? [Infinity]))
+    for (const prerequisite of prerequisites) {
+      const required = Math.min(...(placementDepths.get(prerequisite) ?? [-Infinity]))
+      if (required > own) {
+        err(
+          `topics.${topicId}.prerequisites`,
+          `"${prerequisite}" (${DEPTHS[required]}) is deeper than "${topicId}" (${DEPTHS[own]})`,
+        )
+      }
+    }
   }
 
   // ---- authored lessons ---------------------------------------------------

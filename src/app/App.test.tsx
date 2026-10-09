@@ -143,6 +143,16 @@ describe('application shell', () => {
     expect(byText('.right-rail p', 'Phase requires').nextElementSibling?.textContent).toContain('Programming & Algorithms Foundation')
   })
 
+  it('shows which programs a core phase feeds and which topics a core topic leads to', async () => {
+    await render()
+    await navigate('#/core')
+    const systems = container.querySelector<HTMLElement>('#phase-systems-foundation')!.closest('section')!
+    expect(systems.querySelector('.feeds')?.textContent).toContain('Computer Science')
+    await navigate('#/topic/how-the-web-works')
+    const leadsTo = Array.from(container.querySelectorAll('[aria-label="Topics that build on this"] li')).map((li) => li.textContent)
+    expect(leadsTo).toEqual(expect.arrayContaining(['HTTP', 'HTTP basics', 'Browser runtime', 'URLs & routing']))
+  })
+
   it('does not grant mastery or evidence from opening or reading a lesson', async () => {
     await render()
     await navigate(`#/topic/${firstLesson.topicId}`)

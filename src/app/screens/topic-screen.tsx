@@ -4,6 +4,7 @@ import {
   getLessonForTopic,
   getProgram,
   getTopic,
+  topicDependents,
   topicPrerequisites,
   topicTitle,
   type TopicPlacement,
@@ -151,6 +152,7 @@ export function TopicScreen({
   const lessonProgram = lesson ? getProgram(lesson.programId) : undefined
   const topic = getTopic(topicId)
   const topicPrereqs = topicPrerequisites(topicId)
+  const dependents = topicDependents(topicId)
   const crumbs: Crumb[] = [{ label: 'Programs', route: { name: 'programs' } }]
   if (primary) {
     crumbs.push({ label: primary.program.title, route: { name: 'program', programId: primary.program.id } })
@@ -248,6 +250,18 @@ export function TopicScreen({
             </ul>
           ) : (
             topicPrereqs.length === 0 && <p className="small">No prerequisites declared.</p>
+          )}
+          {dependents.length > 0 && (
+            <>
+              <p className="small">Leads to:</p>
+              <ul className="plain-list" aria-label="Topics that build on this">
+                {dependents.map((dependent) => (
+                  <li key={dependent.id}>
+                    <a href={href({ name: 'topic', topicId: dependent.id })}>{dependent.title}</a>
+                  </li>
+                ))}
+              </ul>
+            </>
           )}
           {others.length > 0 && (
             <p className="muted small">

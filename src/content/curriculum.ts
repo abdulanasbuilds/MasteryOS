@@ -104,12 +104,27 @@ export function findPhase(reference: string): { program: CurriculumProgram; phas
   return program && phase ? { program, phase } : undefined
 }
 
-/** Programs whose phases declare a prerequisite on the given Universal Core phase. */
+/**
+ * Programs that depend on the given Universal Core phase — either a phase
+ * prerequisite on it, or a topic placed in the program whose topic
+ * prerequisites include a topic placed in that core phase.
+ */
 export function programsFedByCorePhase(phaseId: string): CurriculumProgram[] {
   const reference = `${UNIVERSAL_CORE_ID}.${phaseId}`
-  return specialisedPrograms.filter((program) =>
-    program.phases.some((phase) => phase.prerequisites.includes(reference as `${string}.${string}`)),
+  const corePhase = universalCore?.phases.find((phase) => phase.id === phaseId)
+  const coreTopics = new Set(corePhase ? phaseTopicIds(corePhase) : [])
+  return specialisedPrograms.filter(
+    (program) =>
+      program.phases.some((phase) => phase.prerequisites.includes(reference as `${string}.${string}`)) ||
+      programTopicIds(program).some((topicId) =>
+        (getTopic(topicId)?.prerequisites ?? []).some((prerequisite) => coreTopics.has(prerequisite)),
+      ),
   )
+}
+
+/** Topics that list this topic as a direct prerequisite (reverse edges). */
+export function topicDependents(topicId: string): CurriculumTopic[] {
+  return manifest.topics.filter((topic) => topic.prerequisites?.includes(topicId))
 }
 
 /** Authored topic title from the registry; falls back to the raw id for unknown ids. */
