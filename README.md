@@ -178,3 +178,18 @@ MasteryOS is designed so another coding agent can take over without the original
 - `.github/copilot-instructions.md` — GitHub Copilot repository adapter.
 
 The agent must always inspect the actual repository, identify the earliest incomplete gate, preserve local-first architecture, verify its changes, and report evidence rather than intention.
+
+## Run locally
+
+Requires Node.js **22.12 or newer** (Vite 8 requirement; declared in `package.json` `engines`).
+
+```bash
+npm ci            # install from the committed lockfile
+npm run dev       # local development server
+npm test          # unit + integration tests (Vitest, jsdom)
+npm run typecheck # TypeScript project build check
+npm run build     # static production build in dist/
+npm run preview   # serve the production build locally
+```
+
+No account, backend, database, network service or AI provider is required. Learner state stays in the browser's IndexedDB.

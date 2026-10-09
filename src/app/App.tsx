@@ -1,193 +1,209 @@
-import { useEffect, useMemo, useState } from 'react'
-import { firstLesson } from '../content/first-lesson'
-import { canUnlockTopic, type TopicProgress } from '../domain/mastery'
-import { loadLearnerState, saveLearnerState, type LocalLearnerState } from '../storage/local-store'
-import { UnconfiguredAIProvider } from '../ai/provider'
+import { useEffect, useRef, useState } from 'react'
+import { UnconfiguredAIProvider, type AIProvider } from '../ai/provider'
+import { findTopicLocations, UNIVERSAL_CORE_ID } from '../content/curriculum'
+import type { LocalLearnerState } from '../storage/local-store'
+import { loadLearnerState } from '../storage/local-store'
+import { AIPanel, AIProviderScope, useAI } from './ai'
+import { useLearnerState, type LearnerLoad } from './learner'
+import { href, routePath, sectionOf, useRoute, type Route } from './router'
+import { CoreScreen, ProgramScreen, ProgramsScreen, TopicRoute } from './screens/curriculum-screens'
+import { PracticeScreen, ProgressScreen, ProjectsScreen, TodayScreen } from './screens/learner-screens'
+import { NotFoundScreen, ResourcesScreen, SettingsScreen } from './screens/system-screens'
 
-const topicId = firstLesson.topicId
-const aiProvider = new UnconfiguredAIProvider()
+const NAV_ITEMS: Array<{ route: Route; label: string }> = [
+  { route: { name: 'today' }, label: 'Today' },
+  { route: { name: 'core' }, label: 'Universal Core' },
+  { route: { name: 'programs' }, label: 'Programs' },
+  { route: { name: 'practice' }, label: 'Practice' },
+  { route: { name: 'projects' }, label: 'Projects' },
+  { route: { name: 'progress' }, label: 'Progress' },
+  { route: { name: 'resources' }, label: 'Resources' },
+  { route: { name: 'settings' }, label: 'Settings' },
+]
 
-function initialProgress(): TopicProgress {
-  return {
-    topicId,
-    state: 'learning',
-    masteryScore: 0,
-    evidenceIds: [],
-    updatedAt: new Date().toISOString(),
+function activeSection(route: Route): Route['name'] {
+  if (route.name === 'topic') {
+    const [first] = findTopicLocations(route.topicId)
+    if (first?.program.id === UNIVERSAL_CORE_ID) return 'core'
+  }
+  if (route.name === 'program' && route.programId === UNIVERSAL_CORE_ID) return 'core'
+  return sectionOf(route)
+}
+
+function PrimaryNav({ route, onNavigate }: { route: Route; onNavigate: () => void }) {
+  const current = activeSection(route)
+  return (
+    <ul className="primary-nav">
+      {NAV_ITEMS.map((item) => (
+        <li key={item.label}>
+          <a
+            href={href(item.route)}
+            aria-current={current === item.route.name ? 'page' : undefined}
+            onClick={onNavigate}
+          >
+            {item.label}
+          </a>
+        </li>
+      ))}
+    </ul>
+  )
+}
+
+function AIToggle() {
+  const { open, openPanel, closePanel } = useAI()
+  return (
+    <button
+      type="button"
+      className="ai-toggle"
+      aria-expanded={open}
+      aria-controls="ai-panel"
+      onClick={() => (open ? closePanel() : openPanel())}
+    >
+      <span aria-hidden="true" className="ask-ai-mark">
+        AI
+      </span>
+      <span className="ai-toggle-text">Assistant</span>
+    </button>
+  )
+}
+
+function Screen({ route, learner, provider }: { route: Route; learner: LearnerLoad; provider: AIProvider }) {
+  switch (route.name) {
+    case 'today':
+      return <TodayScreen learner={learner} />
+    case 'core':
+      return <CoreScreen learner={learner} />
+    case 'programs':
+      return <ProgramsScreen learner={learner} />
+    case 'program':
+      return <ProgramScreen programId={route.programId} learner={learner} />
+    case 'topic':
+      return <TopicRoute key={route.topicId} topicId={route.topicId} learner={learner} />
+    case 'practice':
+      return <PracticeScreen learner={learner} />
+    case 'projects':
+      return <ProjectsScreen learner={learner} />
+    case 'progress':
+      return <ProgressScreen learner={learner} />
+    case 'resources':
+      return <ResourcesScreen />
+    case 'settings':
+      return <SettingsScreen learner={learner} provider={provider} />
+    case 'not-found':
+      return <NotFoundScreen what={`The page “${route.path}”`} />
   }
 }
 
-export function App() {
-  const [view, setView] = useState<'mission' | 'lesson' | 'progress'>('mission')
-  const [state, setState] = useState<LocalLearnerState>({ version: 1, progress: {}, evidence: [] })
-  const [status, setStatus] = useState('Loading local learner state…')
+function StatusBanner({ learner }: { learner: LearnerLoad }) {
+  if (learner.status === 'loading') {
+    return (
+      <p className="status-banner" role="status">
+        Loading local learner state…
+      </p>
+    )
+  }
+  if (learner.status === 'error') {
+    return (
+      <p className="status-banner status-error" role="alert">
+        Local learner state could not be read ({learner.message}). You can keep learning; progress will not be shown
+        until storage is available.
+      </p>
+    )
+  }
+  return (
+    <p className="status-banner status-quiet" role="status">
+      Local mode — your learning state stays on this device.
+    </p>
+  )
+}
+
+function Shell({ provider, learner }: { provider: AIProvider; learner: LearnerLoad }) {
+  const route = useRoute()
+  const { open: aiOpen } = useAI()
+  const [menuOpen, setMenuOpen] = useState(false)
+  const path = routePath(route)
+  const firstRender = useRef(true)
+
+  // On route change: close the mobile menu, reset scroll, and move focus to the page heading
+  // so screen-reader and keyboard users land on the new content.
+  useEffect(() => {
+    setMenuOpen(false)
+    if (firstRender.current) {
+      firstRender.current = false
+      return
+    }
+    window.scrollTo?.(0, 0)
+    document.getElementById('page-title')?.focus()
+  }, [path])
 
   useEffect(() => {
-    loadLearnerState().then((loaded) => {
-      setState(loaded)
-      setStatus('Ready — your learning state stays on this device.')
-    })
-  }, [])
-
-  const progress = state.progress[topicId] ?? initialProgress()
-  const unlocked = canUnlockTopic(progress)
-
-  const objectiveCount = useMemo(() => firstLesson.objectives.length, [])
-
-  function beginLesson() {
-    setView('lesson')
-    setState((current) => ({
-      ...current,
-      progress: {
-        ...current.progress,
-        [topicId]: current.progress[topicId] ?? initialProgress(),
-      },
-    }))
-  }
-
-  async function saveProgress(next: TopicProgress) {
-    const nextState = {
-      ...state,
-      progress: { ...state.progress, [topicId]: next },
+    if (!menuOpen) return
+    function onKey(event: KeyboardEvent) {
+      if (event.key === 'Escape') setMenuOpen(false)
     }
-    setState(nextState)
-    await saveLearnerState(nextState)
-    setStatus('Progress saved locally.')
-  }
-
-  async function markPractice() {
-    const next: TopicProgress = {
-      ...progress,
-      state: 'practiced',
-      masteryScore: Math.max(progress.masteryScore, 0.25),
-      updatedAt: new Date().toISOString(),
-    }
-    await saveProgress(next)
-  }
-
-  async function runAI() {
-    try {
-      await aiProvider.coach({
-        prompt: 'Help me understand how to decompose a programming problem into functions.',
-        topicId,
-      })
-    } catch (error) {
-      setStatus(error instanceof Error ? error.message : 'AI provider unavailable.')
-    }
-  }
+    window.addEventListener('keydown', onKey)
+    return () => window.removeEventListener('keydown', onKey)
+  }, [menuOpen])
 
   return (
-    <div className="app-shell">
+    <div className={`app-shell${aiOpen ? ' ai-open' : ''}`}>
+      <a className="skip-link" href="#main" onClick={(event) => {
+        event.preventDefault()
+        document.getElementById('main')?.focus()
+      }}>
+        Skip to content
+      </a>
       <header className="topbar">
-        <button className="brand" onClick={() => setView('mission')} aria-label="MasteryOS home">
-          <span className="brand-mark">M</span>
+        <a className="brand" href={href({ name: 'today' })} aria-label="MasteryOS — Today">
+          <span className="brand-mark" aria-hidden="true">
+            M
+          </span>
           <span>MasteryOS</span>
-        </button>
-        <nav aria-label="Primary navigation">
-          <button onClick={() => setView('mission')}>Mission</button>
-          <button onClick={() => setView('lesson')}>Learn</button>
-          <button onClick={() => setView('progress')}>Progress</button>
-        </nav>
+        </a>
+        <div className="topbar-actions">
+          <AIToggle />
+          <button
+            type="button"
+            className="menu-toggle"
+            aria-expanded={menuOpen}
+            aria-controls="primary-navigation"
+            onClick={() => setMenuOpen((value) => !value)}
+          >
+            Menu
+          </button>
+        </div>
       </header>
 
-      <main className="page">
-        {view === 'mission' && (
-          <section className="hero-grid">
-            <div>
-              <p className="eyebrow">PERSONAL TECHNOLOGY MASTERY</p>
-              <h1>Build capability, not course-completion points.</h1>
-              <p className="lead">
-                MasteryOS is your local-first learning laboratory. Start with one real competency,
-                prove it, and unlock what comes next.
-              </p>
-              <div className="actions">
-                <button className="primary" onClick={beginLesson}>Continue mission</button>
-                <button className="secondary" onClick={() => setView('progress')}>View progress</button>
-              </div>
-            </div>
-            <aside className="mission-card">
-              <span className="label">CURRENT MISSION</span>
-              <h2>{firstLesson.title}</h2>
-              <p>{firstLesson.summary}</p>
-              <div className="mini-stats">
-                <span>{objectiveCount} objectives</span>
-                <span>{firstLesson.practice.length} practice tasks</span>
-                <span>{progress.state}</span>
-              </div>
-            </aside>
-          </section>
-        )}
+      <div className="workspace">
+        <nav id="primary-navigation" aria-label="Primary" className={`sidebar${menuOpen ? ' is-open' : ''}`}>
+          <PrimaryNav route={route} onNavigate={() => setMenuOpen(false)} />
+          <p className="sidebar-note small">Local-first · no account required</p>
+        </nav>
 
-        {view === 'lesson' && (
-          <section className="learning-layout">
-            <article className="lesson">
-              <p className="eyebrow">SOFTWARE ENGINEERING · FOUNDATION</p>
-              <h1>{firstLesson.title}</h1>
-              <p className="lead">{firstLesson.summary}</p>
+        <main id="main" tabIndex={-1} className="page">
+          <StatusBanner learner={learner} />
+          <Screen route={route} learner={learner} provider={provider} />
+        </main>
 
-              <section className="content-block">
-                <h2>Objectives</h2>
-                <ul>
-                  {firstLesson.objectives.map((objective) => <li key={objective}>{objective}</li>)}
-                </ul>
-              </section>
-
-              {firstLesson.sections.map((section) => (
-                <section className="content-block" key={section.id}>
-                  <h2>{section.title}</h2>
-                  {section.kind === 'code' ? <pre><code>{section.body}</code></pre> : <p>{section.body}</p>}
-                </section>
-              ))}
-
-              <section className="practice-block">
-                <div>
-                  <span className="label">PRACTICE</span>
-                  <h2>Make the idea yours</h2>
-                </div>
-                {firstLesson.practice.map((item) => (
-                  <div className="practice-item" key={item.id}>
-                    <span>{item.type}</span>
-                    <p>{item.prompt}</p>
-                  </div>
-                ))}
-                <div className="actions">
-                  <button className="primary" onClick={markPractice}>Mark practice attempted</button>
-                  <button className="secondary" onClick={runAI}>Ask AI coach</button>
-                </div>
-              </section>
-            </article>
-
-            <aside className="right-rail">
-              <div className="panel">
-                <span className="label">MASTERY</span>
-                <div className="progress-bar"><span style={{ width: `${Math.round(progress.masteryScore * 100)}%` }} /></div>
-                <strong>{Math.round(progress.masteryScore * 100)}%</strong>
-                <p>{unlocked ? 'Topic mastered and eligible to unlock.' : 'Complete the assessment and independent challenge to unlock.'}</p>
-              </div>
-              <div className="panel">
-                <span className="label">AI</span>
-                <p>Contextual assistance is wired as a provider boundary. A real provider can be connected without redesigning the lesson.</p>
-              </div>
-            </aside>
-          </section>
-        )}
-
-        {view === 'progress' && (
-          <section>
-            <p className="eyebrow">LOCAL LEARNER STATE</p>
-            <h1>Progress</h1>
-            <div className="progress-card">
-              <h2>{firstLesson.title}</h2>
-              <p>State: <strong>{progress.state}</strong></p>
-              <p>Mastery score: <strong>{Math.round(progress.masteryScore * 100)}%</strong></p>
-              <p>Evidence recorded: <strong>{progress.evidenceIds.length}</strong></p>
-              <p className="muted">No cloud database is required for this core flow.</p>
-            </div>
-          </section>
-        )}
-
-        <footer className="status" aria-live="polite">{status}</footer>
-      </main>
+        <AIPanel provider={provider} />
+      </div>
     </div>
+  )
+}
+
+export interface AppProps {
+  /** Injected for tests and future adapters; defaults to the unconfigured (offline) provider. */
+  aiProvider?: AIProvider
+  loadState?: () => Promise<LocalLearnerState>
+}
+
+const defaultProvider = new UnconfiguredAIProvider()
+
+export function App({ aiProvider = defaultProvider, loadState = loadLearnerState }: AppProps) {
+  const learner = useLearnerState(loadState)
+  return (
+    <AIProviderScope>
+      <Shell provider={aiProvider} learner={learner} />
+    </AIProviderScope>
   )
 }

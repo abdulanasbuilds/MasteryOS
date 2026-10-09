@@ -78,7 +78,7 @@ The project is beyond documentation-only initialization. An executable React + T
 
 Implemented scaffold pieces include:
 
-- Mission/Learn/Progress application shell;
+- Gate 1 application shell (all specified routes, contextual AI panel, responsive layouts) — verified, see `docs/verification/GATE-1-SHELL.md`;
 - one authored TypeScript lesson;
 - basic mastery domain types/tests;
 - local IndexedDB persistence;
@@ -90,7 +90,7 @@ Implemented scaffold pieces include:
 - toolchain/resource registry;
 - universal start-anywhere agent prompt.
 
-The complete product is **not implemented**. Continue from the earliest incomplete gate.
+The complete product is **not implemented**. Continue from the earliest incomplete gate — currently **Gate 2 (content/curriculum schema)**; see the Gate 2 notes in `TASKS.md`.
 
 ## First vertical slice
 

@@ -273,3 +273,10 @@ The shell is ready to advance when:
 ## Next phase handoff
 
 Once the shell gate passes, continue to the content schema + first authored lesson gate. Do not jump directly to backend infrastructure.
+
+## Implementation notes (Gate 1, 2026-10-08)
+
+- **Routing:** routes are served as hash routes (`#/`, `#/core`, `#/programs/:programId`, `#/topic/:topicId`, …) by a small dependency-free router in `src/app/router.ts`. Hash routing keeps the build fully static: it works from any static file server or local package without rewrite rules. Route ids must match `^[a-z0-9][a-z0-9-]*$`; anything else renders the not-found state.
+- **State separation:** route state (`useRoute`), local learner state (`useLearnerState`, read-only in Gate 1), curriculum/content read model (`src/content/curriculum.ts`, `src/content/resources.ts`) and AI request state (`src/app/ai.tsx`) are separate. No global state library.
+- **AI placement:** a persistent “Assistant” toggle in the top bar plus contextual “Ask about this section/topic” triggers. The panel is non-modal (`role="dialog"`, `aria-modal="false"`), docks right on wide screens, overlays at ≤1100px and becomes a bottom sheet at ≤760px. Escape closes it and returns focus to the trigger.
+- **Honesty rule:** surfaces whose behaviour belongs to later gates render an explicit “Reserved · Gate N” or empty state. No surface displays invented metrics, streaks or locked/unlocked states the mastery engine has not computed.

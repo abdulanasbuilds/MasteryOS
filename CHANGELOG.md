@@ -2,6 +2,26 @@
 
 All notable project-level changes are recorded here. Implementation changes should be added as the application evolves.
 
+## 2026-10-08 — Gate 1 application shell
+
+### Added
+
+- Dependency-free hash router covering every route in `docs/FRONTEND-SHELL-SPEC.md` plus a not-found state.
+- Application shell: skip link, sidebar primary navigation with `aria-current`, mobile menu disclosure, route-change focus management.
+- Today, Universal Core, Programs, Program/route, Topic, Practice, Projects, Progress, Resources and Settings surfaces backed by the existing curriculum manifest, source catalog, authored lesson and local learner state — with honest empty/reserved states instead of placeholder metrics.
+- Contextual AI panel (side panel on desktop, bottom sheet on mobile) behind the existing `AIProvider` boundary; provider failure is a recoverable state and AI output renders as plain text.
+- Technical Learning Laboratory design tokens and responsive layouts.
+- 40 new Vitest tests (42 total) and a recorded browser verification (`docs/verification/GATE-1-SHELL.md`).
+- `package-lock.json` for deterministic installs.
+
+### Fixed
+
+- Pre-existing `tsc` failure that broke `npm run typecheck` and `npm run build` (`UnconfiguredAIProvider` signatures).
+
+### Removed
+
+- “Mark practice attempted” button, which raised mastery score to 25% from a single click, contradicting mastery-over-completion (D-004).
+
 ## 2026-09-06 — Pre-build foundation + executable scaffold
 
 ### Added
