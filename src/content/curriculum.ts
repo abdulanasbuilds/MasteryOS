@@ -1,66 +1,48 @@
-import manifest from '../../content/curriculum/master-curriculum-manifest.json'
+import rawManifest from '../../content/curriculum/master-curriculum-manifest.json'
 import type { Lesson } from '../domain/content'
+import type {
+  CurriculumDomain,
+  CurriculumManifest,
+  CurriculumPhase,
+  CurriculumProgram,
+  CurriculumTopic,
+  TopicPlacement,
+} from '../domain/curriculum'
+import { assessments } from './assessments'
 import { firstLesson } from './first-lesson'
+import { asManifest, validateCurriculum } from './validate-curriculum'
 
 /**
- * Read-only view of the version-controlled curriculum manifest for the shell.
+ * Read model over curriculum schema v2 (see src/domain/curriculum.ts).
  *
- * This is intentionally thin: Gate 2 owns the full typed content/curriculum
- * schema (Program → Phase → Domain → Topic → Lesson …). The shell only needs
- * program/phase/topic structure and phase-level prerequisites, which the
- * manifest already provides.
+ * The manifest is validated when this module loads. The test suite asserts the
+ * result is empty, so an invalid graph cannot be merged; at runtime any issues
+ * are exposed via `curriculumIssues` rather than crashing the learner's shell.
  */
-export interface CurriculumPhase {
-  id: string
-  title: string
-  topics: string[]
-  prerequisites: string[]
-  pedagogy?: string
-}
-
-export interface CurriculumProgram {
-  id: string
-  title: string
-  phases: CurriculumPhase[]
-}
+export type { CurriculumDomain, CurriculumPhase, CurriculumProgram, CurriculumTopic, TopicPlacement }
 
 export const UNIVERSAL_CORE_ID = 'universal-core'
 
-interface RawPhase {
-  id: string
-  title: string
-  topics?: string[]
-  prerequisites?: string[]
-  pedagogy?: string
-}
+/** Authored, rendered lessons. Only one exists today. */
+export const lessons: Lesson[] = [firstLesson]
 
-interface RawProgram {
-  id: string
-  title: string
-  phases?: RawPhase[]
-}
+export const curriculumIssues: string[] = validateCurriculum(rawManifest, lessons, assessments).errors
 
-const rawPrograms = (manifest as { programs: RawProgram[] }).programs
+const manifest: CurriculumManifest = asManifest(rawManifest)
 
-export const programs: CurriculumProgram[] = rawPrograms.map((program) => ({
-  id: program.id,
-  title: program.title,
-  phases: (program.phases ?? []).map((phase) => ({
-    id: phase.id,
-    title: phase.title,
-    topics: phase.topics ?? [],
-    prerequisites: phase.prerequisites ?? [],
-    pedagogy: phase.pedagogy,
-  })),
-}))
+export const programs: CurriculumProgram[] = manifest.programs
 
 export const curriculumMeta = {
-  curriculumId: (manifest as { curriculumId: string }).curriculumId,
-  lastVerified: (manifest as { lastVerified: string }).lastVerified,
+  curriculumId: manifest.curriculumId,
+  lastVerified: manifest.lastVerified,
+  schemaVersion: manifest.schemaVersion,
 }
 
-/** Authored, rendered lessons keyed by topic id. Only one exists today. */
-const lessons: Lesson[] = [firstLesson]
+const topicsById = new Map<string, CurriculumTopic>(manifest.topics.map((topic) => [topic.id, topic]))
+
+export function getTopic(topicId: string): CurriculumTopic | undefined {
+  return topicsById.get(topicId)
+}
 
 export function getLessonForTopic(topicId: string): Lesson | undefined {
   return lessons.find((lesson) => lesson.topicId === topicId)
@@ -75,70 +57,73 @@ export const universalCore = getProgram(UNIVERSAL_CORE_ID)
 /** Specialised programs (everything except the Universal Core). */
 export const specialisedPrograms = programs.filter((program) => program.id !== UNIVERSAL_CORE_ID)
 
+/**
+ * The program's recommended route (PROGRAMS.md: "the recommended route remains
+ * explicit"). Schema v2 encodes it as list order: phases → domains → topics.
+ * Strong-alternative and deep-dive routes are not authored yet.
+ */
+export function recommendedRoute(program: CurriculumProgram): CurriculumPhase[] {
+  return program.phases
+}
+
+/** Topic ids of a phase in route order (domain by domain). */
+export function phaseTopicIds(phase: CurriculumPhase): string[] {
+  return phase.domains.flatMap((domain) => domain.topics)
+}
+
+export function programTopicIds(program: CurriculumProgram): string[] {
+  return program.phases.flatMap(phaseTopicIds)
+}
+
 export function topicCount(program: CurriculumProgram): number {
-  return program.phases.reduce((total, phase) => total + phase.topics.length, 0)
+  return programTopicIds(program).length
 }
 
-export interface TopicLocation {
-  program: CurriculumProgram
-  phase: CurriculumPhase
-}
-
-/** Every place a topic id appears in the manifest (topics may be shared). */
-export function findTopicLocations(topicId: string): TopicLocation[] {
-  const locations: TopicLocation[] = []
+/** Every placement of a topic (topics may be shared across programs). */
+export function findTopicLocations(topicId: string): TopicPlacement[] {
+  const topic = getTopic(topicId)
+  const placements: TopicPlacement[] = []
   for (const program of programs) {
     for (const phase of program.phases) {
-      if (phase.topics.includes(topicId)) locations.push({ program, phase })
+      for (const domain of phase.domains) {
+        if (domain.topics.includes(topicId)) {
+          placements.push({ program, phase, domain, depth: topic?.depth ?? phase.depth })
+        }
+      }
     }
   }
-  return locations
+  return placements
 }
 
-/**
- * Resolve a phase prerequisite reference to its program/phase.
- *
- * The manifest currently uses two reference forms: a bare phase id
- * (`learning-foundations`) and a program-qualified id
- * (`computer-science.algorithms-and-data-structures`). Both are accepted here;
- * normalising to one form belongs to the Gate 2 content schema.
- */
-export function findPhase(reference: string): TopicLocation | undefined {
-  const dot = reference.indexOf('.')
-  if (dot > 0) {
-    const program = getProgram(reference.slice(0, dot))
-    const phase = program?.phases.find((candidate) => candidate.id === reference.slice(dot + 1))
-    return program && phase ? { program, phase } : undefined
-  }
-  for (const program of programs) {
-    const phase = program.phases.find((candidate) => candidate.id === reference)
-    if (phase) return { program, phase }
-  }
-  return undefined
+/** Resolve a program-qualified phase reference (`<program-id>.<phase-id>`). */
+export function findPhase(reference: string): { program: CurriculumProgram; phase: CurriculumPhase } | undefined {
+  const [programId, phaseId, ...rest] = reference.split('.')
+  if (!programId || !phaseId || rest.length > 0) return undefined
+  const program = getProgram(programId)
+  const phase = program?.phases.find((candidate) => candidate.id === phaseId)
+  return program && phase ? { program, phase } : undefined
 }
 
 /** Programs whose phases declare a prerequisite on the given Universal Core phase. */
 export function programsFedByCorePhase(phaseId: string): CurriculumProgram[] {
+  const reference = `${UNIVERSAL_CORE_ID}.${phaseId}`
   return specialisedPrograms.filter((program) =>
-    program.phases.some((phase) =>
-      phase.prerequisites.some((reference) => {
-        const location = findPhase(reference)
-        return location?.program.id === UNIVERSAL_CORE_ID && location.phase.id === phaseId
-      }),
-    ),
+    program.phases.some((phase) => phase.prerequisites.includes(reference as `${string}.${string}`)),
   )
 }
 
-/** Manifest topics are ids only; derive a readable title until Gate 2 adds authored titles. */
+/** Authored topic title from the registry; falls back to the raw id for unknown ids. */
 export function topicTitle(topicId: string): string {
-  const lesson = getLessonForTopic(topicId)
-  if (lesson) return lesson.title
-  const words = topicId.split('-').filter(Boolean)
-  if (words.length === 0) return topicId
-  const [first, ...rest] = words
-  return [first.charAt(0).toUpperCase() + first.slice(1), ...rest].join(' ')
+  return getTopic(topicId)?.title ?? topicId
+}
+
+/** Topics that the given topic directly depends on, resolved from the registry. */
+export function topicPrerequisites(topicId: string): CurriculumTopic[] {
+  return (getTopic(topicId)?.prerequisites ?? [])
+    .map((id) => getTopic(id))
+    .filter((topic): topic is CurriculumTopic => Boolean(topic))
 }
 
 export function topicExists(topicId: string): boolean {
-  return Boolean(getLessonForTopic(topicId)) || findTopicLocations(topicId).length > 0
+  return topicsById.has(topicId)
 }

@@ -42,7 +42,7 @@ describe('curriculum read model', () => {
     expect(fed.length).toBeGreaterThan(0)
   })
 
-  it('finds topics and derives readable titles', () => {
+  it('finds topics and reads authored titles from the registry', () => {
     expect(findTopicLocations('problem-decomposition')[0]?.program.id).toBe(UNIVERSAL_CORE_ID)
     expect(topicTitle('problem-decomposition')).toBe('Problem decomposition')
     expect(topicExists('not-a-topic')).toBe(false)
@@ -80,8 +80,10 @@ describe('resources', () => {
 })
 
 describe('phase references', () => {
-  it('accepts bare and program-qualified phase references', () => {
-    expect(findPhase('learning-foundations')?.program.id).toBe(UNIVERSAL_CORE_ID)
+  it('resolves only program-qualified phase references (schema v2)', () => {
+    expect(findPhase('universal-core.learning-foundations')?.program.id).toBe(UNIVERSAL_CORE_ID)
+    expect(findPhase('learning-foundations')).toBeUndefined()
+    expect(findPhase('a.b.c')).toBeUndefined()
     expect(findPhase('computer-science.algorithms-and-data-structures')?.program.id).toBe('computer-science')
     expect(findPhase('computer-science.learning-foundations')).toBeUndefined()
     expect(findPhase('nope')).toBeUndefined()

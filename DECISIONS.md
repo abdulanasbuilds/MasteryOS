@@ -191,6 +191,21 @@ Alternatives rejected: Bookmark-directory UX; scraping full third-party courses/
 Consequences: Resource metadata must include level, prerequisites, type, provenance, rights class, and verification status where known.
 Reversal trigger: A future licensed-content strategy with explicit rights and operational support.
 
+## D-022 — Curriculum schema v2: domains, topic registry, qualified prerequisites
+Date: 2026-10-09
+Status: accepted (domain groupings and phase depths are an initial authored mapping, open to owner revision)
+Decision: `content/curriculum/master-curriculum-manifest.json` moves to `schemaVersion: 2`:
+- a top-level `topics` registry gives every topic an authored title and optional `summary`, `depth` and topic-level `prerequisites`; programs place topics by id, so a shared competency (e.g. `discrete-mathematics`, `network-security`) is one node, not a duplicate;
+- every phase gains a required `depth` and a required `domains` list (81 domains across 26 phases); topics are placed in domains, giving the full `Program → Phase → Domain → Topic` path;
+- phase prerequisites are always program-qualified (`<program-id>.<phase-id>`); the bare form is rejected;
+- list order (phases → domains → topics) is the program's recommended route;
+- the authored lesson topic `program-decomposition-typescript-functions` is placed in Software Engineering → Engineering Practice → Design & Decomposition, with depth `foundation` (overriding the phase's `core`) and a topic prerequisite on Universal Core `decomposition`.
+The graph, authored lessons, assessment definitions and projects are checked by a dependency-free validator (`src/content/validate-curriculum.ts`) that the test suite runs.
+Reason: v1 could not render a real Program-to-Lesson path. The authored lesson's topic was missing from the graph, topics had no titles or depth, there was no Domain level, and prerequisites used two reference forms.
+Alternatives rejected: attaching the lesson to an existing topic (`decomposition` is language-agnostic Universal Core; `program-design` is CS core-depth). Adding a schema library such as zod (no proven need; the validator is about 250 lines and fully tested). Deriving titles from ids at runtime (that produced "Dom" and "Intro to cs"). Single-domain-per-phase placeholders (that would satisfy the shape while hiding the missing structure).
+Consequences: every new topic needs a registry entry and exactly one domain placement per phase; adding content cannot bypass validation. Phase order in SE and other programs is now also domain order, so a few topics moved within their phase (no topic moved between phases). v1 consumers must migrate.
+Reversal trigger: owner revision of domain groupings or depths; a need for multiple alternative routes per program (would add an explicit `routes` structure); content volume that justifies a schema library or MDX pipeline.
+
 ## Decision template
 
 ## D-XXX — Title

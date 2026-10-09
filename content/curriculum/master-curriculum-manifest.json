@@ -1,8 +1,1154 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "curriculumId": "masteryos-expanded-source-synthesis",
-  "lastVerified": "2026-09-27",
+  "lastVerified": "2026-10-09",
   "designRule": "Source-derived coverage is mapped into native MasteryOS competencies; external courses remain provenance/alternatives, not runtime dependencies.",
+  "conventions": {
+    "ids": "kebab-case; topic ids are globally unique; phase ids are unique within a program; domain ids are unique within a phase",
+    "phasePrerequisites": "always program-qualified: <program-id>.<phase-id>",
+    "topicPrerequisites": "topic ids from the topics registry; must form an acyclic graph",
+    "depth": "foundation | core | advanced | specialist | frontier; a topic placement uses topic.depth when set, otherwise its phase depth",
+    "order": "programs, phases, domains and topics are listed in recommended route order"
+  },
+  "topics": [
+    {
+      "id": "problem-decomposition",
+      "title": "Problem decomposition"
+    },
+    {
+      "id": "debugging-mindset",
+      "title": "Debugging mindset"
+    },
+    {
+      "id": "learning-how-to-learn",
+      "title": "Learning how to learn"
+    },
+    {
+      "id": "technical-reading",
+      "title": "Technical reading"
+    },
+    {
+      "id": "source-evaluation",
+      "title": "Source evaluation"
+    },
+    {
+      "id": "technical-writing",
+      "title": "Technical writing"
+    },
+    {
+      "id": "arithmetic-fluency",
+      "title": "Arithmetic fluency"
+    },
+    {
+      "id": "algebra-repair",
+      "title": "Algebra repair"
+    },
+    {
+      "id": "equations-inequalities",
+      "title": "Equations & inequalities"
+    },
+    {
+      "id": "functions-and-graphs",
+      "title": "Functions & graphs"
+    },
+    {
+      "id": "precalculus",
+      "title": "Precalculus"
+    },
+    {
+      "id": "geometry-foundations",
+      "title": "Geometry foundations"
+    },
+    {
+      "id": "trigonometry-foundations",
+      "title": "Trigonometry foundations"
+    },
+    {
+      "id": "counting-and-combinatorics-foundations",
+      "title": "Counting & combinatorics foundations"
+    },
+    {
+      "id": "probability-foundations",
+      "title": "Probability foundations"
+    },
+    {
+      "id": "mathematical-logic-foundations",
+      "title": "Mathematical logic foundations"
+    },
+    {
+      "id": "what-is-computation",
+      "title": "What is computation?"
+    },
+    {
+      "id": "algorithms-as-processes",
+      "title": "Algorithms as processes"
+    },
+    {
+      "id": "data-representation",
+      "title": "Data representation"
+    },
+    {
+      "id": "complexity-intuition",
+      "title": "Complexity intuition"
+    },
+    {
+      "id": "abstraction",
+      "title": "Abstraction"
+    },
+    {
+      "id": "decomposition",
+      "title": "Decomposition"
+    },
+    {
+      "id": "terminal-basics",
+      "title": "Terminal basics"
+    },
+    {
+      "id": "shell-and-command-line",
+      "title": "Shell & command line"
+    },
+    {
+      "id": "development-environments",
+      "title": "Development environments"
+    },
+    {
+      "id": "git-fundamentals",
+      "title": "Git fundamentals"
+    },
+    {
+      "id": "github-workflow",
+      "title": "GitHub workflow"
+    },
+    {
+      "id": "debugging-fundamentals",
+      "title": "Debugging fundamentals"
+    },
+    {
+      "id": "testing-fundamentals",
+      "title": "Testing fundamentals"
+    },
+    {
+      "id": "documentation-and-readmes",
+      "title": "Documentation & READMEs"
+    },
+    {
+      "id": "semantic-html",
+      "title": "Semantic HTML"
+    },
+    {
+      "id": "document-structure",
+      "title": "Document structure"
+    },
+    {
+      "id": "links-images-media",
+      "title": "Links, images & media"
+    },
+    {
+      "id": "forms-and-inputs",
+      "title": "Forms & inputs"
+    },
+    {
+      "id": "accessibility-basics",
+      "title": "Accessibility basics"
+    },
+    {
+      "id": "css-selectors",
+      "title": "CSS selectors"
+    },
+    {
+      "id": "cascade-and-inheritance",
+      "title": "Cascade & inheritance"
+    },
+    {
+      "id": "box-model",
+      "title": "Box model"
+    },
+    {
+      "id": "layout-flow",
+      "title": "Layout flow"
+    },
+    {
+      "id": "flexbox",
+      "title": "Flexbox"
+    },
+    {
+      "id": "css-grid",
+      "title": "CSS grid"
+    },
+    {
+      "id": "responsive-design",
+      "title": "Responsive design"
+    },
+    {
+      "id": "typography",
+      "title": "Typography"
+    },
+    {
+      "id": "ui-states",
+      "title": "UI states"
+    },
+    {
+      "id": "browser-devtools",
+      "title": "Browser DevTools"
+    },
+    {
+      "id": "static-site-deployment",
+      "title": "Static site deployment"
+    },
+    {
+      "id": "browser-runtime",
+      "title": "Browser runtime"
+    },
+    {
+      "id": "dom",
+      "title": "DOM"
+    },
+    {
+      "id": "events",
+      "title": "Events"
+    },
+    {
+      "id": "accessibility-advanced",
+      "title": "Advanced accessibility"
+    },
+    {
+      "id": "http-basics",
+      "title": "HTTP basics"
+    },
+    {
+      "id": "urls-and-routing",
+      "title": "URLs & routing"
+    },
+    {
+      "id": "fetch-and-apis",
+      "title": "Fetch & APIs"
+    },
+    {
+      "id": "web-storage",
+      "title": "Web storage"
+    },
+    {
+      "id": "security-model-basics",
+      "title": "Security model basics"
+    },
+    {
+      "id": "javascript-foundations",
+      "title": "JavaScript foundations"
+    },
+    {
+      "id": "typescript-foundations",
+      "title": "TypeScript foundations"
+    },
+    {
+      "id": "modules-and-tooling",
+      "title": "Modules & tooling"
+    },
+    {
+      "id": "async-javascript",
+      "title": "Async JavaScript"
+    },
+    {
+      "id": "state-management",
+      "title": "State management"
+    },
+    {
+      "id": "component-architecture",
+      "title": "Component architecture"
+    },
+    {
+      "id": "forms-validation",
+      "title": "Form validation"
+    },
+    {
+      "id": "testing-frontend",
+      "title": "Frontend testing"
+    },
+    {
+      "id": "performance-frontend",
+      "title": "Frontend performance"
+    },
+    {
+      "id": "frontend-security",
+      "title": "Frontend security"
+    },
+    {
+      "id": "build-and-deployment",
+      "title": "Build & deployment"
+    },
+    {
+      "id": "intro-to-cs",
+      "title": "Introduction to computer science"
+    },
+    {
+      "id": "problem-solving-with-code",
+      "title": "Problem solving with code"
+    },
+    {
+      "id": "python-foundations",
+      "title": "Python foundations"
+    },
+    {
+      "id": "c-foundations",
+      "title": "C foundations"
+    },
+    {
+      "id": "imperative-programming",
+      "title": "Imperative programming"
+    },
+    {
+      "id": "functional-programming",
+      "title": "Functional programming"
+    },
+    {
+      "id": "object-oriented-programming",
+      "title": "Object-oriented programming"
+    },
+    {
+      "id": "programming-language-paradigms",
+      "title": "Programming language paradigms"
+    },
+    {
+      "id": "type-systems",
+      "title": "Type systems"
+    },
+    {
+      "id": "static-vs-dynamic-typing",
+      "title": "Static vs. dynamic typing"
+    },
+    {
+      "id": "design-by-contract",
+      "title": "Design by contract"
+    },
+    {
+      "id": "software-specification",
+      "title": "Software specification"
+    },
+    {
+      "id": "program-design",
+      "title": "Program design"
+    },
+    {
+      "id": "unit-testing",
+      "title": "Unit testing"
+    },
+    {
+      "id": "refactoring",
+      "title": "Refactoring"
+    },
+    {
+      "id": "calculus-differentiation",
+      "title": "Calculus differentiation"
+    },
+    {
+      "id": "calculus-integration",
+      "title": "Calculus integration"
+    },
+    {
+      "id": "infinite-series",
+      "title": "Infinite series"
+    },
+    {
+      "id": "discrete-mathematics",
+      "title": "Discrete mathematics"
+    },
+    {
+      "id": "sets-and-functions",
+      "title": "Sets & functions"
+    },
+    {
+      "id": "proof-by-induction",
+      "title": "Proof by induction"
+    },
+    {
+      "id": "recurrences",
+      "title": "Recurrences"
+    },
+    {
+      "id": "graph-theory-foundations",
+      "title": "Graph theory foundations"
+    },
+    {
+      "id": "discrete-probability",
+      "title": "Discrete probability"
+    },
+    {
+      "id": "asymptotic-analysis",
+      "title": "Asymptotic analysis"
+    },
+    {
+      "id": "arrays-lists-stacks-queues",
+      "title": "Arrays, lists, stacks & queues"
+    },
+    {
+      "id": "hash-tables",
+      "title": "Hash tables"
+    },
+    {
+      "id": "trees-heaps-priority-queues",
+      "title": "Trees, heaps & priority queues"
+    },
+    {
+      "id": "graphs",
+      "title": "Graphs"
+    },
+    {
+      "id": "sorting",
+      "title": "Sorting"
+    },
+    {
+      "id": "searching",
+      "title": "Searching"
+    },
+    {
+      "id": "divide-and-conquer",
+      "title": "Divide & conquer"
+    },
+    {
+      "id": "greedy-algorithms",
+      "title": "Greedy algorithms"
+    },
+    {
+      "id": "dynamic-programming",
+      "title": "Dynamic programming"
+    },
+    {
+      "id": "string-algorithms",
+      "title": "String algorithms"
+    },
+    {
+      "id": "randomized-algorithms",
+      "title": "Randomized algorithms"
+    },
+    {
+      "id": "shortest-paths",
+      "title": "Shortest paths"
+    },
+    {
+      "id": "minimum-spanning-trees",
+      "title": "Minimum spanning trees"
+    },
+    {
+      "id": "network-flow",
+      "title": "Network flow"
+    },
+    {
+      "id": "amortized-analysis",
+      "title": "Amortized analysis"
+    },
+    {
+      "id": "np-completeness",
+      "title": "NP-completeness"
+    },
+    {
+      "id": "boolean-algebra-and-logic-gates",
+      "title": "Boolean algebra & logic gates"
+    },
+    {
+      "id": "digital-circuits",
+      "title": "Digital circuits"
+    },
+    {
+      "id": "memory-and-state",
+      "title": "Memory & state"
+    },
+    {
+      "id": "cpu-design",
+      "title": "CPU design"
+    },
+    {
+      "id": "pipelining",
+      "title": "Pipelining"
+    },
+    {
+      "id": "assembly-and-machine-code",
+      "title": "Assembly & machine code"
+    },
+    {
+      "id": "computer-organization",
+      "title": "Computer organization"
+    },
+    {
+      "id": "caches-and-memory-hierarchy",
+      "title": "Caches & memory hierarchy"
+    },
+    {
+      "id": "virtual-memory",
+      "title": "Virtual memory"
+    },
+    {
+      "id": "processes-and-threads",
+      "title": "Processes & threads"
+    },
+    {
+      "id": "system-calls",
+      "title": "System calls"
+    },
+    {
+      "id": "filesystems",
+      "title": "Filesystems"
+    },
+    {
+      "id": "concurrency",
+      "title": "Concurrency"
+    },
+    {
+      "id": "operating-system-design",
+      "title": "Operating system design"
+    },
+    {
+      "id": "network-models",
+      "title": "Network models"
+    },
+    {
+      "id": "ethernet-ip",
+      "title": "Ethernet & IP"
+    },
+    {
+      "id": "tcp-udp",
+      "title": "TCP & UDP"
+    },
+    {
+      "id": "routing",
+      "title": "Routing"
+    },
+    {
+      "id": "congestion-control",
+      "title": "Congestion control"
+    },
+    {
+      "id": "dns",
+      "title": "DNS"
+    },
+    {
+      "id": "http",
+      "title": "HTTP"
+    },
+    {
+      "id": "network-debugging",
+      "title": "Network debugging"
+    },
+    {
+      "id": "network-security",
+      "title": "Network security"
+    },
+    {
+      "id": "distributed-network-fundamentals",
+      "title": "Distributed network fundamentals"
+    },
+    {
+      "id": "relational-model",
+      "title": "Relational model"
+    },
+    {
+      "id": "sql-foundations",
+      "title": "SQL foundations"
+    },
+    {
+      "id": "schema-design",
+      "title": "Schema design"
+    },
+    {
+      "id": "normalization",
+      "title": "Normalization"
+    },
+    {
+      "id": "data-modeling",
+      "title": "Data modeling"
+    },
+    {
+      "id": "transactions",
+      "title": "Transactions"
+    },
+    {
+      "id": "concurrency-control",
+      "title": "Concurrency control"
+    },
+    {
+      "id": "recovery",
+      "title": "Recovery"
+    },
+    {
+      "id": "indexes",
+      "title": "Indexes"
+    },
+    {
+      "id": "query-plans",
+      "title": "Query plans"
+    },
+    {
+      "id": "semi-structured-data",
+      "title": "Semi-structured data"
+    },
+    {
+      "id": "formal-logic",
+      "title": "Formal logic"
+    },
+    {
+      "id": "regular-languages",
+      "title": "Regular languages"
+    },
+    {
+      "id": "finite-automata",
+      "title": "Finite automata"
+    },
+    {
+      "id": "context-free-languages",
+      "title": "Context-free languages"
+    },
+    {
+      "id": "pushdown-automata",
+      "title": "Pushdown automata"
+    },
+    {
+      "id": "turing-machines",
+      "title": "Turing machines"
+    },
+    {
+      "id": "decidability",
+      "title": "Decidability"
+    },
+    {
+      "id": "computability",
+      "title": "Computability"
+    },
+    {
+      "id": "complexity-classes",
+      "title": "Complexity classes"
+    },
+    {
+      "id": "security-principles",
+      "title": "Security principles"
+    },
+    {
+      "id": "threat-modeling",
+      "title": "Threat modeling"
+    },
+    {
+      "id": "secure-design",
+      "title": "Secure design"
+    },
+    {
+      "id": "privacy",
+      "title": "Privacy"
+    },
+    {
+      "id": "secure-coding",
+      "title": "Secure coding"
+    },
+    {
+      "id": "web-security",
+      "title": "Web security"
+    },
+    {
+      "id": "vulnerability-analysis",
+      "title": "Vulnerability analysis"
+    },
+    {
+      "id": "cryptographic-primitives",
+      "title": "Cryptographic primitives"
+    },
+    {
+      "id": "authentication-and-authorization",
+      "title": "Authentication & authorization"
+    },
+    {
+      "id": "program-decomposition-typescript-functions",
+      "title": "Program decomposition with TypeScript functions",
+      "depth": "foundation",
+      "prerequisites": [
+        "decomposition"
+      ],
+      "summary": "Turn a larger programming problem into small, testable functions with clear responsibilities."
+    },
+    {
+      "id": "requirements",
+      "title": "Requirements"
+    },
+    {
+      "id": "design",
+      "title": "Design"
+    },
+    {
+      "id": "code-review",
+      "title": "Code review"
+    },
+    {
+      "id": "testing-strategy",
+      "title": "Testing strategy"
+    },
+    {
+      "id": "integration-testing",
+      "title": "Integration testing"
+    },
+    {
+      "id": "property-based-testing",
+      "title": "Property-based testing"
+    },
+    {
+      "id": "observability",
+      "title": "Observability"
+    },
+    {
+      "id": "incident-thinking",
+      "title": "Incident thinking"
+    },
+    {
+      "id": "technical-debt",
+      "title": "Technical debt"
+    },
+    {
+      "id": "release-engineering",
+      "title": "Release engineering"
+    },
+    {
+      "id": "modularity",
+      "title": "Modularity"
+    },
+    {
+      "id": "interfaces-and-abstractions",
+      "title": "Interfaces & abstractions"
+    },
+    {
+      "id": "api-design",
+      "title": "API design"
+    },
+    {
+      "id": "service-boundaries",
+      "title": "Service boundaries"
+    },
+    {
+      "id": "caching",
+      "title": "Caching"
+    },
+    {
+      "id": "queues",
+      "title": "Queues"
+    },
+    {
+      "id": "load-balancing",
+      "title": "Load balancing"
+    },
+    {
+      "id": "scalability",
+      "title": "Scalability"
+    },
+    {
+      "id": "reliability",
+      "title": "Reliability"
+    },
+    {
+      "id": "distributed-data",
+      "title": "Distributed data"
+    },
+    {
+      "id": "consistency-models",
+      "title": "Consistency models"
+    },
+    {
+      "id": "system-design",
+      "title": "System design"
+    },
+    {
+      "id": "concurrency-patterns",
+      "title": "Concurrency patterns"
+    },
+    {
+      "id": "parallel-programming",
+      "title": "Parallel programming"
+    },
+    {
+      "id": "performance-engineering",
+      "title": "Performance engineering"
+    },
+    {
+      "id": "profiling",
+      "title": "Profiling"
+    },
+    {
+      "id": "memory-performance",
+      "title": "Memory performance"
+    },
+    {
+      "id": "compiler-aware-optimization",
+      "title": "Compiler-aware optimization"
+    },
+    {
+      "id": "developer-tools",
+      "title": "Developer tools"
+    },
+    {
+      "id": "build-systems",
+      "title": "Build systems"
+    },
+    {
+      "id": "ci-cd",
+      "title": "CI/CD"
+    },
+    {
+      "id": "supply-chain-security",
+      "title": "Supply-chain security"
+    },
+    {
+      "id": "advanced-algebra",
+      "title": "Advanced algebra"
+    },
+    {
+      "id": "advanced-functions",
+      "title": "Advanced functions"
+    },
+    {
+      "id": "complex-numbers",
+      "title": "Complex numbers"
+    },
+    {
+      "id": "sequences-and-series",
+      "title": "Sequences & series"
+    },
+    {
+      "id": "advanced-trigonometry",
+      "title": "Advanced trigonometry"
+    },
+    {
+      "id": "vectors",
+      "title": "Vectors"
+    },
+    {
+      "id": "matrices",
+      "title": "Matrices"
+    },
+    {
+      "id": "combinatorics",
+      "title": "Combinatorics"
+    },
+    {
+      "id": "elementary-number-theory",
+      "title": "Elementary number theory"
+    },
+    {
+      "id": "olympiad-problem-solving",
+      "title": "Olympiad problem solving"
+    },
+    {
+      "id": "calculus-i",
+      "title": "Calculus I"
+    },
+    {
+      "id": "calculus-ii",
+      "title": "Calculus II"
+    },
+    {
+      "id": "multivariable-calculus",
+      "title": "Multivariable calculus"
+    },
+    {
+      "id": "ordinary-differential-equations",
+      "title": "Ordinary differential equations"
+    },
+    {
+      "id": "linear-algebra",
+      "title": "Linear algebra"
+    },
+    {
+      "id": "probability",
+      "title": "Probability"
+    },
+    {
+      "id": "statistics",
+      "title": "Statistics"
+    },
+    {
+      "id": "numerical-methods",
+      "title": "Numerical methods"
+    },
+    {
+      "id": "optimization",
+      "title": "Optimization"
+    },
+    {
+      "id": "proof-writing",
+      "title": "Proof writing"
+    },
+    {
+      "id": "functional-thinking",
+      "title": "Functional thinking"
+    },
+    {
+      "id": "real-analysis",
+      "title": "Real analysis"
+    },
+    {
+      "id": "complex-analysis",
+      "title": "Complex analysis"
+    },
+    {
+      "id": "measure-and-probability-foundations",
+      "title": "Measure & probability foundations"
+    },
+    {
+      "id": "abstract-algebra",
+      "title": "Abstract algebra"
+    },
+    {
+      "id": "number-theory",
+      "title": "Number theory"
+    },
+    {
+      "id": "advanced-combinatorics",
+      "title": "Advanced combinatorics"
+    },
+    {
+      "id": "graph-theory",
+      "title": "Graph theory"
+    },
+    {
+      "id": "conditional-probability-for-quant",
+      "title": "Conditional probability for quant"
+    },
+    {
+      "id": "random-variables",
+      "title": "Random variables"
+    },
+    {
+      "id": "expectation-and-variance",
+      "title": "Expectation & variance"
+    },
+    {
+      "id": "covariance-and-correlation",
+      "title": "Covariance & correlation"
+    },
+    {
+      "id": "distributions",
+      "title": "Distributions"
+    },
+    {
+      "id": "law-of-large-numbers",
+      "title": "Law of large numbers"
+    },
+    {
+      "id": "central-limit-theorem",
+      "title": "Central limit theorem"
+    },
+    {
+      "id": "linear-algebra-for-statistics",
+      "title": "Linear algebra for statistics"
+    },
+    {
+      "id": "multivariable-calculus-for-optimization",
+      "title": "Multivariable calculus for optimization"
+    },
+    {
+      "id": "numerical-computation",
+      "title": "Numerical computation"
+    },
+    {
+      "id": "statistical-inference",
+      "title": "Statistical inference"
+    },
+    {
+      "id": "regression",
+      "title": "Regression"
+    },
+    {
+      "id": "maximum-likelihood",
+      "title": "Maximum likelihood"
+    },
+    {
+      "id": "bayesian-thinking",
+      "title": "Bayesian thinking"
+    },
+    {
+      "id": "time-series",
+      "title": "Time series"
+    },
+    {
+      "id": "signal-research",
+      "title": "Signal research"
+    },
+    {
+      "id": "backtesting-methodology",
+      "title": "Backtesting methodology"
+    },
+    {
+      "id": "experimental-design",
+      "title": "Experimental design"
+    },
+    {
+      "id": "multiple-testing",
+      "title": "Multiple testing"
+    },
+    {
+      "id": "model-validation",
+      "title": "Model validation"
+    },
+    {
+      "id": "simulation",
+      "title": "Simulation"
+    },
+    {
+      "id": "market-microstructure",
+      "title": "Market microstructure"
+    },
+    {
+      "id": "research-engineering",
+      "title": "Research engineering"
+    },
+    {
+      "id": "python-for-research",
+      "title": "Python for research"
+    },
+    {
+      "id": "numpy-and-vectorization",
+      "title": "NumPy & vectorization"
+    },
+    {
+      "id": "pandas-data-workflows",
+      "title": "pandas data workflows"
+    },
+    {
+      "id": "data-pipelines",
+      "title": "Data pipelines"
+    },
+    {
+      "id": "research-infrastructure",
+      "title": "Research infrastructure"
+    },
+    {
+      "id": "c-plus-plus-foundations",
+      "title": "C++ foundations"
+    },
+    {
+      "id": "performance-coding",
+      "title": "Performance coding"
+    },
+    {
+      "id": "concurrency-for-quant",
+      "title": "Concurrency for quant"
+    },
+    {
+      "id": "low-latency-concepts",
+      "title": "Low-latency concepts"
+    },
+    {
+      "id": "mental-math",
+      "title": "Mental math"
+    },
+    {
+      "id": "estimation",
+      "title": "Estimation"
+    },
+    {
+      "id": "probability-puzzles",
+      "title": "Probability puzzles"
+    },
+    {
+      "id": "expected-value-puzzles",
+      "title": "Expected-value puzzles"
+    },
+    {
+      "id": "game-theory-intuition",
+      "title": "Game theory intuition"
+    },
+    {
+      "id": "decision-under-uncertainty",
+      "title": "Decision under uncertainty"
+    },
+    {
+      "id": "market-making-simulations",
+      "title": "Market-making simulations"
+    },
+    {
+      "id": "coding-interview-foundations",
+      "title": "Coding interview foundations"
+    },
+    {
+      "id": "supervised-learning",
+      "title": "Supervised learning"
+    },
+    {
+      "id": "unsupervised-learning",
+      "title": "Unsupervised learning"
+    },
+    {
+      "id": "feature-engineering",
+      "title": "Feature engineering"
+    },
+    {
+      "id": "model-evaluation",
+      "title": "Model evaluation"
+    },
+    {
+      "id": "cross-validation",
+      "title": "Cross-validation"
+    },
+    {
+      "id": "regularization",
+      "title": "Regularization"
+    },
+    {
+      "id": "optimization-for-ml",
+      "title": "Optimization for ML"
+    },
+    {
+      "id": "neural-networks",
+      "title": "Neural networks"
+    },
+    {
+      "id": "backpropagation",
+      "title": "Backpropagation"
+    },
+    {
+      "id": "representation-learning",
+      "title": "Representation learning"
+    },
+    {
+      "id": "convolutional-networks",
+      "title": "Convolutional networks"
+    },
+    {
+      "id": "sequence-models",
+      "title": "Sequence models"
+    },
+    {
+      "id": "attention",
+      "title": "Attention"
+    },
+    {
+      "id": "transformers",
+      "title": "Transformers"
+    },
+    {
+      "id": "llm-fundamentals",
+      "title": "LLM fundamentals"
+    },
+    {
+      "id": "retrieval-augmented-generation",
+      "title": "Retrieval-augmented generation"
+    },
+    {
+      "id": "tool-use-and-agents",
+      "title": "Tool use & agents"
+    },
+    {
+      "id": "evaluation-and-observability",
+      "title": "Evaluation & observability"
+    },
+    {
+      "id": "inference-efficiency",
+      "title": "Inference efficiency"
+    },
+    {
+      "id": "model-serving",
+      "title": "Model serving"
+    },
+    {
+      "id": "mlops",
+      "title": "MLOps"
+    },
+    {
+      "id": "ai-safety-and-reliability",
+      "title": "AI safety & reliability"
+    }
+  ],
   "programs": [
     {
       "id": "universal-core",
@@ -11,55 +1157,123 @@
         {
           "id": "learning-foundations",
           "title": "Learning, Reasoning & Technical Communication",
-          "topics": [
-            "problem-decomposition",
-            "learning-how-to-learn",
-            "technical-reading",
-            "source-evaluation",
-            "technical-writing",
-            "debugging-mindset"
+          "depth": "foundation",
+          "prerequisites": [],
+          "domains": [
+            {
+              "id": "reasoning-and-problem-solving",
+              "title": "Reasoning & Problem Solving",
+              "topics": [
+                "problem-decomposition",
+                "debugging-mindset",
+                "learning-how-to-learn"
+              ]
+            },
+            {
+              "id": "technical-communication",
+              "title": "Technical Communication",
+              "topics": [
+                "technical-reading",
+                "source-evaluation",
+                "technical-writing"
+              ]
+            }
           ]
         },
         {
           "id": "mathematical-foundation",
           "title": "Mathematical & Quantitative Foundation",
-          "topics": [
-            "arithmetic-fluency",
-            "algebra-repair",
-            "equations-inequalities",
-            "functions-and-graphs",
-            "geometry-foundations",
-            "trigonometry-foundations",
-            "precalculus",
-            "counting-and-combinatorics-foundations",
-            "probability-foundations",
-            "mathematical-logic-foundations"
+          "depth": "foundation",
+          "prerequisites": [],
+          "domains": [
+            {
+              "id": "number-and-algebra",
+              "title": "Number & Algebra",
+              "topics": [
+                "arithmetic-fluency",
+                "algebra-repair",
+                "equations-inequalities",
+                "functions-and-graphs",
+                "precalculus"
+              ]
+            },
+            {
+              "id": "geometry-and-trigonometry",
+              "title": "Geometry & Trigonometry",
+              "topics": [
+                "geometry-foundations",
+                "trigonometry-foundations"
+              ]
+            },
+            {
+              "id": "discrete-and-probabilistic-reasoning",
+              "title": "Discrete & Probabilistic Reasoning",
+              "topics": [
+                "counting-and-combinatorics-foundations",
+                "probability-foundations",
+                "mathematical-logic-foundations"
+              ]
+            }
           ]
         },
         {
           "id": "computational-foundation",
           "title": "Computational Thinking",
-          "topics": [
-            "what-is-computation",
-            "algorithms-as-processes",
-            "data-representation",
-            "abstraction",
-            "decomposition",
-            "complexity-intuition"
+          "depth": "foundation",
+          "prerequisites": [],
+          "domains": [
+            {
+              "id": "models-of-computation",
+              "title": "Models of Computation",
+              "topics": [
+                "what-is-computation",
+                "algorithms-as-processes",
+                "data-representation",
+                "complexity-intuition"
+              ]
+            },
+            {
+              "id": "abstraction-and-decomposition",
+              "title": "Abstraction & Decomposition",
+              "topics": [
+                "abstraction",
+                "decomposition"
+              ]
+            }
           ]
         },
         {
           "id": "developer-foundation",
           "title": "Developer Foundations",
-          "topics": [
-            "terminal-basics",
-            "shell-and-command-line",
-            "git-fundamentals",
-            "github-workflow",
-            "debugging-fundamentals",
-            "testing-fundamentals",
-            "documentation-and-readmes",
-            "development-environments"
+          "depth": "foundation",
+          "prerequisites": [],
+          "domains": [
+            {
+              "id": "command-line-and-environments",
+              "title": "Command Line & Environments",
+              "topics": [
+                "terminal-basics",
+                "shell-and-command-line",
+                "development-environments"
+              ]
+            },
+            {
+              "id": "version-control",
+              "title": "Version Control",
+              "topics": [
+                "git-fundamentals",
+                "github-workflow"
+              ]
+            },
+            {
+              "id": "quality-and-documentation",
+              "title": "Quality & Documentation",
+              "topics": [
+                "debugging-fundamentals",
+                "testing-fundamentals",
+                "documentation-and-readmes"
+              ]
+            }
           ]
         }
       ]
@@ -71,60 +1285,119 @@
         {
           "id": "web-foundations",
           "title": "HTML & CSS Foundations",
+          "depth": "foundation",
           "prerequisites": [
-            "mathematical-foundation",
-            "learning-foundations"
+            "universal-core.mathematical-foundation",
+            "universal-core.learning-foundations"
           ],
-          "topics": [
-            "semantic-html",
-            "document-structure",
-            "links-images-media",
-            "forms-and-inputs",
-            "accessibility-basics",
-            "css-selectors",
-            "cascade-and-inheritance",
-            "box-model",
-            "layout-flow",
-            "flexbox",
-            "css-grid",
-            "responsive-design",
-            "typography",
-            "ui-states",
-            "browser-devtools",
-            "static-site-deployment"
-          ],
-          "pedagogy": "micro-lesson -> immediate editable challenge -> local feedback -> variation -> mini-project"
+          "pedagogy": "micro-lesson -> immediate editable challenge -> local feedback -> variation -> mini-project",
+          "domains": [
+            {
+              "id": "html",
+              "title": "HTML",
+              "topics": [
+                "semantic-html",
+                "document-structure",
+                "links-images-media",
+                "forms-and-inputs",
+                "accessibility-basics"
+              ]
+            },
+            {
+              "id": "css",
+              "title": "CSS",
+              "topics": [
+                "css-selectors",
+                "cascade-and-inheritance",
+                "box-model",
+                "layout-flow",
+                "flexbox",
+                "css-grid",
+                "responsive-design",
+                "typography",
+                "ui-states"
+              ]
+            },
+            {
+              "id": "tooling-and-delivery",
+              "title": "Tooling & Delivery",
+              "topics": [
+                "browser-devtools",
+                "static-site-deployment"
+              ]
+            }
+          ]
         },
         {
           "id": "web-platform",
           "title": "Web Platform",
-          "topics": [
-            "browser-runtime",
-            "dom",
-            "events",
-            "http-basics",
-            "urls-and-routing",
-            "web-storage",
-            "security-model-basics",
-            "fetch-and-apis",
-            "accessibility-advanced"
+          "depth": "core",
+          "prerequisites": [],
+          "domains": [
+            {
+              "id": "browser-and-dom",
+              "title": "Browser & DOM",
+              "topics": [
+                "browser-runtime",
+                "dom",
+                "events",
+                "accessibility-advanced"
+              ]
+            },
+            {
+              "id": "networking-and-apis",
+              "title": "Networking & APIs",
+              "topics": [
+                "http-basics",
+                "urls-and-routing",
+                "fetch-and-apis"
+              ]
+            },
+            {
+              "id": "storage-and-security",
+              "title": "Storage & Security",
+              "topics": [
+                "web-storage",
+                "security-model-basics"
+              ]
+            }
           ]
         },
         {
           "id": "modern-frontend",
           "title": "Modern Frontend Engineering",
-          "topics": [
-            "javascript-foundations",
-            "typescript-foundations",
-            "modules-and-tooling",
-            "async-javascript",
-            "state-management",
-            "component-architecture",
-            "forms-validation",
-            "testing-frontend",
-            "performance-frontend",
-            "frontend-security",
-            "build-and-deployment"
+          "depth": "core",
+          "prerequisites": [],
+          "domains": [
+            {
+              "id": "language-and-tooling",
+              "title": "Language & Tooling",
+              "topics": [
+                "javascript-foundations",
+                "typescript-foundations",
+                "modules-and-tooling",
+                "async-javascript"
+              ]
+            },
+            {
+              "id": "application-architecture",
+              "title": "Application Architecture",
+              "topics": [
+                "state-management",
+                "component-architecture",
+                "forms-validation"
+              ]
+            },
+            {
+              "id": "quality-and-delivery",
+              "title": "Quality & Delivery",
+              "topics": [
+                "testing-frontend",
+                "performance-frontend",
+                "frontend-security",
+                "build-and-deployment"
+              ]
+            }
           ]
         }
       ]
@@ -136,150 +1409,336 @@
         {
           "id": "intro-cs",
           "title": "Introductory CS",
-          "topics": [
-            "intro-to-cs",
-            "python-foundations",
-            "c-foundations",
-            "problem-solving-with-code"
+          "depth": "foundation",
+          "prerequisites": [],
+          "domains": [
+            {
+              "id": "computing-foundations",
+              "title": "Computing Foundations",
+              "topics": [
+                "intro-to-cs",
+                "problem-solving-with-code"
+              ]
+            },
+            {
+              "id": "first-languages",
+              "title": "First Languages",
+              "topics": [
+                "python-foundations",
+                "c-foundations"
+              ]
+            }
           ]
         },
         {
           "id": "core-programming",
           "title": "Core Programming",
-          "topics": [
-            "imperative-programming",
-            "functional-programming",
-            "object-oriented-programming",
-            "type-systems",
-            "static-vs-dynamic-typing",
-            "design-by-contract",
-            "unit-testing",
-            "program-design",
-            "software-specification",
-            "refactoring",
-            "programming-language-paradigms"
+          "depth": "core",
+          "prerequisites": [],
+          "domains": [
+            {
+              "id": "paradigms",
+              "title": "Paradigms",
+              "topics": [
+                "imperative-programming",
+                "functional-programming",
+                "object-oriented-programming",
+                "programming-language-paradigms"
+              ]
+            },
+            {
+              "id": "types-and-contracts",
+              "title": "Types & Contracts",
+              "topics": [
+                "type-systems",
+                "static-vs-dynamic-typing",
+                "design-by-contract",
+                "software-specification"
+              ]
+            },
+            {
+              "id": "program-construction",
+              "title": "Program Construction",
+              "topics": [
+                "program-design",
+                "unit-testing",
+                "refactoring"
+              ]
+            }
           ]
         },
         {
           "id": "core-math",
           "title": "Mathematics for CS",
-          "topics": [
-            "calculus-differentiation",
-            "calculus-integration",
-            "infinite-series",
-            "discrete-mathematics",
-            "sets-and-functions",
-            "proof-by-induction",
-            "recurrences",
-            "graph-theory-foundations",
-            "discrete-probability",
-            "asymptotic-analysis"
+          "depth": "core",
+          "prerequisites": [],
+          "domains": [
+            {
+              "id": "calculus",
+              "title": "Calculus",
+              "topics": [
+                "calculus-differentiation",
+                "calculus-integration",
+                "infinite-series"
+              ]
+            },
+            {
+              "id": "discrete-structures",
+              "title": "Discrete Structures",
+              "topics": [
+                "discrete-mathematics",
+                "sets-and-functions",
+                "proof-by-induction",
+                "recurrences",
+                "graph-theory-foundations",
+                "discrete-probability"
+              ]
+            },
+            {
+              "id": "analysis-of-algorithms",
+              "title": "Analysis of Algorithms",
+              "topics": [
+                "asymptotic-analysis"
+              ]
+            }
           ]
         },
         {
           "id": "algorithms-and-data-structures",
           "title": "Algorithms & Data Structures",
-          "topics": [
-            "arrays-lists-stacks-queues",
-            "hash-tables",
-            "trees-heaps-priority-queues",
-            "graphs",
-            "sorting",
-            "searching",
-            "divide-and-conquer",
-            "greedy-algorithms",
-            "dynamic-programming",
-            "shortest-paths",
-            "minimum-spanning-trees",
-            "randomized-algorithms",
-            "string-algorithms",
-            "network-flow",
-            "amortized-analysis",
-            "np-completeness"
+          "depth": "core",
+          "prerequisites": [],
+          "domains": [
+            {
+              "id": "data-structures",
+              "title": "Data Structures",
+              "topics": [
+                "arrays-lists-stacks-queues",
+                "hash-tables",
+                "trees-heaps-priority-queues",
+                "graphs"
+              ]
+            },
+            {
+              "id": "algorithm-design",
+              "title": "Algorithm Design",
+              "topics": [
+                "sorting",
+                "searching",
+                "divide-and-conquer",
+                "greedy-algorithms",
+                "dynamic-programming",
+                "string-algorithms",
+                "randomized-algorithms"
+              ]
+            },
+            {
+              "id": "graph-algorithms",
+              "title": "Graph Algorithms",
+              "topics": [
+                "shortest-paths",
+                "minimum-spanning-trees",
+                "network-flow"
+              ]
+            },
+            {
+              "id": "analysis-and-complexity",
+              "title": "Analysis & Complexity",
+              "topics": [
+                "amortized-analysis",
+                "np-completeness"
+              ]
+            }
           ]
         },
         {
           "id": "systems",
           "title": "Computer Systems",
-          "topics": [
-            "boolean-algebra-and-logic-gates",
-            "digital-circuits",
-            "memory-and-state",
-            "assembly-and-machine-code",
-            "computer-organization",
-            "cpu-design",
-            "caches-and-memory-hierarchy",
-            "pipelining",
-            "virtual-memory",
-            "processes-and-threads",
-            "system-calls",
-            "filesystems",
-            "concurrency",
-            "operating-system-design"
+          "depth": "core",
+          "prerequisites": [],
+          "domains": [
+            {
+              "id": "digital-logic-and-hardware",
+              "title": "Digital Logic & Hardware",
+              "topics": [
+                "boolean-algebra-and-logic-gates",
+                "digital-circuits",
+                "memory-and-state",
+                "cpu-design",
+                "pipelining"
+              ]
+            },
+            {
+              "id": "machine-level-programming",
+              "title": "Machine-Level Programming",
+              "topics": [
+                "assembly-and-machine-code",
+                "computer-organization",
+                "caches-and-memory-hierarchy"
+              ]
+            },
+            {
+              "id": "operating-systems",
+              "title": "Operating Systems",
+              "topics": [
+                "virtual-memory",
+                "processes-and-threads",
+                "system-calls",
+                "filesystems",
+                "concurrency",
+                "operating-system-design"
+              ]
+            }
           ]
         },
         {
           "id": "networking",
           "title": "Computer Networking",
-          "topics": [
-            "network-models",
-            "ethernet-ip",
-            "tcp-udp",
-            "dns",
-            "http",
-            "routing",
-            "congestion-control",
-            "network-debugging",
-            "network-security",
-            "distributed-network-fundamentals"
+          "depth": "core",
+          "prerequisites": [],
+          "domains": [
+            {
+              "id": "network-layers",
+              "title": "Network Layers",
+              "topics": [
+                "network-models",
+                "ethernet-ip",
+                "tcp-udp",
+                "routing",
+                "congestion-control"
+              ]
+            },
+            {
+              "id": "application-protocols",
+              "title": "Application Protocols",
+              "topics": [
+                "dns",
+                "http"
+              ]
+            },
+            {
+              "id": "network-operations",
+              "title": "Network Operations",
+              "topics": [
+                "network-debugging",
+                "network-security",
+                "distributed-network-fundamentals"
+              ]
+            }
           ]
         },
         {
           "id": "databases",
           "title": "Databases & Data Systems",
-          "topics": [
-            "relational-model",
-            "sql-foundations",
-            "schema-design",
-            "normalization",
-            "transactions",
-            "indexes",
-            "query-plans",
-            "concurrency-control",
-            "recovery",
-            "semi-structured-data",
-            "data-modeling"
+          "depth": "core",
+          "prerequisites": [],
+          "domains": [
+            {
+              "id": "relational-foundations",
+              "title": "Relational Foundations",
+              "topics": [
+                "relational-model",
+                "sql-foundations",
+                "schema-design",
+                "normalization",
+                "data-modeling"
+              ]
+            },
+            {
+              "id": "transactions-and-recovery",
+              "title": "Transactions & Recovery",
+              "topics": [
+                "transactions",
+                "concurrency-control",
+                "recovery"
+              ]
+            },
+            {
+              "id": "query-processing",
+              "title": "Query Processing",
+              "topics": [
+                "indexes",
+                "query-plans"
+              ]
+            },
+            {
+              "id": "beyond-relational",
+              "title": "Beyond Relational",
+              "topics": [
+                "semi-structured-data"
+              ]
+            }
           ]
         },
         {
           "id": "theory",
           "title": "Theory of Computation",
-          "topics": [
-            "formal-logic",
-            "regular-languages",
-            "finite-automata",
-            "context-free-languages",
-            "pushdown-automata",
-            "turing-machines",
-            "decidability",
-            "computability",
-            "complexity-classes"
+          "depth": "core",
+          "prerequisites": [],
+          "domains": [
+            {
+              "id": "logic",
+              "title": "Logic",
+              "topics": [
+                "formal-logic"
+              ]
+            },
+            {
+              "id": "automata-and-languages",
+              "title": "Automata & Languages",
+              "topics": [
+                "regular-languages",
+                "finite-automata",
+                "context-free-languages",
+                "pushdown-automata"
+              ]
+            },
+            {
+              "id": "computability-and-complexity",
+              "title": "Computability & Complexity",
+              "topics": [
+                "turing-machines",
+                "decidability",
+                "computability",
+                "complexity-classes"
+              ]
+            }
           ]
         },
         {
           "id": "security",
           "title": "Computer Security",
-          "topics": [
-            "security-principles",
-            "threat-modeling",
-            "secure-design",
-            "secure-coding",
-            "web-security",
-            "network-security",
-            "cryptographic-primitives",
-            "authentication-and-authorization",
-            "privacy",
-            "vulnerability-analysis"
+          "depth": "core",
+          "prerequisites": [],
+          "domains": [
+            {
+              "id": "security-foundations",
+              "title": "Security Foundations",
+              "topics": [
+                "security-principles",
+                "threat-modeling",
+                "secure-design",
+                "privacy"
+              ]
+            },
+            {
+              "id": "applied-security",
+              "title": "Applied Security",
+              "topics": [
+                "secure-coding",
+                "web-security",
+                "network-security",
+                "vulnerability-analysis"
+              ]
+            },
+            {
+              "id": "cryptography-and-identity",
+              "title": "Cryptography & Identity",
+              "topics": [
+                "cryptographic-primitives",
+                "authentication-and-authorization"
+              ]
+            }
           ]
         }
       ]
@@ -291,51 +1750,106 @@
         {
           "id": "engineering-practice",
           "title": "Engineering Practice",
-          "topics": [
-            "requirements",
-            "design",
-            "code-review",
-            "testing-strategy",
-            "integration-testing",
-            "property-based-testing",
-            "observability",
-            "incident-thinking",
-            "technical-debt",
-            "release-engineering"
+          "depth": "core",
+          "prerequisites": [],
+          "domains": [
+            {
+              "id": "design-and-decomposition",
+              "title": "Design & Decomposition",
+              "topics": [
+                "program-decomposition-typescript-functions",
+                "requirements",
+                "design"
+              ]
+            },
+            {
+              "id": "quality-engineering",
+              "title": "Quality Engineering",
+              "topics": [
+                "code-review",
+                "testing-strategy",
+                "integration-testing",
+                "property-based-testing"
+              ]
+            },
+            {
+              "id": "operations-and-delivery",
+              "title": "Operations & Delivery",
+              "topics": [
+                "observability",
+                "incident-thinking",
+                "technical-debt",
+                "release-engineering"
+              ]
+            }
           ]
         },
         {
           "id": "architecture",
           "title": "Architecture & Scale",
-          "topics": [
-            "modularity",
-            "interfaces-and-abstractions",
-            "api-design",
-            "service-boundaries",
-            "caching",
-            "queues",
-            "load-balancing",
-            "scalability",
-            "reliability",
-            "distributed-data",
-            "consistency-models",
-            "system-design"
+          "depth": "advanced",
+          "prerequisites": [],
+          "domains": [
+            {
+              "id": "modular-design",
+              "title": "Modular Design",
+              "topics": [
+                "modularity",
+                "interfaces-and-abstractions",
+                "api-design",
+                "service-boundaries"
+              ]
+            },
+            {
+              "id": "scaling",
+              "title": "Scaling",
+              "topics": [
+                "caching",
+                "queues",
+                "load-balancing",
+                "scalability"
+              ]
+            },
+            {
+              "id": "distributed-architecture",
+              "title": "Distributed Architecture",
+              "topics": [
+                "reliability",
+                "distributed-data",
+                "consistency-models",
+                "system-design"
+              ]
+            }
           ]
         },
         {
           "id": "advanced-engineering",
           "title": "Advanced Engineering",
-          "topics": [
-            "concurrency-patterns",
-            "parallel-programming",
-            "performance-engineering",
-            "profiling",
-            "memory-performance",
-            "compiler-aware-optimization",
-            "developer-tools",
-            "build-systems",
-            "ci-cd",
-            "supply-chain-security"
+          "depth": "advanced",
+          "prerequisites": [],
+          "domains": [
+            {
+              "id": "performance",
+              "title": "Performance",
+              "topics": [
+                "concurrency-patterns",
+                "parallel-programming",
+                "performance-engineering",
+                "profiling",
+                "memory-performance",
+                "compiler-aware-optimization"
+              ]
+            },
+            {
+              "id": "tooling-and-supply-chain",
+              "title": "Tooling & Supply Chain",
+              "topics": [
+                "developer-tools",
+                "build-systems",
+                "ci-cd",
+                "supply-chain-security"
+              ]
+            }
           ]
         }
       ]
@@ -347,48 +1861,114 @@
         {
           "id": "advanced-secondary",
           "title": "Advanced Secondary Mathematics",
-          "topics": [
-            "advanced-algebra",
-            "advanced-functions",
-            "complex-numbers",
-            "sequences-and-series",
-            "vectors",
-            "matrices",
-            "advanced-trigonometry",
-            "combinatorics",
-            "elementary-number-theory",
-            "olympiad-problem-solving"
+          "depth": "foundation",
+          "prerequisites": [],
+          "domains": [
+            {
+              "id": "algebra-and-functions",
+              "title": "Algebra & Functions",
+              "topics": [
+                "advanced-algebra",
+                "advanced-functions",
+                "complex-numbers",
+                "sequences-and-series",
+                "advanced-trigonometry"
+              ]
+            },
+            {
+              "id": "vectors-and-matrices",
+              "title": "Vectors & Matrices",
+              "topics": [
+                "vectors",
+                "matrices"
+              ]
+            },
+            {
+              "id": "discrete-problem-solving",
+              "title": "Discrete Problem Solving",
+              "topics": [
+                "combinatorics",
+                "elementary-number-theory",
+                "olympiad-problem-solving"
+              ]
+            }
           ]
         },
         {
           "id": "university-core",
           "title": "University Core Mathematics",
-          "topics": [
-            "calculus-i",
-            "calculus-ii",
-            "multivariable-calculus",
-            "linear-algebra",
-            "probability",
-            "statistics",
-            "discrete-mathematics",
-            "ordinary-differential-equations",
-            "numerical-methods",
-            "optimization"
+          "depth": "core",
+          "prerequisites": [],
+          "domains": [
+            {
+              "id": "calculus-and-differential-equations",
+              "title": "Calculus & Differential Equations",
+              "topics": [
+                "calculus-i",
+                "calculus-ii",
+                "multivariable-calculus",
+                "ordinary-differential-equations"
+              ]
+            },
+            {
+              "id": "linear-and-discrete-mathematics",
+              "title": "Linear & Discrete Mathematics",
+              "topics": [
+                "linear-algebra",
+                "discrete-mathematics"
+              ]
+            },
+            {
+              "id": "probability-and-statistics",
+              "title": "Probability & Statistics",
+              "topics": [
+                "probability",
+                "statistics"
+              ]
+            },
+            {
+              "id": "computational-mathematics",
+              "title": "Computational Mathematics",
+              "topics": [
+                "numerical-methods",
+                "optimization"
+              ]
+            }
           ]
         },
         {
           "id": "mathematical-maturity",
           "title": "Mathematical Maturity",
-          "topics": [
-            "proof-writing",
-            "real-analysis",
-            "abstract-algebra",
-            "complex-analysis",
-            "measure-and-probability-foundations",
-            "advanced-combinatorics",
-            "graph-theory",
-            "number-theory",
-            "functional-thinking"
+          "depth": "advanced",
+          "prerequisites": [],
+          "domains": [
+            {
+              "id": "proof-and-analysis",
+              "title": "Proof & Analysis",
+              "topics": [
+                "proof-writing",
+                "functional-thinking",
+                "real-analysis",
+                "complex-analysis",
+                "measure-and-probability-foundations"
+              ]
+            },
+            {
+              "id": "algebra-and-number-theory",
+              "title": "Algebra & Number Theory",
+              "topics": [
+                "abstract-algebra",
+                "number-theory"
+              ]
+            },
+            {
+              "id": "combinatorics-and-graphs",
+              "title": "Combinatorics & Graphs",
+              "topics": [
+                "advanced-combinatorics",
+                "graph-theory"
+              ]
+            }
           ]
         }
       ]
@@ -400,69 +1980,136 @@
         {
           "id": "quant-math-foundations",
           "title": "Quant Mathematical Foundations",
+          "depth": "core",
           "prerequisites": [
             "mathematics-computational-mathematics.university-core",
             "computer-science.algorithms-and-data-structures"
           ],
-          "topics": [
-            "conditional-probability-for-quant",
-            "random-variables",
-            "expectation-and-variance",
-            "covariance-and-correlation",
-            "distributions",
-            "law-of-large-numbers",
-            "central-limit-theorem",
-            "linear-algebra-for-statistics",
-            "multivariable-calculus-for-optimization",
-            "numerical-computation"
+          "domains": [
+            {
+              "id": "probability-and-statistics",
+              "title": "Probability & Statistics",
+              "topics": [
+                "conditional-probability-for-quant",
+                "random-variables",
+                "expectation-and-variance",
+                "covariance-and-correlation",
+                "distributions",
+                "law-of-large-numbers",
+                "central-limit-theorem"
+              ]
+            },
+            {
+              "id": "linear-algebra-and-optimization",
+              "title": "Linear Algebra & Optimization",
+              "topics": [
+                "linear-algebra-for-statistics",
+                "multivariable-calculus-for-optimization",
+                "numerical-computation"
+              ]
+            }
           ]
         },
         {
           "id": "quant-research",
           "title": "Quantitative Research",
-          "topics": [
-            "statistical-inference",
-            "regression",
-            "maximum-likelihood",
-            "bayesian-thinking",
-            "time-series",
-            "signal-research",
-            "backtesting-methodology",
-            "experimental-design",
-            "multiple-testing",
-            "model-validation",
-            "market-microstructure",
-            "simulation",
-            "research-engineering"
+          "depth": "advanced",
+          "prerequisites": [],
+          "domains": [
+            {
+              "id": "statistical-modeling",
+              "title": "Statistical Modeling",
+              "topics": [
+                "statistical-inference",
+                "regression",
+                "maximum-likelihood",
+                "bayesian-thinking",
+                "time-series"
+              ]
+            },
+            {
+              "id": "research-methodology",
+              "title": "Research Methodology",
+              "topics": [
+                "signal-research",
+                "backtesting-methodology",
+                "experimental-design",
+                "multiple-testing",
+                "model-validation",
+                "simulation"
+              ]
+            },
+            {
+              "id": "markets-and-research-engineering",
+              "title": "Markets & Research Engineering",
+              "topics": [
+                "market-microstructure",
+                "research-engineering"
+              ]
+            }
           ]
         },
         {
           "id": "quant-development",
           "title": "Quantitative Development",
-          "topics": [
-            "python-for-research",
-            "numpy-and-vectorization",
-            "pandas-data-workflows",
-            "c-plus-plus-foundations",
-            "performance-coding",
-            "concurrency-for-quant",
-            "low-latency-concepts",
-            "data-pipelines",
-            "research-infrastructure"
+          "depth": "advanced",
+          "prerequisites": [],
+          "domains": [
+            {
+              "id": "research-computing",
+              "title": "Research Computing",
+              "topics": [
+                "python-for-research",
+                "numpy-and-vectorization",
+                "pandas-data-workflows",
+                "data-pipelines",
+                "research-infrastructure"
+              ]
+            },
+            {
+              "id": "performance-systems",
+              "title": "Performance Systems",
+              "topics": [
+                "c-plus-plus-foundations",
+                "performance-coding",
+                "concurrency-for-quant",
+                "low-latency-concepts"
+              ]
+            }
           ]
         },
         {
           "id": "quant-problem-solving",
           "title": "Quant Interview & Problem Solving",
-          "topics": [
-            "mental-math",
-            "probability-puzzles",
-            "expected-value-puzzles",
-            "estimation",
-            "game-theory-intuition",
-            "decision-under-uncertainty",
-            "coding-interview-foundations",
-            "market-making-simulations"
+          "depth": "advanced",
+          "prerequisites": [],
+          "domains": [
+            {
+              "id": "quantitative-reasoning",
+              "title": "Quantitative Reasoning",
+              "topics": [
+                "mental-math",
+                "estimation",
+                "probability-puzzles",
+                "expected-value-puzzles"
+              ]
+            },
+            {
+              "id": "decisions-and-markets",
+              "title": "Decisions & Markets",
+              "topics": [
+                "game-theory-intuition",
+                "decision-under-uncertainty",
+                "market-making-simulations"
+              ]
+            },
+            {
+              "id": "coding-interviews",
+              "title": "Coding Interviews",
+              "topics": [
+                "coding-interview-foundations"
+              ]
+            }
           ]
         }
       ]
@@ -474,41 +2121,83 @@
         {
           "id": "ml-foundations",
           "title": "Machine Learning Foundations",
-          "topics": [
-            "supervised-learning",
-            "unsupervised-learning",
-            "feature-engineering",
-            "model-evaluation",
-            "cross-validation",
-            "regularization",
-            "optimization-for-ml"
+          "depth": "core",
+          "prerequisites": [],
+          "domains": [
+            {
+              "id": "learning-paradigms",
+              "title": "Learning Paradigms",
+              "topics": [
+                "supervised-learning",
+                "unsupervised-learning",
+                "feature-engineering"
+              ]
+            },
+            {
+              "id": "evaluation-and-generalization",
+              "title": "Evaluation & Generalization",
+              "topics": [
+                "model-evaluation",
+                "cross-validation",
+                "regularization",
+                "optimization-for-ml"
+              ]
+            }
           ]
         },
         {
           "id": "deep-learning",
           "title": "Deep Learning",
-          "topics": [
-            "neural-networks",
-            "backpropagation",
-            "convolutional-networks",
-            "sequence-models",
-            "attention",
-            "transformers",
-            "representation-learning"
+          "depth": "advanced",
+          "prerequisites": [],
+          "domains": [
+            {
+              "id": "neural-network-foundations",
+              "title": "Neural Network Foundations",
+              "topics": [
+                "neural-networks",
+                "backpropagation",
+                "representation-learning"
+              ]
+            },
+            {
+              "id": "architectures",
+              "title": "Architectures",
+              "topics": [
+                "convolutional-networks",
+                "sequence-models",
+                "attention",
+                "transformers"
+              ]
+            }
           ]
         },
         {
           "id": "modern-ai-systems",
           "title": "Modern AI Systems",
-          "topics": [
-            "llm-fundamentals",
-            "retrieval-augmented-generation",
-            "tool-use-and-agents",
-            "evaluation-and-observability",
-            "inference-efficiency",
-            "model-serving",
-            "ai-safety-and-reliability",
-            "mlops"
+          "depth": "advanced",
+          "prerequisites": [],
+          "domains": [
+            {
+              "id": "llm-applications",
+              "title": "LLM Applications",
+              "topics": [
+                "llm-fundamentals",
+                "retrieval-augmented-generation",
+                "tool-use-and-agents"
+              ]
+            },
+            {
+              "id": "production-ai",
+              "title": "Production AI",
+              "topics": [
+                "evaluation-and-observability",
+                "inference-efficiency",
+                "model-serving",
+                "mlops",
+                "ai-safety-and-reliability"
+              ]
+            }
           ]
         }
       ]

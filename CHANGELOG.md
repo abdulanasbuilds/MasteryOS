@@ -2,6 +2,27 @@
 
 All notable project-level changes are recorded here. Implementation changes should be added as the application evolves.
 
+## 2026-10-09 — Gate 2 content and curriculum schema
+
+### Added
+
+- Curriculum schema v2 (D-022): topic registry with authored titles for all 283 topics; required phase depth; a Domain level (81 domains); program-qualified phase prerequisites; topic-level prerequisites; explicit recommended route by list order.
+- Typed content model in `src/domain/curriculum.ts` and `src/domain/content.ts` covering lesson concepts, version, status, last-verified date, estimated effort, provenance/rights class, and a `Project` contract.
+- Dependency-free validator `src/content/validate-curriculum.ts`. It checks ids, uniqueness, depth values, reference resolution, prerequisite cycles (phase and topic graphs), unplaced topics, lesson placement, hostable rights classes, license presence, and assessment and project references.
+- Assessment definition for the first lesson (`src/content/assessments.ts`); items arrive in Gate 5.
+- UI: program and Universal Core pages group topics by domain and show phase depth. Topic pages show the full breadcrumb (Programs → Program → Phase → Domain → Topic), the depth, the key concepts, the lesson version/status, and linked topic prerequisites.
+- 21 new tests (63 total). Browser verification scripts committed under `docs/verification/scripts/`.
+
+### Changed
+
+- The authored lesson topic `program-decomposition-typescript-functions` is now in the graph: Software Engineering → Engineering Practice → Design & Decomposition.
+- The lesson title now uses sentence case to match the topic registry convention.
+- UI spelling is standardized to American English ("Visualize", "Practiced").
+
+### Removed
+
+- Runtime title derivation from ids and support for bare phase-prerequisite references.
+
 ## 2026-10-08 — Gate 1 application shell
 
 ### Added
